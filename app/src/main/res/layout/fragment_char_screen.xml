@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.rpregulator.viewmodel.CharScreenViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primaryLightColor">
+
+        <View
+            android:id="@+id/textBackground"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/primaryColor"
+            app:layout_constraintBottom_toTopOf="@id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgOfChar"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_active"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{onClick -> viewModel.changePhoto()}">
+
+            <tag
+                android:id="@+id/zoomable"
+                android:value="ZoomableViewTag" />
+
+
+        </de.hdodenhof.circleimageview.CircleImageView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="165dp" />
+
+        <TextView
+            android:id="@+id/txtCharName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Character Name:"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline" />
+
+        <TextView
+            android:id="@+id/tvCharName"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{viewModel.charName}"
+            android:textColor="@color/primaryTextColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtCharName"
+            tools:text="Golem Heart" />
+
+        <View
+            android:id="@+id/horizontalDevider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/primaryColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCharName" />
+
+        <TextView
+            android:id="@+id/txtCharEquip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Eqiupment"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/horizontalDevider" />
+
+        <TextView
+            android:id="@+id/tvtCharAppearance"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/primaryTextColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtCharEquip"
+            tools:text="25" />
+
+        <View
+            android:id="@+id/horizontalDevider2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/primaryColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvtCharAppearance" />
+
+
+        <TextView
+            android:id="@+id/txtCharDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Coins"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/horizontalDevider2" />
+
+        <TextView
+            android:id="@+id/tvCharGold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:text="@{viewModel.gold}"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtCharDesc"
+            tools:text="Cost:" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/tvCharGold"
+            app:layout_constraintTop_toTopOf="@id/tvCharGold"
+            app:layout_constraintBottom_toBottomOf="@id/tvCharGold"
+            android:src="@drawable/coin"/>
+
+        <Button
+            android:id="@+id/btnIncrease1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="30dp"
+            android:textSize="15sp"
+            android:drawableRight="@drawable/coin"
+            android:text="+1"
+            android:onClick="@{onClick -> viewModel.increaseGold(1)}"
+            android:src="@drawable/ic_edit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCharGold" />
+
+        <Button
+            android:id="@+id/btnIncrease10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:textSize="15sp"
+            android:drawableRight="@drawable/coin"
+            android:text="+10"
+            android:onClick="@{onClick -> viewModel.increaseGold(10)}"
+            app:layout_constraintStart_toEndOf="@id/btnIncrease1"
+            app:layout_constraintEnd_toStartOf="@id/btnIncrease100"
+            app:layout_constraintTop_toBottomOf="@id/tvCharGold" />
+
+        <Button
+            android:id="@+id/btnIncrease100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="30dp"
+            android:drawableRight="@drawable/coin"
+            android:textSize="15sp"
+            android:text="+100"
+            android:onClick="@{onClick -> viewModel.increaseGold(100)}"
+            
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCharGold" />
+
+        <Button
+            android:id="@+id/btnDecrease1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="30dp"
+            android:drawableRight="@drawable/coin"
+
+            android:textSize="15sp"
+            android:text="-1"
+            android:onClick="@{onClick -> viewModel.increaseGold(-1)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnIncrease1" />
+
+        <Button
+            android:id="@+id/btnDecrease10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:drawableRight="@drawable/coin"
+            android:onClick="@{onClick -> viewModel.increaseGold(-10)}"
+            android:text="-10"
+
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@+id/btnIncrease10"
+            app:layout_constraintStart_toStartOf="@+id/btnIncrease10"
+            app:layout_constraintTop_toBottomOf="@id/btnIncrease1" />
+
+        <Button
+            android:id="@+id/btnDecrease100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+
+
+            android:drawableRight="@drawable/coin"
+            android:onClick="@{onClick -> viewModel.increaseGold(-100)}"
+            android:text="-100"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnDecrease10"
+            app:layout_constraintEnd_toEndOf="@+id/btnIncrease100"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/btnIncrease100"
+            app:layout_constraintTop_toBottomOf="@id/btnIncrease1"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

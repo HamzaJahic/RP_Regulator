@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.rpregulator.viewmodel.SkillDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primaryLightColor">
+
+        <View
+            android:id="@+id/textBackground"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/primaryColor"
+            app:layout_constraintBottom_toTopOf="@id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgOfAdd"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/skills"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="143dp" />
+
+        <TextView
+            android:id="@+id/txtSkillName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="25dp"
+            android:text="Skill Name:"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline" />
+
+        <TextView
+            android:id="@+id/tvSkillName"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{viewModel.skillName}"
+            android:textColor="@color/primaryTextColor"
+            app:layout_constraintStart_toStartOf="@id/txtSkillName"
+            app:layout_constraintTop_toBottomOf="@id/txtSkillName"
+            tools:text="Viper stance" />
+
+
+        <TextView
+            android:id="@+id/txtSkillCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginRight="20dp"
+            android:text="Cost:"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@id/txtSkillName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtSkillName" />
+
+        <TextView
+            android:id="@+id/tvSkillCost"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{viewModel.skillCost}"
+            android:textColor="@color/primaryTextColor"
+            app:layout_constraintStart_toStartOf="@id/txtSkillCost"
+            app:layout_constraintTop_toBottomOf="@id/txtSkillCost"
+            tools:text="-20st" />
+
+
+        <View
+            android:id="@+id/horizontalDevider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/primaryColor"
+            app:layout_constraintTop_toBottomOf="@+id/tvSkillName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/txtSkillType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="15sp"
+            android:text="Type:"
+            android:textColor="@color/primaryTextColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/horizontalDevider" />
+
+        <ImageView
+            android:id="@+id/imgSkillType"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_passive"
+            android:text="Viper Stance: Hunting Viper"
+            android:textColor="@color/primaryTextColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtSkillType" />
+
+        <View
+            android:id="@+id/horizontalDevider2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/primaryColor"
+            app:layout_constraintTop_toBottomOf="@+id/imgSkillType"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+
+        <TextView
+            android:id="@+id/txtSkillDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Desc:"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@id/txtSkillName"
+            app:layout_constraintTop_toBottomOf="@id/horizontalDevider2" />
+
+        <TextView
+            android:id="@+id/tvSkillDesc"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/photo_bg"
+            android:padding="8dp"
+            android:text="@{viewModel.skillDesc}"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@id/txtSkillCost"
+            app:layout_constraintStart_toStartOf="@id/txtSkillName"
+            app:layout_constraintTop_toBottomOf="@id/txtSkillDesc"
+            tools:text="Cost:" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAccept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="40dp"
+            android:onClick="@{onClick -> viewModel.navigateToSkillEdit()}"
+            android:src="@drawable/ic_edit"
+            app:layout_constraintStart_toStartOf="@id/tvSkillDesc"
+            app:layout_constraintTop_toBottomOf="@id/tvSkillDesc" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="40dp"
+            android:onClick="@{onClick -> viewModel.showAlertDialog()}"
+            android:src="@drawable/ic_delete"
+            app:layout_constraintEnd_toEndOf="@id/tvSkillDesc"
+            app:layout_constraintTop_toBottomOf="@id/tvSkillDesc" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

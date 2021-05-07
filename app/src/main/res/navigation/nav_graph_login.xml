@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph_login"
+    app:startDestination="@id/charSelectFragment">
+
+    <fragment
+        android:id="@+id/charSelectFragment"
+        android:name="com.example.rpregulator.view.CharSelectFragment"
+        android:label="CharSelectFragment" >
+        <action
+            android:id="@+id/action_charSelectFragment_to_pinFragment"
+            app:destination="@id/pinFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pinFragment"
+        android:name="com.example.rpregulator.view.PinFragment"
+        android:label="PinFragment" >
+        <argument
+            android:name="user"
+            app:argType="com.example.rpregulator.models.User" />
+    </fragment>
+</navigation>

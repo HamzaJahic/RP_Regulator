@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <group
+        android:id="@+id/menuMain">
+
+        <item
+            android:id="@+id/adminTabFragment"
+            android:title="Players"
+            android:icon="@drawable/ic_people"/>
+
+        <item
+            android:id="@+id/mainFragment"
+            android:title="Main"
+            android:icon="@drawable/ic_main"/>
+        <item
+            android:id="@+id/statusFragment"
+            android:title="Status"
+            android:icon="@drawable/ic_status"/>
+        <item
+            android:id="@+id/paperworkFragment"
+            android:title="Paperwork"
+            android:icon="@drawable/ic_paperwork"/>
+    </group>
+
+    <group
+        android:id="@+id/menuExtras">
+
+        <item
+            android:id="@+id/notesFragment"
+            android:title="Notes"
+            android:icon="@drawable/ic_notes"/>
+
+        <item
+            android:id="@+id/bestiaryFragment"
+            android:title="Chars and Monsters"
+            android:icon="@drawable/ic_creatures"/>
+
+
+        <item
+            android:id="@+id/settingsFragment"
+            android:title="Settings"
+            android:icon="@drawable/ic_settings"/>
+
+        <item
+            android:id="@+id/rpInstFrag"
+            android:title="RP Instagram"
+            android:icon="@drawable/ic_instagram"/>
+
+
+    </group>
+
+</menu>

@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/bestiaryFragment"
+        android:name="com.example.rpregulator.view.BestiaryFragment"
+        android:label="Bestiary">
+        <action
+            android:id="@+id/action_bestiaryFragment_to_addCharFragment"
+            app:destination="@id/addCharFragment" />
+        <action
+            android:id="@+id/action_bestiaryFragment_to_addCreatureFragment"
+            app:destination="@id/addCreatureFragment" />
+        <action
+            android:id="@+id/action_bestiaryFragment_to_charDetailsFragment"
+            app:destination="@id/charDetailsFragment" />
+        <action
+            android:id="@+id/action_bestiaryFragment_to_creatureDetailsFragment"
+            app:destination="@id/creatureDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.example.rpregulator.view.NotesFragment"
+        android:label="Notes">
+        <action
+            android:id="@+id/action_notesFragment_to_addNotesFragment"
+            app:destination="@id/addNotesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.rpregulator.view.MainFragment"
+        android:label="Main">
+        <action
+            android:id="@+id/action_mainFragment_to_addStatFragment"
+            app:destination="@id/addStatFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_addSkillFragment"
+            app:destination="@id/addSkillFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_addInventoryFragment"
+            app:destination="@id/addInventoryFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_skillDetailsFragment"
+            app:destination="@id/skillDetailsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_inventoryDetailsFragment"
+            app:destination="@id/inventoryDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/statusFragment"
+        android:name="com.example.rpregulator.view.StatusFragment"
+        android:label="Status">
+        <action
+            android:id="@+id/action_statusFragment_to_addBlessingFragment"
+            app:destination="@id/addBlessingFragment" />
+        <action
+            android:id="@+id/action_statusFragment_to_addCurseFragment"
+            app:destination="@id/addCurseFragment" />
+        <action
+            android:id="@+id/action_statusFragment_to_addHealthFragment"
+            app:destination="@id/addHealthFragment" />
+        <action
+            android:id="@+id/action_statusFragment_to_blessingDetailsFragment"
+            app:destination="@id/blessingDetailsFragment" />
+        <action
+            android:id="@+id/action_statusFragment_to_curseDetailsFragment"
+            app:destination="@id/curseDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paperworkFragment"
+        android:name="com.example.rpregulator.view.PaperworkFragment"
+        android:label="PaperWork">
+        <action
+            android:id="@+id/action_paperworkFragment_to_addPaperWorkFragment"
+            app:destination="@id/addPaperWorkFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.rpregulator.view.SettingsFragment"
+        android:label="Settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_changePinFragment"
+            app:destination="@id/changePinFragment" />
+    </fragment>
+
+    <activity
+        android:id="@+id/rpInstFrag"
+        app:action="android.intent.action.VIEW"
+        app:data="https://www.instagram.com/oingo_boingo_rp/"/>
+    <fragment
+        android:id="@+id/addSkillFragment"
+        android:name="com.example.rpregulator.view.AddSkillFragment"
+        android:label="Add Skill">
+        <action
+            android:id="@+id/action_addSkillFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addStatFragment"
+        android:name="com.example.rpregulator.view.AddStatFragment"
+        android:label="Add Stat">
+        <action
+            android:id="@+id/action_addStatFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="com.example.rpregulator.view.StatsFragment"
+        android:label="StatsFragment" />
+    <fragment
+        android:id="@+id/skillsFragment"
+        android:name="com.example.rpregulator.view.SkillsFragment"
+        android:label="SkillsFragment" />
+    <fragment
+        android:id="@+id/addInventoryFragment"
+        android:name="com.example.rpregulator.view.AddInventoryFragment"
+        android:label="Add New Item">
+        <action
+            android:id="@+id/action_addInventoryFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inventoryFragment"
+        android:name="com.example.rpregulator.view.InventoryFragment"
+        android:label="InventoryFragment" />
+    <fragment
+        android:id="@+id/blessingsFragment"
+        android:name="com.example.rpregulator.view.BlessingsFragment"
+        android:label="BlessingsFragment" />
+    <fragment
+        android:id="@+id/cursesFragment"
+        android:name="com.example.rpregulator.view.CursesFragment"
+        android:label="CursesFragment" />
+    <fragment
+        android:id="@+id/healthFragment"
+        android:name="com.example.rpregulator.view.HealthFragment"
+        android:label="HealthFragment" />
+    <fragment
+        android:id="@+id/addBlessingFragment"
+        android:name="com.example.rpregulator.view.AddBlessingFragment"
+        android:label="Add New Blessing">
+        <action
+            android:id="@+id/action_addBlessingFragment_to_statusFragment"
+            app:destination="@id/statusFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCurseFragment"
+        android:name="com.example.rpregulator.view.AddCurseFragment"
+        android:label="Add New Curse">
+        <action
+            android:id="@+id/action_addCurseFragment_to_statusFragment"
+            app:destination="@id/statusFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addHealthFragment"
+        android:name="com.example.rpregulator.view.AddHealthFragment"
+        android:label="Add New Health Condition">
+        <action
+            android:id="@+id/action_addHealthFragment_to_statusFragment"
+            app:destination="@id/statusFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/creaturesFragment"
+        android:name="com.example.rpregulator.view.CreaturesFragment"
+        android:label="CreaturesFragment" />
+    <fragment
+        android:id="@+id/peopleFragment"
+        android:name="com.example.rpregulator.view.PeopleFragment"
+        android:label="PeopleFragment" />
+    <fragment
+        android:id="@+id/addNotesFragment"
+        android:name="com.example.rpregulator.view.AddNotesFragment"
+        android:label="Add Notes">
+        <action
+            android:id="@+id/action_addNotesFragment_to_notesFragment"
+            app:destination="@id/notesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCharFragment"
+        android:name="com.example.rpregulator.view.AddCharFragment"
+        android:label="Add New Char">
+        <action
+            android:id="@+id/action_addCharFragment_to_bestiaryFragment"
+            app:destination="@id/bestiaryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCreatureFragment"
+        android:name="com.example.rpregulator.view.AddCreatureFragment"
+        android:label="Add New Creature">
+        <action
+            android:id="@+id/action_addCreatureFragment_to_bestiaryFragment"
+            app:destination="@id/bestiaryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPaperWorkFragment"
+        android:name="com.example.rpregulator.view.AddPaperWorkFragment"
+        android:label="Add New Paperwork">
+        <action
+            android:id="@+id/action_addPaperWorkFragment_to_paperworkFragment"
+            app:destination="@id/paperworkFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/skillDetailsFragment"
+        android:name="com.example.rpregulator.view.SkillDetailsFragment"
+        android:label="Skill Details">
+        <action
+            android:id="@+id/action_skillDetailsFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_skillDetailsFragment_to_skillEditDetailsFragment"
+            app:destination="@id/skillEditDetailsFragment" />
+        <argument
+            android:name="skills"
+            app:argType="com.example.rpregulator.models.Skills" />
+    </fragment>
+    <fragment
+        android:id="@+id/skillEditDetailsFragment"
+        android:name="com.example.rpregulator.view.SkillEditDetailsFragment"
+        android:label="Edit Details">
+        <action
+            android:id="@+id/action_skillEditDetailsFragment_to_skillDetailsFragment"
+            app:destination="@id/skillDetailsFragment" />
+        <argument
+            android:name="skills"
+            app:argType="com.example.rpregulator.models.Skills" />
+    </fragment>
+    <fragment
+        android:id="@+id/inventoryDetailsFragment"
+        android:name="com.example.rpregulator.view.InventoryDetailsFragment"
+        android:label="Item Details">
+        <action
+            android:id="@+id/action_inventoryDetailsFragment_to_inventoryEditDetailsFragment"
+            app:destination="@id/inventoryEditDetailsFragment" />
+        <argument
+            android:name="inventory"
+            app:argType="com.example.rpregulator.models.Inventory" />
+        <action
+            android:id="@+id/action_inventoryDetailsFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inventoryEditDetailsFragment"
+        android:name="com.example.rpregulator.view.InventoryEditDetailsFragment"
+        android:label="Edit Details">
+        <action
+            android:id="@+id/action_inventoryEditDetailsFragment_to_inventoryDetailsFragment"
+            app:destination="@id/inventoryDetailsFragment" />
+        <argument
+            android:name="inventory"
+            app:argType="com.example.rpregulator.models.Inventory" />
+    </fragment>
+    <fragment
+        android:id="@+id/blessingDetailsFragment"
+        android:name="com.example.rpregulator.view.BlessingDetailsFragment"
+        android:label="Blessing Details">
+        <action
+            android:id="@+id/action_blessingDetailsFragment_to_statusFragment"
+            app:destination="@id/statusFragment" />
+        <action
+            android:id="@+id/action_blessingDetailsFragment_to_blessingEditDetailsFragment"
+            app:destination="@id/blessingEditDetailsFragment" />
+        <argument
+            android:name="blessing"
+            app:argType="com.example.rpregulator.models.CursesBlessingsHealth" />
+    </fragment>
+    <fragment
+        android:id="@+id/blessingEditDetailsFragment"
+        android:name="com.example.rpregulator.view.BlessingEditDetailsFragment"
+        android:label="Edit Details">
+        <action
+            android:id="@+id/action_blessingEditDetailsFragment_to_blessingDetailsFragment"
+            app:destination="@id/blessingDetailsFragment" />
+        <argument
+            android:name="blessing"
+            app:argType="com.example.rpregulator.models.CursesBlessingsHealth" />
+    </fragment>
+    <fragment
+        android:id="@+id/curseDetailsFragment"
+        android:name="com.example.rpregulator.view.CurseDetailsFragment"
+        android:label="Curse Details">
+        <action
+            android:id="@+id/action_curseDetailsFragment_to_statusFragment"
+            app:destination="@id/statusFragment" />
+        <action
+            android:id="@+id/action_curseDetailsFragment_to_curseEditDetailsFragment"
+            app:destination="@id/curseEditDetailsFragment" />
+        <argument
+            android:name="curse"
+            app:argType="com.example.rpregulator.models.CursesBlessingsHealth" />
+    </fragment>
+    <fragment
+        android:id="@+id/curseEditDetailsFragment"
+        android:name="com.example.rpregulator.view.CurseEditDetailsFragment"
+        android:label="Edit Details">
+        <action
+            android:id="@+id/action_curseEditDetailsFragment_to_curseDetailsFragment"
+            app:destination="@id/curseDetailsFragment" />
+        <argument
+            android:name="curse"
+            app:argType="com.example.rpregulator.models.CursesBlessingsHealth" />
+    </fragment>
+    <fragment
+        android:id="@+id/charDetailsFragment"
+        android:name="com.example.rpregulator.view.CharDetailsFragment"
+        android:label="Details">
+        <action
+            android:id="@+id/action_charDetailsFragment_to_bestiaryFragment"
+            app:destination="@id/bestiaryFragment" />
+        <action
+            android:id="@+id/action_charDetailsFragment_to_charEditDetailsFragment"
+            app:destination="@id/charEditDetailsFragment" />
+        <argument
+            android:name="char"
+            app:argType="com.example.rpregulator.models.Chars" />
+    </fragment>
+    <fragment
+        android:id="@+id/charEditDetailsFragment"
+        android:name="com.example.rpregulator.view.CharEditDetailsFragment"
+        android:label="Edit Details">
+        <action
+            android:id="@+id/action_charEditDetailsFragment_to_charDetailsFragment"
+            app:destination="@id/charDetailsFragment" />
+        <argument
+            android:name="char"
+            app:argType="com.example.rpregulator.models.Chars" />
+    </fragment>
+    <fragment
+        android:id="@+id/creatureDetailsFragment"
+        android:name="com.example.rpregulator.view.CreatureDetailsFragment"
+        android:label="Creature Details">
+        <action
+            android:id="@+id/action_creatureDetailsFragment_to_creatureEditDetailsFragment"
+            app:destination="@id/creatureEditDetailsFragment" />
+        <action
+            android:id="@+id/action_creatureDetailsFragment_to_bestiaryFragment"
+            app:destination="@id/bestiaryFragment" />
+        <argument
+            android:name="creature"
+            app:argType="com.example.rpregulator.models.Creatures" />
+    </fragment>
+    <fragment
+        android:id="@+id/creatureEditDetailsFragment"
+        android:name="com.example.rpregulator.view.CreatureEditDetailsFragment"
+        android:label="Edit Details">
+        <action
+            android:id="@+id/action_creatureEditDetailsFragment_to_creatureDetailsFragment"
+            app:destination="@id/creatureDetailsFragment" />
+        <argument
+            android:name="creature"
+            app:argType="com.example.rpregulator.models.Creatures" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/adminTabFragment"
+        android:name="com.example.rpregulator.view.AdminTabFragment"
+        android:label="Admin Panel">
+        <action
+            android:id="@+id/action_adminTabFragment_to_statusAdminFragment"
+            app:destination="@id/statusAdminFragment" />
+        <action
+            android:id="@+id/action_adminTabFragment_to_blessingsAdminFragment"
+            app:destination="@id/blessingsAdminFragment" />
+        <action
+            android:id="@+id/action_adminTabFragment_to_inventoryAdminFragment"
+            app:destination="@id/inventoryAdminFragment" />
+        <action
+            android:id="@+id/action_adminTabFragment_to_skillsAdminFragment"
+            app:destination="@id/skillsAdminFragment" />
+        <action
+            android:id="@+id/action_adminTabFragment_to_cursesAdminFragment"
+            app:destination="@id/cursesAdminFragment" />
+        <action
+            android:id="@+id/action_adminTabFragment_to_statsAdminFragment"
+            app:destination="@id/statsAdminFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/blessingsAdminFragment"
+        android:name="com.example.rpregulator.view.BlessingsAdminFragment"
+        android:label="Blessings">
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/cursesAdminFragment"
+        android:name="com.example.rpregulator.view.CursesAdminFragment"
+        android:label="Curses">
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/inventoryAdminFragment"
+        android:name="com.example.rpregulator.view.InventoryAdminFragment"
+        android:label="Inventory">
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/skillsAdminFragment"
+        android:name="com.example.rpregulator.view.SkillsAdminFragment"
+        android:label="Skills">
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/statsAdminFragment"
+        android:name="com.example.rpregulator.view.StatsAdminFragment"
+        android:label="Stats">
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/statusAdminFragment"
+        android:name="com.example.rpregulator.view.StatusAdminFragment"
+        android:label="Status">
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePinFragment"
+        android:name="com.example.rpregulator.view.ChangePinFragment"
+        android:label="Change Pin" />
+</navigation>
