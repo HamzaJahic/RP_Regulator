@@ -13,6 +13,7 @@ import com.example.rpregulator.adapters.StatusAdapter
 import com.example.rpregulator.databinding.FragmentHealthBinding
 import com.example.rpregulator.firebase.HealthFirebase
 import com.example.rpregulator.models.CursesBlessingsHealth
+import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
 import com.example.rpregulator.viewmodel.HealthViewModel
 import com.example.rpregulator.viewmodel.HealthViewModelFactory
 import com.firebase.ui.database.FirebaseRecyclerOptions
@@ -39,7 +40,7 @@ class HealthFragment: Fragment() {
                 .setLifecycleOwner(this)
                 .build()
 
-        val adapter = StatusAdapter(options, StatusAdapter.OnClickListener{
+        val adapter = StatusAdapter(options, USER_ID.value!!, StatusAdapter.OnClickListener{
             Log.d("Click", "${it.name}")
         })
 

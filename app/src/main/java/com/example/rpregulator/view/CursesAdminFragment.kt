@@ -28,7 +28,7 @@ class CursesAdminFragment: Fragment() {
         val viewModelFactory = DataViewModelFactory(this, id)
         val dataDetailViewModel = ViewModelProvider(this, viewModelFactory).get(DataViewModel::class.java)
 
-       val adapter = CursesAdapter(dataDetailViewModel.optionsCurses, CursesAdapter.OnClickListener{
+       val adapter = CursesAdapter(dataDetailViewModel.optionsCurses,id, CursesAdapter.OnClickListener{
 
        })
 

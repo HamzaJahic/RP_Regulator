@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,9 +16,9 @@ import com.example.rpregulator.databinding.FragmentCharAdminBinding
 import com.example.rpregulator.firebase.UsersFirebase
 import com.example.rpregulator.viewmodel.CharAdminViewModel
 import com.example.rpregulator.viewmodel.CharAdminViewModelFactory
-import com.example.rpregulator.viewmodel.MainActivityViewModel
 import com.google.firebase.storage.FirebaseStorage
 
+const val STEFAN_ID = "Stefan"
 class CharStefanFragment: Fragment() {
     private var _binding: FragmentCharAdminBinding? = null
     private val binding get() = _binding!!
@@ -36,7 +35,7 @@ class CharStefanFragment: Fragment() {
         _binding = FragmentCharAdminBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        val viewModelFactory = CharAdminViewModelFactory("Stefan")
+        val viewModelFactory = CharAdminViewModelFactory(STEFAN_ID)
          charAdminViewModel = ViewModelProvider(this, viewModelFactory).get(CharAdminViewModel::class.java)
 
         binding.viewModel = charAdminViewModel
@@ -95,6 +94,13 @@ class CharStefanFragment: Fragment() {
             }
         })
 
+        charAdminViewModel.navigateToXP.observe(viewLifecycleOwner, {
+            it?.let{
+                val action = AdminTabFragmentDirections.actionAdminTabFragmentToExperienceAdminFragment(it)
+                findNavController().navigate(action)
+            }
+        })
+
 
         return view
     }
@@ -115,17 +121,14 @@ class CharStefanFragment: Fragment() {
         val fileRef = storageRefrence.child("${System.currentTimeMillis()} ${charAdminViewModel.charName.value}")
         fileRef.putFile(uri).addOnSuccessListener {
             fileRef.downloadUrl.addOnSuccessListener {
-                Log.d("ImageUp","Upload")
-                UsersFirebase.databaseReference.child(MainActivityViewModel.id.value.toString()).child("img").setValue(it.toString())
+                UsersFirebase.databaseReference.child(STEFAN_ID).child("img").setValue(it.toString())
                 Toast.makeText(requireContext(), "Upload successful!", Toast.LENGTH_LONG).show()
 
             }
         }.addOnProgressListener {
-            Log.d("ImageUp","Upload")
             Toast.makeText(requireContext(), "Uploading..", Toast.LENGTH_SHORT).show()
 
         }.addOnFailureListener{
-            Log.d("ImageUp", it.toString())
         }
     }
 }

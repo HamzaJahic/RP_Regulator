@@ -4,24 +4,24 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rpregulator.databinding.RvItemMainBinding
-import com.example.rpregulator.firebase.InventoryFirebase
+import com.example.rpregulator.firebase.UsersFirebase
 import com.example.rpregulator.models.Inventory
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class InventoryAdapter(private val options: FirebaseRecyclerOptions<Inventory>, val onClickListener: InventoryAdapter.OnClickListener)
+class InventoryAdapter(private val options: FirebaseRecyclerOptions<Inventory>,val user_id: String, val onClickListener: InventoryAdapter.OnClickListener)
     : FirebaseRecyclerAdapter<Inventory, InventoryAdapter.InventoryHolder>(options){
 
     class InventoryHolder(private var binding: RvItemMainBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(inventory: Inventory, onClickListener: OnClickListener){
+        fun bind(inventory: Inventory, onClickListener: OnClickListener, user_id: String){
             binding.txtName.text = inventory.name
             binding.txtValue.text = "x${inventory.value}"
 
             binding.btnIncrease.setOnClickListener {
-                increaseValue(inventory)
+                increaseValue(inventory, user_id)
             }
             binding.btnDecrease.setOnClickListener {
-                decreaseValue(inventory)
+                decreaseValue(inventory, user_id)
             }
 
             binding.cardView.setOnClickListener {
@@ -29,21 +29,29 @@ class InventoryAdapter(private val options: FirebaseRecyclerOptions<Inventory>, 
             }
         }
 
-        fun increaseValue(inventory: Inventory){
+        fun increaseValue(inventory: Inventory, user_id: String){
             var valueOld = inventory.value!!.toInt()
 
             var valueNew = ++valueOld
 
-            InventoryFirebase.databaseReference.child(inventory.id.toString()).child("value").setValue(valueNew.toString())
-        }
+            UsersFirebase.databaseReference
+                    .child(user_id)
+                    .child("inventory")
+                    .child(inventory.id.toString())
+                    .child("value")
+                    .setValue(valueNew.toString())        }
 
-        fun decreaseValue(inventory: Inventory){
+        fun decreaseValue(inventory: Inventory, user_id: String){
             var valueOld = inventory.value!!.toInt()
 
             var valueNew = --valueOld
 
-            InventoryFirebase.databaseReference.child(inventory.id.toString()).child("value").setValue(valueNew.toString())
-        }
+            UsersFirebase.databaseReference
+                    .child(user_id)
+                    .child("inventory")
+                    .child(inventory.id.toString())
+                    .child("value")
+                    .setValue(valueNew.toString())        }
 
 
     }
@@ -55,7 +63,7 @@ class InventoryAdapter(private val options: FirebaseRecyclerOptions<Inventory>, 
 
     override fun onBindViewHolder(holder: InventoryAdapter.InventoryHolder, position: Int, model: Inventory) {
         val item = getItem(position)
-        holder.bind(item, onClickListener)
+        holder.bind(item, onClickListener, user_id)
 
     }
 

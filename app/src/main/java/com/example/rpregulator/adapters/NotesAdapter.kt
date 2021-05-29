@@ -20,12 +20,12 @@ class NotesAdapter(private val options: FirebaseRecyclerOptions<Notes>, val onCl
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesAdapter.NotesHolder {
-        return NotesAdapter.NotesHolder(RvItemNotesBinding.inflate(LayoutInflater.from(parent.context)))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesHolder {
+        return NotesHolder(RvItemNotesBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
 
-    override fun onBindViewHolder(holder: NotesAdapter.NotesHolder, position: Int, model:Notes) {
+    override fun onBindViewHolder(holder: NotesHolder, position: Int, model:Notes) {
         val item = getItem(position)
         holder.bind(item)
         holder.itemView.setOnClickListener{

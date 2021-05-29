@@ -13,6 +13,7 @@ import com.example.rpregulator.adapters.StatsAdapter
 import com.example.rpregulator.databinding.FragmentStatsBinding
 import com.example.rpregulator.firebase.StatsFirebase
 import com.example.rpregulator.models.Stats
+import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
 import com.example.rpregulator.viewmodel.StatsViewModel
 import com.example.rpregulator.viewmodel.StatsViewModelFactory
 import com.firebase.ui.database.FirebaseRecyclerOptions
@@ -39,7 +40,7 @@ class StatsFragment: Fragment() {
                 .setLifecycleOwner(this)
                 .build()
 
-        val adapter = StatsAdapter(options, StatsAdapter.OnClickListener{
+        val adapter = StatsAdapter(options, USER_ID.value!!, StatsAdapter.OnClickListener{
             Log.d("Click", "${it.name}")
         })
 

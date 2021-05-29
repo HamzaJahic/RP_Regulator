@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rpregulator.adapters.SkillsAdapter
 import com.example.rpregulator.databinding.FragmentSkillsBinding
+import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
 import com.example.rpregulator.viewmodel.SkillsViewModel
 import com.example.rpregulator.viewmodel.SkillsViewModelFactory
 
@@ -32,7 +33,7 @@ class SkillsFragment: Fragment() {
         binding.viewModel = skillsViewModel
 
 
-        val adapter = SkillsAdapter(skillsViewModel.options, SkillsAdapter.OnClickListener{
+        val adapter = SkillsAdapter(skillsViewModel.options, USER_ID.value!!, SkillsAdapter.OnClickListener{
             skillsViewModel.navigateToSkillDetails(it)
             Log.d("Navigate", "Klik se desio na ${it.id}")
         })

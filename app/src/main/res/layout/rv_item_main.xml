@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
-    xmlns:app="http://schemas.android.com/tools">
+    >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -38,8 +38,8 @@
         android:background="@color/primaryColor"
         card_view:layout_constraintTop_toTopOf="@+id/txtName"
         card_view:layout_constraintBottom_toTopOf="@id/horizontalDevider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/txtName"
@@ -59,8 +59,8 @@
         android:layout_height="2dp"
         android:background="@color/primaryColor"
         card_view:layout_constraintTop_toBottomOf="@+id/txtName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"/>
     <TextView
         android:id="@+id/txtValue"
         android:layout_width="wrap_content"

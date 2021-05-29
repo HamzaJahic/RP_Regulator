@@ -28,7 +28,7 @@ class InventoryAdminFragment: Fragment() {
         val viewModelFactory = DataViewModelFactory(this, id)
         val dataDetailViewModel = ViewModelProvider(this, viewModelFactory).get(DataViewModel::class.java)
 
-       val adapter = InventoryAdapter(dataDetailViewModel.optionsInventory, InventoryAdapter.OnClickListener{
+       val adapter = InventoryAdapter(dataDetailViewModel.optionsInventory,id, InventoryAdapter.OnClickListener{
 
        })
 

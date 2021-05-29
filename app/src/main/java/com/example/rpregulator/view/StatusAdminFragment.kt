@@ -28,7 +28,7 @@ class StatusAdminFragment: Fragment() {
         val viewModelFactory = DataViewModelFactory(this, id)
         val dataDetailViewModel = ViewModelProvider(this, viewModelFactory).get(DataViewModel::class.java)
 
-       val adapter = StatusAdapter(dataDetailViewModel.optionsStatus, StatusAdapter.OnClickListener{
+       val adapter = StatusAdapter(dataDetailViewModel.optionsStatus,id, StatusAdapter.OnClickListener{
 
        })
 

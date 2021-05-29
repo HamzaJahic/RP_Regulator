@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rpregulator.firebase.UsersFirebase
+import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -23,7 +24,7 @@ class ChangePinViewModel() : ViewModel() {
     }
 
     fun getPass(){
-        val userRef = UsersFirebase.databaseReference.child(MainActivityViewModel.id.value.toString())
+        val userRef = UsersFirebase.databaseReference.child(USER_ID.value!!)
         viewModelScope.launch {
             userRef.addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -44,7 +45,7 @@ class ChangePinViewModel() : ViewModel() {
 
     fun changePass(){
         if(oldPin.value == pin && newPin.value==newPinAgain.value){
-            UsersFirebase.databaseReference.child(MainActivityViewModel.id.value.toString()).child("password").setValue(newPin.value)
+            UsersFirebase.databaseReference.child(USER_ID.value!!).child("password").setValue(newPin.value)
         }
     }
 

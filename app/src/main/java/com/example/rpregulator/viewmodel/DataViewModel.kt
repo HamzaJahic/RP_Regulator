@@ -48,6 +48,12 @@ class DataViewModel(lifecycleOwner: LifecycleOwner, id: String) : ViewModel() {
             .setLifecycleOwner(lifecycleOwner)
             .build()
 
+    val optionsExperience = FirebaseRecyclerOptions.Builder<Stats>()
+            .setQuery(UsersFirebase.databaseReference.child(id).child("experience"), Stats::class.java)
+            .setLifecycleOwner(lifecycleOwner)
+            .build()
+
+
 
     fun navigateToAdd(){
         _navigateToAdd.value = true

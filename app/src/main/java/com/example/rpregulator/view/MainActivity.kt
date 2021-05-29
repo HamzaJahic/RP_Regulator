@@ -17,6 +17,7 @@ import com.aghajari.zoomhelper.ZoomHelper
 import com.bumptech.glide.Glide
 import com.example.rpregulator.R
 import com.example.rpregulator.databinding.ActivityMainBinding
+import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
 import com.example.rpregulator.viewmodel.MainActivityViewModel
 
 private lateinit var binding: ActivityMainBinding
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             Glide.with(this).load(it).into(imgView)
         })
 
-        if(mainActivityViewModel.idUser == "Damir"){
+        if(USER_ID.value == "Damir"){
             binding.navView.menu.removeItem(R.id.mainFragment)
             binding.navView.menu.removeItem(R.id.statusFragment)
             binding.navView.menu.removeItem(R.id.paperworkFragment)

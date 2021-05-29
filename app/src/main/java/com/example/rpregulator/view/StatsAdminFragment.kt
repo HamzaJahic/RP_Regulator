@@ -28,7 +28,7 @@ class StatsAdminFragment: Fragment() {
         val viewModelFactory = DataViewModelFactory(this, id)
         val dataDetailViewModel = ViewModelProvider(this, viewModelFactory).get(DataViewModel::class.java)
 
-       val adapter = StatsAdapter(dataDetailViewModel.optionsStats, StatsAdapter.OnClickListener{
+       val adapter = StatsAdapter(dataDetailViewModel.optionsStats,id, StatsAdapter.OnClickListener{
 
        })
 

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.rpregulator.firebase.UsersFirebase
+import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -45,13 +46,13 @@ class CharScreenViewModel() : ViewModel() {
     fun increaseGold(inc : Int){
         var oldValue = _gold.value!!.toInt()
         var newValue = oldValue+inc
-        UsersFirebase.databaseReference.child(MainActivityViewModel.id.value.toString()).child("gold").setValue(newValue.toString())
+        UsersFirebase.databaseReference.child(USER_ID.value!!).child("gold").setValue(newValue.toString())
         _gold.value = newValue.toString()
     }
 
     fun getUserInfo(){
 
-        UsersFirebase.databaseReference.child(MainActivityViewModel.id.value.toString()).addListenerForSingleValueEvent(object : ValueEventListener{
+        UsersFirebase.databaseReference.child(USER_ID.value!!).addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 _charName.value = snapshot.child("username").getValue().toString()
                 _gold.value = snapshot.child("gold").getValue().toString()

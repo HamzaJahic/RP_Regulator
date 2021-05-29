@@ -374,6 +374,9 @@
         <action
             android:id="@+id/action_adminTabFragment_to_statsAdminFragment"
             app:destination="@id/statsAdminFragment" />
+        <action
+            android:id="@+id/action_adminTabFragment_to_experienceAdminFragment"
+            app:destination="@id/experienceAdminFragment" />
     </fragment>
     <fragment
         android:id="@+id/blessingsAdminFragment"
@@ -427,4 +430,24 @@
         android:id="@+id/changePinFragment"
         android:name="com.example.rpregulator.view.ChangePinFragment"
         android:label="Change Pin" />
+    <fragment
+        android:id="@+id/addExperienceFragment"
+        android:name="com.example.rpregulator.view.AddExperienceFragment"
+        android:label="AddExperienceFragment" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/experienceAdminFragment"
+        android:name="com.example.rpregulator.view.ExperienceAdminFragment"
+        android:label="ExperienceAdminFragment" >
+        <action
+            android:id="@+id/action_experienceAdminFragment_to_addExperienceFragment"
+            app:destination="@id/addExperienceFragment" />
+
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 </navigation>

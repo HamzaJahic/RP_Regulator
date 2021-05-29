@@ -28,7 +28,7 @@ class SkillsAdminFragment: Fragment() {
         val viewModelFactory = DataViewModelFactory(this, id)
         val dataDetailViewModel = ViewModelProvider(this, viewModelFactory).get(DataViewModel::class.java)
 
-       val adapter = SkillsAdapter(dataDetailViewModel.optionsSkills, SkillsAdapter.OnClickListener{
+       val adapter = SkillsAdapter(dataDetailViewModel.optionsSkills,id, SkillsAdapter.OnClickListener{
 
        })
 

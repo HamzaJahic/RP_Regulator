@@ -14,9 +14,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.rpregulator.databinding.FragmentCharScreenBinding
 import com.example.rpregulator.firebase.UsersFirebase
+import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
 import com.example.rpregulator.viewmodel.CharScreenViewModel
 import com.example.rpregulator.viewmodel.CharScreenViewModelFactory
-import com.example.rpregulator.viewmodel.MainActivityViewModel
 import com.google.firebase.storage.FirebaseStorage
 
 class CharScreenFragment: Fragment() {
@@ -88,7 +88,7 @@ class CharScreenFragment: Fragment() {
         fileRef.putFile(uri).addOnSuccessListener {
             fileRef.downloadUrl.addOnSuccessListener {
                 Log.d("ImageUp","Upload")
-                UsersFirebase.databaseReference.child(MainActivityViewModel.id.value.toString()).child("img").setValue(it.toString())
+                UsersFirebase.databaseReference.child(USER_ID.value!!).child("img").setValue(it.toString())
                 Toast.makeText(requireContext(), "Upload successful!", Toast.LENGTH_LONG).show()
 
             }

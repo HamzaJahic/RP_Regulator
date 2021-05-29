@@ -17,9 +17,10 @@ import com.example.rpregulator.databinding.FragmentCharAdminBinding
 import com.example.rpregulator.firebase.UsersFirebase
 import com.example.rpregulator.viewmodel.CharAdminViewModel
 import com.example.rpregulator.viewmodel.CharAdminViewModelFactory
-import com.example.rpregulator.viewmodel.MainActivityViewModel
 import com.google.firebase.storage.FirebaseStorage
 
+
+const val DEJO_ID = "Dejo"
 class CharDejoFragment: Fragment() {
     private var _binding: FragmentCharAdminBinding? = null
     private val binding get() = _binding!!
@@ -36,7 +37,7 @@ class CharDejoFragment: Fragment() {
         _binding = FragmentCharAdminBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        val viewModelFactory = CharAdminViewModelFactory("Dejo")
+        val viewModelFactory = CharAdminViewModelFactory(DEJO_ID)
          charAdminViewModel = ViewModelProvider(this, viewModelFactory).get(CharAdminViewModel::class.java)
 
         binding.viewModel = charAdminViewModel
@@ -95,6 +96,13 @@ class CharDejoFragment: Fragment() {
             }
         })
 
+        charAdminViewModel.navigateToXP.observe(viewLifecycleOwner, {
+            it?.let{
+                val action = AdminTabFragmentDirections.actionAdminTabFragmentToExperienceAdminFragment(it)
+                findNavController().navigate(action)
+            }
+        })
+
 
         return view
     }
@@ -116,7 +124,7 @@ class CharDejoFragment: Fragment() {
         fileRef.putFile(uri).addOnSuccessListener {
             fileRef.downloadUrl.addOnSuccessListener {
                 Log.d("ImageUp","Upload")
-                UsersFirebase.databaseReference.child(MainActivityViewModel.id.value.toString()).child("img").setValue(it.toString())
+                UsersFirebase.databaseReference.child(DEJO_ID).child("img").setValue(it.toString())
                 Toast.makeText(requireContext(), "Upload successful!", Toast.LENGTH_LONG).show()
 
             }

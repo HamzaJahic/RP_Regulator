@@ -12,6 +12,7 @@ import com.example.rpregulator.adapters.InventoryAdapter
 import com.example.rpregulator.databinding.FragmentInventoryBinding
 import com.example.rpregulator.firebase.InventoryFirebase
 import com.example.rpregulator.models.Inventory
+import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
 import com.example.rpregulator.viewmodel.InventoryViewModel
 import com.example.rpregulator.viewmodel.InventoryViewModelFactory
 import com.firebase.ui.database.FirebaseRecyclerOptions
@@ -38,7 +39,7 @@ class InventoryFragment: Fragment() {
             .setLifecycleOwner(this)
             .build()
 
-        val adapter = InventoryAdapter(options, InventoryAdapter.OnClickListener{
+        val adapter = InventoryAdapter(options, USER_ID.value!!, InventoryAdapter.OnClickListener{
             inventoryViewModel.navigateToInventoryDetails(it)
         })
 

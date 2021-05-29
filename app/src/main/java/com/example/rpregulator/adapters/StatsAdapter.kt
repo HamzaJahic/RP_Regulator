@@ -5,16 +5,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rpregulator.databinding.RvItemMainBinding
-import com.example.rpregulator.firebase.StatsFirebase
+import com.example.rpregulator.firebase.UsersFirebase
 import com.example.rpregulator.models.Stats
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class StatsAdapter(private val options: FirebaseRecyclerOptions<Stats>, val onClickListener: StatsAdapter.OnClickListener)
+class StatsAdapter(private val options: FirebaseRecyclerOptions<Stats>,val user_id: String, val onClickListener: StatsAdapter.OnClickListener)
     : FirebaseRecyclerAdapter<Stats, StatsAdapter.StatsHolder>(options){
 
     class StatsHolder(private var binding: RvItemMainBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(stats: Stats){
+        fun bind(stats: Stats, user_id: String){
             binding.txtName.text = stats.name
             binding.txtValue.text = "${stats.value}"
             binding.textBackground.setBackgroundColor( when(stats.name){
@@ -32,28 +32,36 @@ class StatsAdapter(private val options: FirebaseRecyclerOptions<Stats>, val onCl
             })
 
             binding.btnIncrease.setOnClickListener {
-                increaseValue(stats)
+                increaseValue(stats, user_id)
             }
             binding.btnDecrease.setOnClickListener {
-                decreaseValue(stats)
+                decreaseValue(stats, user_id)
             }
         }
 
-        fun increaseValue(stats: Stats){
+        fun increaseValue(stats: Stats, user_id: String){
             var valueOld = stats.value!!.toInt()
 
             var valueNew = if(stats.name == "Stamina") valueOld+10 else ++valueOld
 
-            StatsFirebase.databaseReference.child(stats.id.toString()).child("value").setValue(valueNew.toString())
-        }
+            UsersFirebase.databaseReference
+                    .child(user_id)
+                    .child("stats")
+                    .child(stats.id.toString())
+                    .child("value")
+                    .setValue(valueNew.toString())        }
 
-        fun decreaseValue(stats: Stats){
+        fun decreaseValue(stats: Stats, user_id: String){
             var valueOld = stats.value!!.toInt()
 
             var valueNew =if(stats.name == "Stamina") valueOld-10 else --valueOld
 
-            StatsFirebase.databaseReference.child(stats.id.toString()).child("value").setValue(valueNew.toString())
-        }
+            UsersFirebase.databaseReference
+                    .child(user_id)
+                    .child("stats")
+                    .child(stats.id.toString())
+                    .child("value")
+                    .setValue(valueNew.toString())         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StatsAdapter.StatsHolder {
@@ -63,7 +71,7 @@ class StatsAdapter(private val options: FirebaseRecyclerOptions<Stats>, val onCl
 
     override fun onBindViewHolder(holder: StatsAdapter.StatsHolder, position: Int, model: Stats) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, user_id)
         holder.itemView.setOnClickListener{
             onClickListener.onClick(item)
         }

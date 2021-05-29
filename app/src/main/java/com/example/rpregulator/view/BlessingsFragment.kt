@@ -12,6 +12,7 @@ import com.example.rpregulator.adapters.BlessingsAdapter
 import com.example.rpregulator.databinding.FragmentBlessingsBinding
 import com.example.rpregulator.firebase.BlessingsFirebase
 import com.example.rpregulator.models.CursesBlessingsHealth
+import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
 import com.example.rpregulator.viewmodel.BlessingsViewModel
 import com.example.rpregulator.viewmodel.BlessingsViewModelFactory
 import com.firebase.ui.database.FirebaseRecyclerOptions
@@ -37,7 +38,7 @@ class BlessingsFragment: Fragment() {
                 .setLifecycleOwner(this)
                 .build()
 
-        val adapter = BlessingsAdapter(options, BlessingsAdapter.OnClickListener{
+        val adapter = BlessingsAdapter(options, USER_ID.value!!, BlessingsAdapter.OnClickListener{
             blessingsViewModel.navigateToBlessingDetail(it)
         })
 

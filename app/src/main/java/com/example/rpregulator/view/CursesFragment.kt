@@ -12,6 +12,7 @@ import com.example.rpregulator.adapters.CursesAdapter
 import com.example.rpregulator.databinding.FragmentCursesBinding
 import com.example.rpregulator.firebase.CursesFirebase
 import com.example.rpregulator.models.CursesBlessingsHealth
+import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
 import com.example.rpregulator.viewmodel.CursesViewModel
 import com.example.rpregulator.viewmodel.CursesViewModelFactory
 import com.firebase.ui.database.FirebaseRecyclerOptions
@@ -37,7 +38,7 @@ class CursesFragment: Fragment() {
                 .setLifecycleOwner(this)
                 .build()
 
-        val adapter = CursesAdapter(options, CursesAdapter.OnClickListener{
+        val adapter = CursesAdapter(options, USER_ID.value!!, CursesAdapter.OnClickListener{
             cursesViewModel.navigateToCurseDetails(it)
         })
 
