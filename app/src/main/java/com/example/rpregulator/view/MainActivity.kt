@@ -5,7 +5,6 @@ import android.view.Menu
 import android.view.MotionEvent
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -24,6 +23,7 @@ private lateinit var binding: ActivityMainBinding
 private lateinit var navController: NavController
 private lateinit var appBarConfiguration: AppBarConfiguration
 private lateinit var mainActivityViewModel: MainActivityViewModel
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,31 +38,31 @@ class MainActivity : AppCompatActivity() {
         val navGraph = graphInflater.inflate(R.navigation.nav_graph)
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.mainFragment,
-            R.id.statusFragment,
-            R.id.paperworkFragment,
-            R.id.notesFragment,
-            R.id.bestiaryFragment,
-            R.id.settingsFragment,
-            R.id.adminTabFragment),
-            binding.drawerLayout
+                setOf(R.id.mainFragment,
+                        R.id.statusFragment,
+                        R.id.paperworkFragment,
+                        R.id.notesFragment,
+                        R.id.bestiaryFragment,
+                        R.id.settingsFragment,
+                        R.id.adminTabFragment),
+                binding.drawerLayout
         )
 
         setSupportActionBar(binding.toolbar)
 
 
-        mainActivityViewModel.imgUri.observe(this, Observer {
+        mainActivityViewModel.imgUri.observe(this, {
             val imgView = binding.navView.getHeaderView(0).findViewById<ImageView>(R.id.imgUser)
             Glide.with(this).load(it).into(imgView)
         })
 
-        if(USER_ID.value == "Damir"){
+        if (USER_ID.value == "Damir") {
             binding.navView.menu.removeItem(R.id.mainFragment)
             binding.navView.menu.removeItem(R.id.statusFragment)
             binding.navView.menu.removeItem(R.id.paperworkFragment)
             navGraph.startDestination = R.id.adminTabFragment
             navController.graph = navGraph
-        }else{
+        } else {
             binding.navView.menu.removeItem(R.id.adminTabFragment)
         }
 
@@ -75,11 +75,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         return super.onCreateOptionsMenu(menu)
     }
+
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration)
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        return ZoomHelper.getInstance().dispatchTouchEvent(ev!!,this) || super.dispatchTouchEvent(ev)
+        return ZoomHelper.getInstance().dispatchTouchEvent(ev!!, this) || super.dispatchTouchEvent(ev)
     }
 }

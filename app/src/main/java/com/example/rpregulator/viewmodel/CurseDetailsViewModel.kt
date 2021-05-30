@@ -6,15 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rpregulator.firebase.CursesFirebase
 import com.example.rpregulator.models.CursesBlessingsHealth
+import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
 import kotlinx.coroutines.launch
 
-class CurseDetailsViewModel(curse: CursesBlessingsHealth) : ViewModel() {
+class CurseDetailsViewModel(var curse: CursesBlessingsHealth) : ViewModel() {
 
     val curseName = MutableLiveData<String?>()
     val curseIntensity = MutableLiveData<String?>()
     val curseDesc = MutableLiveData<String?>()
     var id = String()
-    var curse = curse
 
 
     init {
@@ -25,10 +25,9 @@ class CurseDetailsViewModel(curse: CursesBlessingsHealth) : ViewModel() {
     }
 
 
-
-  private val _navigateToCurseEdit = MutableLiveData<CursesBlessingsHealth?>()
+    private val _navigateToCurseEdit = MutableLiveData<CursesBlessingsHealth?>()
     val navigateToCurseEdit: LiveData<CursesBlessingsHealth?>
-    get() = _navigateToCurseEdit
+        get() = _navigateToCurseEdit
 
     private val _navigateToCurse = MutableLiveData<Boolean?>()
     val navigateToCurse: LiveData<Boolean?>
@@ -39,31 +38,30 @@ class CurseDetailsViewModel(curse: CursesBlessingsHealth) : ViewModel() {
         get() = _showAlertDialog
 
 
-    fun navigateToCurseEdit(){
+    fun navigateToCurseEdit() {
         _navigateToCurseEdit.value = curse
         doneNavigateToCurseEdit()
 
     }
 
-    fun doneNavigateToCurseEdit(){
+    private fun doneNavigateToCurseEdit() {
         _navigateToCurseEdit.value = null
     }
 
-    fun navigateToCurse(){
+    private fun navigateToCurse() {
         _navigateToCurse.value = true
         doneNavigateToCurse()
-      
+
     }
 
-    fun doneNavigateToCurse(){
+    private fun doneNavigateToCurse() {
         _navigateToCurse.value = null
     }
 
 
-
-    fun editData(){
-        val databaseReference = CursesFirebase.databaseReference
-        val entryID= id
+    fun editData() {
+        CursesFirebase.databaseReference
+        val entryID = id
         val entry = CursesBlessingsHealth(
                 entryID,
                 curseName.value,
@@ -71,13 +69,13 @@ class CurseDetailsViewModel(curse: CursesBlessingsHealth) : ViewModel() {
                 curseDesc.value
         )
         viewModelScope.launch {
-            CursesFirebase.uploadData(entryID, entry)
+            CursesFirebase.uploadData(entryID, entry, USER_ID.value!!)
         }
     }
 
-    fun deleteEntry(){
+    fun deleteEntry() {
         val entryID = id
-        viewModelScope.launch{
+        viewModelScope.launch {
             CursesFirebase.databaseReference.child(entryID).removeValue()
             navigateToCurse()
         }
@@ -88,7 +86,7 @@ class CurseDetailsViewModel(curse: CursesBlessingsHealth) : ViewModel() {
         doneShow()
     }
 
-    fun doneShow() {
+    private fun doneShow() {
         _showAlertDialog.value = null
     }
 

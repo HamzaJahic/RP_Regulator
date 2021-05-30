@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.example.rpregulator.viewmodel.AddCurseViewModel" />
@@ -13,8 +13,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primaryLightColor"
-        >
+        android:background="@color/primaryLightColor">
+
         <View
             android:id="@+id/textBackground"
             android:layout_width="match_parent"
@@ -24,94 +24,93 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="143dp" />
+
         <ImageView
             android:id="@+id/imgOfAdd"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@drawable/curses"
             android:layout_marginTop="10dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/curses"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etCurseName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="@string/name"
             app:boxStrokeColor="@color/primaryColor"
             app:boxStrokeWidth="2dp"
-            android:hint="Name"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@id/imgOfAdd"
+            app:endIconMode="clear_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgOfAdd"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.8"
-            app:endIconMode="clear_text"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            app:layout_constraintWidth_percent="0.8">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@={viewModel.curseName}"
-                android:textColor="@color/primaryTextColor"
-                />
+                android:textColor="@color/primaryTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etCurseValue"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:hint="@string/intesity"
             app:boxStrokeColor="@color/primaryColor"
             app:boxStrokeWidth="2dp"
-            android:hint="Intesity"
-            android:layout_marginTop="50dp"
-            app:layout_constraintTop_toBottomOf="@+id/etCurseName"
+            app:endIconMode="clear_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etCurseName"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.8"
-            app:endIconMode="clear_text"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            app:layout_constraintWidth_percent="0.8">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@={viewModel.curseIntesity}"
-                android:textColor="@color/primaryTextColor"
-                />
+                android:textColor="@color/primaryTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etCurseDesc"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="210dp"
+            android:layout_marginTop="50dp"
+            android:hint="@string/description"
             app:boxStrokeColor="@color/primaryColor"
             app:boxStrokeWidth="2dp"
-            android:hint="Description"
-            android:layout_marginTop="50dp"
-            app:layout_constraintTop_toBottomOf="@+id/etCurseValue"
+            app:endIconMode="clear_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etCurseValue"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.8"
-            app:endIconMode="clear_text"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            app:layout_constraintWidth_percent="0.8">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:inputType="textMultiLine"
                 android:gravity="top"
+                android:inputType="textMultiLine"
                 android:text="@={viewModel.curseDesc}"
-                android:textColor="@color/primaryTextColor"
-                />
+                android:textColor="@color/primaryTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -119,20 +118,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="40dp"
+            android:onClick="@{onClick -> viewModel.uploadData()}"
             android:src="@drawable/ic_accept"
-            app:layout_constraintTop_toBottomOf="@id/etCurseDesc"
             app:layout_constraintStart_toStartOf="@id/etCurseDesc"
-            android:onClick="@{onClick -> viewModel.uploadData()}"/>
+            app:layout_constraintTop_toBottomOf="@id/etCurseDesc"
+             />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="40dp"
+            android:onClick="@{onClick -> viewModel.navigateToCurses()}"
             android:src="@drawable/ic_cancel"
-            app:layout_constraintTop_toBottomOf="@id/etCurseDesc"
             app:layout_constraintEnd_toEndOf="@id/etCurseDesc"
-            android:onClick="@{onClick -> viewModel.navigateToCurses()}"/>
+            app:layout_constraintTop_toBottomOf="@id/etCurseDesc"
+             />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

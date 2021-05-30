@@ -12,19 +12,19 @@ import com.example.rpregulator.utils.AlertDialogBuilders
 import com.example.rpregulator.viewmodel.InventoryDetailsViewModel
 import com.example.rpregulator.viewmodel.InventoryDetailsViewModelFactory
 
-class InventoryDetailsFragment: Fragment() {
+class InventoryDetailsFragment : Fragment() {
     private var _binding: FragmentInventoryDetailsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
 
         _binding = FragmentInventoryDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
-          val inventory = InventoryDetailsFragmentArgs.fromBundle(requireArguments()).inventory
+        val inventory = InventoryDetailsFragmentArgs.fromBundle(requireArguments()).inventory
         val viewModelFactory = InventoryDetailsViewModelFactory(inventory)
         val inventoryDetailViewModel = ViewModelProvider(this, viewModelFactory).get(InventoryDetailsViewModel::class.java)
 
@@ -33,28 +33,29 @@ class InventoryDetailsFragment: Fragment() {
 
 
         inventoryDetailViewModel.navigateToInventoryEdit.observe(viewLifecycleOwner, {
-            it?.let{
+            it?.let {
                 val action = InventoryDetailsFragmentDirections.actionInventoryDetailsFragmentToInventoryEditDetailsFragment(it)
                 findNavController().navigate(action)
             }
         })
 
-        inventoryDetailViewModel.navigateToInventory.observe(viewLifecycleOwner,{
-            it?.let{
-               val action = InventoryDetailsFragmentDirections.actionInventoryDetailsFragmentToMainFragment()
-               findNavController().navigate(action)
+        inventoryDetailViewModel.navigateToInventory.observe(viewLifecycleOwner, {
+            it?.let {
+                val action = InventoryDetailsFragmentDirections.actionInventoryDetailsFragmentToMainFragment()
+                findNavController().navigate(action)
             }
         })
 
 
         inventoryDetailViewModel.showAlertDialog.observe(viewLifecycleOwner, {
-            it?.let{
+            it?.let {
                 AlertDialogBuilders.createDeleteAlert(requireContext()) { inventoryDetailViewModel.deleteEntry() }
             }
         })
 
         return view
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

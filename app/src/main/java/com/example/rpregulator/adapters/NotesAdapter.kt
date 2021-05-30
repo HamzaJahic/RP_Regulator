@@ -8,11 +8,11 @@ import com.example.rpregulator.models.Notes
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class NotesAdapter(private val options: FirebaseRecyclerOptions<Notes>, val onClickListener: NotesAdapter.OnClickListener)
-    : FirebaseRecyclerAdapter<Notes, NotesAdapter.NotesHolder>(options){
+class NotesAdapter(options: FirebaseRecyclerOptions<Notes>, val onClickListener: OnClickListener)
+    : FirebaseRecyclerAdapter<Notes, NotesAdapter.NotesHolder>(options) {
 
-    class NotesHolder(private var binding: RvItemNotesBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(notes: Notes){
+    class NotesHolder(private var binding: RvItemNotesBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(notes: Notes) {
             binding.txtTitle.text = notes.title
             binding.txtDesc.text = notes.desc
 
@@ -25,20 +25,17 @@ class NotesAdapter(private val options: FirebaseRecyclerOptions<Notes>, val onCl
     }
 
 
-    override fun onBindViewHolder(holder: NotesHolder, position: Int, model:Notes) {
+    override fun onBindViewHolder(holder: NotesHolder, position: Int, model: Notes) {
         val item = getItem(position)
         holder.bind(item)
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             onClickListener.onClick(item)
         }
     }
 
-    class OnClickListener(val clickListener: (notes: Notes) ->Unit){
+    class OnClickListener(val clickListener: (notes: Notes) -> Unit) {
         fun onClick(notes: Notes) = clickListener(notes)
     }
-
-
-
 
 
 }

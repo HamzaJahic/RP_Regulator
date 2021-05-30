@@ -47,9 +47,9 @@
             android:id="@+id/txtSkillName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="25dp"
-            android:text="Skill Name:"
+            android:text="@string/skill_name"
             android:textColor="@color/primaryTextColor"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,8 +73,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginRight="20dp"
-            android:text="Cost:"
+            android:layout_marginEnd="20dp"
+            android:text="@string/cost"
             android:textColor="@color/primaryTextColor"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@id/txtSkillName"
@@ -100,20 +100,20 @@
             android:layout_height="2dp"
             android:layout_marginTop="10dp"
             android:background="@color/primaryColor"
-            app:layout_constraintTop_toBottomOf="@+id/tvSkillName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSkillName" />
 
         <TextView
             android:id="@+id/txtSkillType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textSize="15sp"
-            android:text="Type:"
+            android:text="@string/type"
             android:textColor="@color/primaryTextColor"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/horizontalDevider" />
 
         <ImageView
@@ -123,10 +123,10 @@
             android:layout_height="60dp"
             android:layout_marginTop="5dp"
             android:src="@drawable/ic_passive"
-            android:text="Viper Stance: Hunting Viper"
+
             android:textColor="@color/primaryTextColor"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtSkillType" />
 
         <View
@@ -135,10 +135,9 @@
             android:layout_height="2dp"
             android:layout_marginTop="10dp"
             android:background="@color/primaryColor"
-            app:layout_constraintTop_toBottomOf="@+id/imgSkillType"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgSkillType" />
 
 
         <TextView
@@ -146,7 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Desc:"
+            android:text="@string/description"
             android:textColor="@color/primaryTextColor"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@id/txtSkillName"

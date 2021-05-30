@@ -1,19 +1,27 @@
 package com.example.rpregulator.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rpregulator.databinding.RvItemMainBinding
 import com.example.rpregulator.firebase.UsersFirebase
 import com.example.rpregulator.models.Inventory
+import com.example.rpregulator.utils.AlertDialogBuilders
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class InventoryAdapter(private val options: FirebaseRecyclerOptions<Inventory>,val user_id: String, val onClickListener: InventoryAdapter.OnClickListener)
-    : FirebaseRecyclerAdapter<Inventory, InventoryAdapter.InventoryHolder>(options){
+class InventoryAdapter(options: FirebaseRecyclerOptions<Inventory>, private val context: Context, val user_id: String, val onClickListener: OnClickListener)
+    : FirebaseRecyclerAdapter<Inventory, InventoryAdapter.InventoryHolder>(options) {
 
-    class InventoryHolder(private var binding: RvItemMainBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(inventory: Inventory, onClickListener: OnClickListener, user_id: String){
+    private val _progressBarShow = MutableLiveData<Boolean?>()
+    val progressBar: LiveData<Boolean?>
+        get() = _progressBarShow
+
+    class InventoryHolder(private var binding: RvItemMainBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(inventory: Inventory, onClickListener: OnClickListener, user_id: String, context: Context) {
             binding.txtName.text = inventory.name
             binding.txtValue.text = "x${inventory.value}"
 
@@ -27,52 +35,67 @@ class InventoryAdapter(private val options: FirebaseRecyclerOptions<Inventory>,v
             binding.cardView.setOnClickListener {
                 onClickListener.onClick(inventory)
             }
+            binding.cardView.setOnLongClickListener {
+                AlertDialogBuilders.createDeleteAlert(context) {
+                    UsersFirebase.databaseReference
+                            .child(user_id)
+                            .child("inventory")
+                            .child(inventory.id.toString())
+                            .removeValue()
+                }
+                true
+            }
         }
 
-        fun increaseValue(inventory: Inventory, user_id: String){
+        private fun increaseValue(inventory: Inventory, user_id: String) {
             var valueOld = inventory.value!!.toInt()
 
-            var valueNew = ++valueOld
+            val valueNew = ++valueOld
 
             UsersFirebase.databaseReference
                     .child(user_id)
                     .child("inventory")
                     .child(inventory.id.toString())
                     .child("value")
-                    .setValue(valueNew.toString())        }
+                    .setValue(valueNew.toString())
+        }
 
-        fun decreaseValue(inventory: Inventory, user_id: String){
+        private fun decreaseValue(inventory: Inventory, user_id: String) {
             var valueOld = inventory.value!!.toInt()
 
-            var valueNew = --valueOld
+            val valueNew = --valueOld
 
             UsersFirebase.databaseReference
                     .child(user_id)
                     .child("inventory")
                     .child(inventory.id.toString())
                     .child("value")
-                    .setValue(valueNew.toString())        }
+                    .setValue(valueNew.toString())
+        }
 
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InventoryAdapter.InventoryHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InventoryHolder {
         return InventoryHolder(RvItemMainBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
 
-    override fun onBindViewHolder(holder: InventoryAdapter.InventoryHolder, position: Int, model: Inventory) {
+    override fun onBindViewHolder(holder: InventoryHolder, position: Int, model: Inventory) {
         val item = getItem(position)
-        holder.bind(item, onClickListener, user_id)
+        holder.bind(item, onClickListener, user_id, context)
 
     }
 
-    class OnClickListener(val clickListener: (inventory: Inventory) ->Unit){
+    class OnClickListener(val clickListener: (inventory: Inventory) -> Unit) {
         fun onClick(inventory: Inventory) = clickListener(inventory)
     }
 
 
-
+    override fun onDataChanged() {
+        super.onDataChanged()
+        _progressBarShow.value = true
+    }
 
 
 }

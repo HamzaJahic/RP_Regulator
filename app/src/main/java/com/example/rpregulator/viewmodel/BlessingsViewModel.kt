@@ -5,36 +5,36 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.rpregulator.models.CursesBlessingsHealth
 
-class BlessingsViewModel() : ViewModel() {
+class BlessingsViewModel : ViewModel() {
 
 
     private val _navigateToAddBlessings = MutableLiveData<Boolean?>()
     val navigateToAddBlessings: LiveData<Boolean?>
-    get() = _navigateToAddBlessings
+        get() = _navigateToAddBlessings
 
     private val _navigateToBlessingDetail = MutableLiveData<CursesBlessingsHealth?>()
     val navigateToBlessingDetail: LiveData<CursesBlessingsHealth?>
         get() = _navigateToBlessingDetail
 
 
-    fun navigateToBlessingDetail(blessing: CursesBlessingsHealth){
+    fun navigateToBlessingDetail(blessing: CursesBlessingsHealth) {
         _navigateToBlessingDetail.value = blessing
         doneNavigateToBlessingDetail()
 
     }
 
-    fun doneNavigateToBlessingDetail(){
+    private fun doneNavigateToBlessingDetail() {
         _navigateToBlessingDetail.value = null
     }
 
 
-    fun navigateToAddBlessings(){
+    fun navigateToAddBlessings() {
         _navigateToAddBlessings.value = true
         doneNavigateToAddBlessings()
-      
+
     }
 
-    fun doneNavigateToAddBlessings(){
+    private fun doneNavigateToAddBlessings() {
         _navigateToAddBlessings.value = null
     }
 

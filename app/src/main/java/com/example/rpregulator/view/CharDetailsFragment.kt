@@ -13,15 +13,15 @@ import com.example.rpregulator.utils.AlertDialogBuilders
 import com.example.rpregulator.viewmodel.CharDetailsViewModel
 import com.example.rpregulator.viewmodel.CharDetailsViewModelFactory
 
-class CharDetailsFragment: Fragment() {
+class CharDetailsFragment : Fragment() {
     private var _binding: FragmentCharDetailsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
 
         _binding = FragmentCharDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -34,28 +34,29 @@ class CharDetailsFragment: Fragment() {
         Glide.with(this).load(char.img).into(binding.imgOfChar)
 
         charDetailViewModel.navigateToCharEdit.observe(viewLifecycleOwner, {
-            it?.let{
-               val action = CharDetailsFragmentDirections.actionCharDetailsFragmentToCharEditDetailsFragment(it)
+            it?.let {
+                val action = CharDetailsFragmentDirections.actionCharDetailsFragmentToCharEditDetailsFragment(it)
                 findNavController().navigate(action)
             }
         })
 
-        charDetailViewModel.navigateToChar.observe(viewLifecycleOwner,{
-            it?.let{
-               val action = CharDetailsFragmentDirections.actionCharDetailsFragmentToBestiaryFragment()
+        charDetailViewModel.navigateToChar.observe(viewLifecycleOwner, {
+            it?.let {
+                val action = CharDetailsFragmentDirections.actionCharDetailsFragmentToBestiaryFragment()
                 findNavController().navigate(action)
             }
         })
 
 
         charDetailViewModel.showAlertDialog.observe(viewLifecycleOwner, {
-            it?.let{
+            it?.let {
                 AlertDialogBuilders.createDeleteAlert(requireContext()) { charDetailViewModel.deleteEntry() }
             }
         })
 
         return view
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

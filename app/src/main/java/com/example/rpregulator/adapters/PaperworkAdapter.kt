@@ -10,16 +10,16 @@ import com.example.rpregulator.models.PaperWork
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class PaperworkAdapter(private val options: FirebaseRecyclerOptions<PaperWork>, val onClickListener: PaperworkAdapter.OnClickListener)
-    : FirebaseRecyclerAdapter<PaperWork, PaperworkAdapter.PaperWorkHolder>(options){
+class PaperworkAdapter(options: FirebaseRecyclerOptions<PaperWork>, val onClickListener: OnClickListener)
+    : FirebaseRecyclerAdapter<PaperWork, PaperworkAdapter.PaperWorkHolder>(options) {
 
-    val _progressBarShow = MutableLiveData<Boolean?>()
+    private val _progressBarShow = MutableLiveData<Boolean?>()
     val progressBar: LiveData<Boolean?>
         get() = _progressBarShow
 
 
-    class PaperWorkHolder(private var binding: RvItemNotesBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(paperWork: PaperWork){
+    class PaperWorkHolder(private var binding: RvItemNotesBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(paperWork: PaperWork) {
             binding.txtTitle.text = paperWork.title
             binding.txtDesc.text = paperWork.desc
 
@@ -27,20 +27,20 @@ class PaperworkAdapter(private val options: FirebaseRecyclerOptions<PaperWork>, 
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PaperworkAdapter.PaperWorkHolder {
-        return PaperworkAdapter.PaperWorkHolder(RvItemNotesBinding.inflate(LayoutInflater.from(parent.context)))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PaperWorkHolder {
+        return PaperWorkHolder(RvItemNotesBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
 
-    override fun onBindViewHolder(holder: PaperworkAdapter.PaperWorkHolder, position: Int, model:PaperWork) {
+    override fun onBindViewHolder(holder: PaperWorkHolder, position: Int, model: PaperWork) {
         val item = getItem(position)
         holder.bind(item)
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             onClickListener.onClick(item)
         }
     }
 
-    class OnClickListener(val clickListener: (paperWork: PaperWork) ->Unit){
+    class OnClickListener(val clickListener: (paperWork: PaperWork) -> Unit) {
         fun onClick(paperWork: PaperWork) = clickListener(paperWork)
     }
 

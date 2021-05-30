@@ -1,60 +1,47 @@
 package com.example.rpregulator.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.rpregulator.firebase.CursesFirebase
 import com.example.rpregulator.models.CursesBlessingsHealth
 import kotlinx.coroutines.launch
 
-class AddCurseViewModel() : ViewModel() {
+class AddCurseViewModel(private val id: String) : ViewModel() {
 
     val curseName = MutableLiveData<String?>()
     val curseIntesity = MutableLiveData<String?>()
     val curseDesc = MutableLiveData<String?>()
     var type = String()
 
-
-    init {
-        type = "ACTIVE"
-    }
-
-
-
-  private val _navigateToCurses = MutableLiveData<Boolean?>()
+    private val _navigateToCurses = MutableLiveData<Boolean?>()
     val navigateToCurses: LiveData<Boolean?>
-    get() = _navigateToCurses
+        get() = _navigateToCurses
 
 
-    fun navigateToCurses(){
+    fun navigateToCurses() {
         _navigateToCurses.value = true
         doneNavigateToCurses()
-      
+
     }
 
-    fun doneNavigateToCurses(){
+    private fun doneNavigateToCurses() {
         _navigateToCurses.value = null
     }
 
-    fun setTypeToActive(){
-        type = "ACTIVE"
-        Log.d("Type", type)
-    }
-    fun setTypeToPassive(){
-        type = "PASSIVE"
-        Log.d("Type",type)
-    }
 
-    fun uploadData(){
+    fun uploadData() {
         val databaseReference = CursesFirebase.databaseReference
-        val entryID= databaseReference.push().key.toString()
+        val entryID = databaseReference.push().key.toString()
         val entry = CursesBlessingsHealth(
-              entryID,
+                entryID,
                 curseName.value,
                 curseIntesity.value,
                 curseDesc.value
         )
         viewModelScope.launch {
-            CursesFirebase.uploadData(entryID, entry)
+            CursesFirebase.uploadData(entryID, entry, id)
         }
     }
 

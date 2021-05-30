@@ -9,10 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rpregulator.databinding.FragmentAddCreatureBinding
+import com.example.rpregulator.utils.GlobalConstants.Companion.GALLERY_REQUEST_CODE
 import com.example.rpregulator.viewmodel.AddCreatureViewModel
 import com.example.rpregulator.viewmodel.AddCreatureViewModelFactory
 import com.google.firebase.storage.FirebaseStorage
@@ -21,14 +21,14 @@ class AddCreatureFragment: Fragment() {
 
     private var _binding: FragmentAddCreatureBinding? = null
     private val binding get() = _binding!!
-    val GALLERY_REQUEST_CODE = 123
     val storageRefrence = FirebaseStorage.getInstance().reference
-    lateinit var addCreaturesViewModel: AddCreatureViewModel
+    private lateinit var addCreaturesViewModel: AddCreatureViewModel
+    @Suppress("DEPRECATION")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentAddCreatureBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -37,18 +37,18 @@ class AddCreatureFragment: Fragment() {
 
         binding.viewModel = addCreaturesViewModel
 
-        addCreaturesViewModel.navigateToCreatures.observe(viewLifecycleOwner, Observer {
+        addCreaturesViewModel.navigateToCreatures.observe(viewLifecycleOwner, {
             it?.let {
                 val action = AddCreatureFragmentDirections.actionAddCreatureFragmentToBestiaryFragment()
                 findNavController().navigate(action)
             }
         })
 
-        addCreaturesViewModel.uploadPhoto.observe(viewLifecycleOwner, Observer {
+        addCreaturesViewModel.uploadPhoto.observe(viewLifecycleOwner, {
             it?.let {
                 val intent = Intent()
-                intent.setType("image/*")
-                intent.setAction(Intent.ACTION_GET_CONTENT)
+                intent.type = "image/*"
+                intent.action = Intent.ACTION_GET_CONTENT
                 startActivityForResult(Intent.createChooser(intent,"Choose photo"), GALLERY_REQUEST_CODE)
             }
         })

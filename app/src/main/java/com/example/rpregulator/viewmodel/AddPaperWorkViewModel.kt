@@ -8,46 +8,46 @@ import com.example.rpregulator.firebase.PaperworkFirebase
 import com.example.rpregulator.models.PaperWork
 import kotlinx.coroutines.launch
 
-class AddPaperWorkViewModel() : ViewModel() {
+class AddPaperWorkViewModel : ViewModel() {
 
     val paperWorkTitle = MutableLiveData<String?>()
     val paperWorkDesc = MutableLiveData<String?>()
 
 
-  private val _navigateToPaperWorks = MutableLiveData<Boolean?>()
+    private val _navigateToPaperWorks = MutableLiveData<Boolean?>()
     val navigateToPaperWorks: LiveData<Boolean?>
-    get() = _navigateToPaperWorks
+        get() = _navigateToPaperWorks
 
     private val _uploadPhoto = MutableLiveData<Boolean?>()
     val uploadPhoto: LiveData<Boolean?>
         get() = _uploadPhoto
 
 
-    fun navigateToPaperWorks(){
+    fun navigateToPaperWorks() {
         _navigateToPaperWorks.value = true
         doneNavigateToPaperWorks()
     }
 
-    fun doneNavigateToPaperWorks(){
+    private fun doneNavigateToPaperWorks() {
         _navigateToPaperWorks.value = null
     }
 
-    fun uploadPhoto(){
+    fun uploadPhoto() {
         _uploadPhoto.value = true
         doneUploadPhoto()
 
     }
 
-    fun doneUploadPhoto(){
+    private fun doneUploadPhoto() {
         _uploadPhoto.value = null
     }
 
 
-    fun uploadData(){
+    fun uploadData() {
         val databaseReference = PaperworkFirebase.databaseReference
-        val entryID= databaseReference.push().key.toString()
+        val entryID = databaseReference.push().key.toString()
         val entry = PaperWork(
-              entryID,
+                entryID,
                 paperWorkTitle.value,
                 paperWorkDesc.value
         )

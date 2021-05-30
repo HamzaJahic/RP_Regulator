@@ -6,15 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rpregulator.firebase.InventoryFirebase
 import com.example.rpregulator.models.Inventory
+import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
 import kotlinx.coroutines.launch
 
-class InventoryDetailsViewModel(inventory: Inventory) : ViewModel() {
+class InventoryDetailsViewModel(var inventory: Inventory) : ViewModel() {
 
     val inventoryName = MutableLiveData<String?>()
     val inventoryQuantity = MutableLiveData<String?>()
     val inventoryDesc = MutableLiveData<String?>()
     var id = String()
-    var inventory = inventory
 
 
     init {
@@ -25,10 +25,9 @@ class InventoryDetailsViewModel(inventory: Inventory) : ViewModel() {
     }
 
 
-
-  private val _navigateToInventoryEdit = MutableLiveData<Inventory?>()
+    private val _navigateToInventoryEdit = MutableLiveData<Inventory?>()
     val navigateToInventoryEdit: LiveData<Inventory?>
-    get() = _navigateToInventoryEdit
+        get() = _navigateToInventoryEdit
 
     private val _navigateToInventory = MutableLiveData<Boolean?>()
     val navigateToInventory: LiveData<Boolean?>
@@ -39,31 +38,30 @@ class InventoryDetailsViewModel(inventory: Inventory) : ViewModel() {
         get() = _showAlertDialog
 
 
-    fun navigateToInventoryEdit(){
+    fun navigateToInventoryEdit() {
         _navigateToInventoryEdit.value = inventory
         doneNavigateToInventoryEdit()
 
     }
 
-    fun doneNavigateToInventoryEdit(){
+    private fun doneNavigateToInventoryEdit() {
         _navigateToInventoryEdit.value = null
     }
 
-    fun navigateToInventory(){
+    fun navigateToInventory() {
         _navigateToInventory.value = true
         doneNavigateToInventory()
-      
+
     }
 
-    fun doneNavigateToInventory(){
+    private fun doneNavigateToInventory() {
         _navigateToInventory.value = null
     }
 
 
-
-    fun editData(){
-        val databaseReference = InventoryFirebase.databaseReference
-        val entryID= id
+    fun editData() {
+        InventoryFirebase.databaseReference
+        val entryID = id
         val entry = Inventory(
                 entryID,
                 inventoryName.value,
@@ -71,13 +69,13 @@ class InventoryDetailsViewModel(inventory: Inventory) : ViewModel() {
                 inventoryDesc.value
         )
         viewModelScope.launch {
-            InventoryFirebase.uploadData(entryID, entry)
+            InventoryFirebase.uploadData(entryID, entry, USER_ID.value!!)
         }
     }
 
-    fun deleteEntry(){
+    fun deleteEntry() {
         val entryID = id
-        viewModelScope.launch{
+        viewModelScope.launch {
             InventoryFirebase.databaseReference.child(entryID).removeValue()
             navigateToInventory()
         }
@@ -88,7 +86,7 @@ class InventoryDetailsViewModel(inventory: Inventory) : ViewModel() {
         doneShow()
     }
 
-    fun doneShow() {
+    private fun doneShow() {
         _showAlertDialog.value = null
     }
 

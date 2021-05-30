@@ -8,34 +8,34 @@ import androidx.lifecycle.ViewModel
 class SettingsViewModel(context: Context) : ViewModel() {
 
 
-    val _logout = MutableLiveData<Boolean?>()
+    private val _logout = MutableLiveData<Boolean?>()
     val logout: LiveData<Boolean?>
-            get() = _logout
+        get() = _logout
 
-    val _navigateToChangePin = MutableLiveData<Boolean?>()
+    private val _navigateToChangePin = MutableLiveData<Boolean?>()
     val navigateToChangePin: LiveData<Boolean?>
         get() = _navigateToChangePin
 
-    val sharedPref = context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
-    val editor = sharedPref.edit()
+    private val sharedPref = context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+    private val editor = sharedPref.edit()
 
-    fun navigateToChangePin(){
+    fun navigateToChangePin() {
         _navigateToChangePin.value = true
         doneNavigateToChangePin()
     }
 
-    fun doneNavigateToChangePin(){
+    private fun doneNavigateToChangePin() {
         _navigateToChangePin.value = null
     }
 
-    fun logOut(){
+    fun logOut() {
         _logout.value = true
         editor.clear()
         editor.apply()
         donelogOut()
     }
 
-    fun donelogOut(){
+    private fun donelogOut() {
         _logout.value = null
     }
 

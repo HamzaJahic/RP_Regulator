@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.example.rpregulator.viewmodel.AddNotesViewModel" />
@@ -13,8 +13,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primaryLightColor"
-        >
+        android:background="@color/primaryLightColor">
+
         <View
             android:id="@+id/textBackground"
             android:layout_width="match_parent"
@@ -30,14 +30,18 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/ic_photo"
-            android:scaleType="centerCrop"
             android:background="@drawable/photo_bg"
+            android:onClick="@{onClick -> viewModel.uploadPhoto()}"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_photo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:onClick="@{onClick -> viewModel.uploadPhoto()}">
-            <tag android:id="@+id/zoomable" android:value="ZoomableViewTag" />
+          >
+
+            <tag
+                android:id="@+id/zoomable"
+                android:value="ZoomableViewTag" />
 
         </ImageView>
 
@@ -47,7 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Name"
+            android:hint="@string/name"
             app:boxStrokeColor="@color/primaryColor"
             app:boxStrokeWidth="2dp"
             app:endIconMode="clear_text"
@@ -61,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@={viewModel.noteTitle}"
-                android:textColor="@color/primaryTextColor"/>
+                android:textColor="@color/primaryTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -71,7 +75,7 @@
             android:layout_width="0dp"
             android:layout_height="210dp"
             android:layout_marginTop="40dp"
-            android:hint="Description"
+            android:hint="@string/description"
             app:boxStrokeColor="@color/primaryColor"
             app:boxStrokeWidth="2dp"
             app:endIconMode="clear_text"
@@ -87,7 +91,7 @@
                 android:gravity="top"
                 android:inputType="textMultiLine"
                 android:text="@={viewModel.noteDesc}"
-                android:textColor="@color/primaryTextColor"/>
+                android:textColor="@color/primaryTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -98,7 +102,8 @@
             android:onClick="@{onClick -> viewModel.uploadData()}"
             android:src="@drawable/ic_accept"
             app:layout_constraintStart_toStartOf="@id/etBlessingDesc"
-            app:layout_constraintTop_toBottomOf="@id/etBlessingDesc" />
+            app:layout_constraintTop_toBottomOf="@id/etBlessingDesc"
+             />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabCancel"
@@ -108,7 +113,8 @@
             android:onClick="@{onClick -> viewModel.navigateToNotes()}"
             android:src="@drawable/ic_cancel"
             app:layout_constraintEnd_toEndOf="@id/etBlessingDesc"
-            app:layout_constraintTop_toBottomOf="@id/etBlessingDesc" />
+            app:layout_constraintTop_toBottomOf="@id/etBlessingDesc"
+            />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"

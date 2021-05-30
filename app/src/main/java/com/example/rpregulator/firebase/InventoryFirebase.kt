@@ -8,14 +8,11 @@ import com.google.firebase.ktx.Firebase
 
 class InventoryFirebase {
 
-    companion object{
+    companion object {
         val databaseReference: DatabaseReference = Firebase.database.reference.child("Users").child(USER_ID.value!!).child("inventory")
 
-        suspend fun uploadData(key: String, entry: Inventory){
-            databaseReference.child(key).child("id").setValue(entry.id)
-            databaseReference.child(key).child("name").setValue(entry.name)
-            databaseReference.child(key).child("value").setValue(entry.value)
-            databaseReference.child(key).child("desc").setValue(entry.desc)
+        fun uploadData(key: String, entry: Inventory, id: String) {
+            UsersFirebase.databaseReference.child(id).child("inventory").child(key).setValue(entry)
         }
     }
 

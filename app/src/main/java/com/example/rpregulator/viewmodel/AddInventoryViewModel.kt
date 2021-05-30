@@ -8,30 +8,30 @@ import com.example.rpregulator.firebase.InventoryFirebase
 import com.example.rpregulator.models.Inventory
 import kotlinx.coroutines.launch
 
-class AddInventoryViewModel() : ViewModel() {
+class AddInventoryViewModel(private val id: String) : ViewModel() {
 
 
     val inventoryName = MutableLiveData<String?>()
     val inventoryValue = MutableLiveData<String?>()
     val inventoryDesc = MutableLiveData<String?>()
-    
-    
-  private val _navigateToInventory = MutableLiveData<Boolean?>()
+
+
+    private val _navigateToInventory = MutableLiveData<Boolean?>()
     val navigateToInventory: LiveData<Boolean?>
-    get() = _navigateToInventory
+        get() = _navigateToInventory
 
 
-    fun navigateToInventory(){
+    fun navigateToInventory() {
         _navigateToInventory.value = true
         doneNavigateToInventory()
-      
+
     }
 
-    fun doneNavigateToInventory(){
+    fun doneNavigateToInventory() {
         _navigateToInventory.value = null
     }
 
-    fun uploadData(){
+    fun uploadData() {
         val databaseReference = InventoryFirebase.databaseReference
         val entryID = databaseReference.push().key.toString()
 
@@ -43,7 +43,7 @@ class AddInventoryViewModel() : ViewModel() {
         )
 
         viewModelScope.launch {
-            InventoryFirebase.uploadData(entryID, entry)
+            InventoryFirebase.uploadData(entryID, entry, id)
         }
     }
 

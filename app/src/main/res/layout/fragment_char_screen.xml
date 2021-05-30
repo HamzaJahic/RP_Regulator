@@ -10,16 +10,16 @@
             name="viewModel"
             type="com.example.rpregulator.viewmodel.CharScreenViewModel" />
     </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/primaryLightColor">
+        android:background="@color/primaryLightColor"
+        app:layout_constraintTop_toTopOf="parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-
+            android:layout_height="wrap_content">
 
 
             <View
@@ -37,13 +37,13 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="10dp"
+                android:onClick="@{onClick -> viewModel.changePhoto()}"
                 android:src="@drawable/ic_active"
                 app:civ_border_color="#FF000000"
                 app:civ_border_width="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:onClick="@{onClick -> viewModel.changePhoto()}">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <tag
                     android:id="@+id/zoomable"
@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:text="Character Name:"
+                android:text="@string/character_name"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Eqiupment"
+                android:text="@string/eqiupment"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -134,7 +134,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Coins"
+                android:text="@string/coins"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -149,33 +149,35 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
                 android:padding="8dp"
-                android:textStyle="bold"
                 android:text="@{viewModel.gold}"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="22sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtCharDesc"
                 tools:text="Cost:" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/coin"
+                app:layout_constraintBottom_toBottomOf="@id/tvCharGold"
                 app:layout_constraintStart_toEndOf="@id/tvCharGold"
                 app:layout_constraintTop_toTopOf="@id/tvCharGold"
-                app:layout_constraintBottom_toBottomOf="@id/tvCharGold"
-                android:src="@drawable/coin"/>
+             />
 
             <Button
                 android:id="@+id/btnIncrease1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginLeft="30dp"
-                android:textSize="15sp"
-                android:drawableRight="@drawable/coin"
-                android:text="+1"
+                android:drawableEnd="@drawable/coin"
                 android:onClick="@{onClick -> viewModel.increaseGold(1)}"
                 android:src="@drawable/ic_edit"
+                android:text="@string/_1"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvCharGold" />
 
@@ -184,12 +186,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:textSize="15sp"
-                android:drawableRight="@drawable/coin"
-                android:text="+10"
+                android:drawableEnd="@drawable/coin"
                 android:onClick="@{onClick -> viewModel.increaseGold(10)}"
-                app:layout_constraintStart_toEndOf="@id/btnIncrease1"
+                android:text="@string/_10"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toStartOf="@id/btnIncrease100"
+                app:layout_constraintStart_toEndOf="@id/btnIncrease1"
                 app:layout_constraintTop_toBottomOf="@id/tvCharGold" />
 
             <Button
@@ -197,11 +199,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:layout_marginRight="30dp"
-                android:drawableRight="@drawable/coin"
-                android:textSize="15sp"
-                android:text="+100"
+                android:layout_marginEnd="30dp"
+                android:drawableEnd="@drawable/coin"
                 android:onClick="@{onClick -> viewModel.increaseGold(100)}"
+                android:text="@string/_100"
+                android:textSize="15sp"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvCharGold" />
@@ -210,13 +212,13 @@
                 android:id="@+id/btnDecrease1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginLeft="30dp"
-                android:drawableRight="@drawable/coin"
+                android:drawableEnd="@drawable/coin"
 
-                android:textSize="15sp"
-                android:text="-1"
                 android:onClick="@{onClick -> viewModel.increaseGold(-1)}"
+                android:text="@string/minus1"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btnIncrease1" />
 
@@ -225,9 +227,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:drawableRight="@drawable/coin"
+                android:drawableEnd="@drawable/coin"
                 android:onClick="@{onClick -> viewModel.increaseGold(-10)}"
-                android:text="-10"
+                android:text="@string/minus10"
 
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="@+id/btnIncrease10"
@@ -241,9 +243,9 @@
                 android:layout_marginTop="28dp"
 
 
-                android:drawableRight="@drawable/coin"
+                android:drawableEnd="@drawable/coin"
                 android:onClick="@{onClick -> viewModel.increaseGold(-100)}"
-                android:text="-100"
+                android:text="@string/minus100"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/btnDecrease10"
                 app:layout_constraintEnd_toEndOf="@+id/btnIncrease100"
@@ -256,7 +258,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
 
 
 </layout>

@@ -7,9 +7,9 @@ import com.google.firebase.ktx.Firebase
 
 class UsersFirebase {
 
-    companion object{
+    companion object {
         val databaseReference: DatabaseReference = Firebase.database.reference.child("Users")
-        fun uploadData(key: String, entry: Stats, id: String){
+        fun uploadData(key: String, entry: Stats, id: String) {
             databaseReference.child(id).child("experience").child(key).setValue(entry)
         }
     }

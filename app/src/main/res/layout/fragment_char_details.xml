@@ -34,8 +34,12 @@
             android:src="@drawable/ic_active"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-            <tag android:id="@+id/zoomable" android:value="ZoomableViewTag" />
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <tag
+                android:id="@+id/zoomable"
+                android:value="ZoomableViewTag" />
 
         </ImageView>
 
@@ -51,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="Character Name:"
+            android:text="@string/character_name"
             android:textColor="@color/primaryTextColor"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,31 +70,31 @@
             android:layout_marginTop="5dp"
             android:text="@{viewModel.charName}"
             android:textColor="@color/primaryTextColor"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtCharName"
             tools:text="Golem Heart" />
-        
+
         <View
             android:id="@+id/horizontalDevider"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginTop="10dp"
             android:background="@color/primaryColor"
-            app:layout_constraintTop_toBottomOf="@+id/tvCharName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCharName" />
 
         <TextView
             android:id="@+id/txtCharQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textSize="15sp"
-            android:text="First Appearance"
+            android:text="@string/first_appearance"
             android:textColor="@color/primaryTextColor"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/horizontalDevider" />
 
         <TextView
@@ -100,11 +104,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@{viewModel.charApperance}"
-            tools:text="25"
             android:textColor="@color/primaryTextColor"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtCharQuantity" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtCharQuantity"
+            tools:text="25" />
 
         <View
             android:id="@+id/horizontalDevider2"
@@ -112,10 +116,9 @@
             android:layout_height="2dp"
             android:layout_marginTop="10dp"
             android:background="@color/primaryColor"
-            app:layout_constraintTop_toBottomOf="@+id/tvtCharAppearance"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvtCharAppearance" />
 
 
         <TextView
@@ -123,25 +126,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Description:"
+            android:text="@string/description"
             android:textColor="@color/primaryTextColor"
             android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/horizontalDevider2" />
 
         <TextView
             android:id="@+id/tvCharDesc"
             android:layout_width="0dp"
             android:layout_height="200dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/photo_bg"
             android:padding="8dp"
             android:text="@{viewModel.charDesc}"
             android:textColor="@color/primaryTextColor"
             android:textSize="18sp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtCharDesc"
@@ -155,7 +158,8 @@
             android:onClick="@{onClick -> viewModel.navigateToCharEdit()}"
             android:src="@drawable/ic_edit"
             app:layout_constraintStart_toStartOf="@id/tvCharDesc"
-            app:layout_constraintTop_toBottomOf="@id/tvCharDesc" />
+            app:layout_constraintTop_toBottomOf="@id/tvCharDesc"
+             />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabCancel"
@@ -165,7 +169,8 @@
             android:onClick="@{onClick -> viewModel.showAlertDialog()}"
             android:src="@drawable/ic_delete"
             app:layout_constraintEnd_toEndOf="@id/tvCharDesc"
-            app:layout_constraintTop_toBottomOf="@id/tvCharDesc" />
+            app:layout_constraintTop_toBottomOf="@id/tvCharDesc"
+             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

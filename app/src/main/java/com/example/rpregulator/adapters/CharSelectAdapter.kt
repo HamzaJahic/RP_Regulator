@@ -13,10 +13,10 @@ import com.example.rpregulator.models.User
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class CharSelectAdapter(private val options: FirebaseRecyclerOptions<User>, context: Context,  val onClickListener: CharSelectAdapter.OnClickListener) : FirebaseRecyclerAdapter<User, CharSelectAdapter.UserHolder>(options) {
+class CharSelectAdapter(options: FirebaseRecyclerOptions<User>,
+                        val context: Context, val onClickListener: OnClickListener) : FirebaseRecyclerAdapter<User, CharSelectAdapter.UserHolder>(options) {
 
-    val context = context
-    val _progressBarShow = MutableLiveData<Boolean?>()
+    private val _progressBarShow = MutableLiveData<Boolean?>()
     val progressBar: LiveData<Boolean?>
         get() = _progressBarShow
 
@@ -28,13 +28,13 @@ class CharSelectAdapter(private val options: FirebaseRecyclerOptions<User>, cont
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharSelectAdapter.UserHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHolder {
         Log.d("Adapter", "Created")
-        return CharSelectAdapter.UserHolder(CharSelectRvItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return UserHolder(CharSelectRvItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
 
-    override fun onBindViewHolder(holder:CharSelectAdapter.UserHolder, position: Int, model: User) {
+    override fun onBindViewHolder(holder: UserHolder, position: Int, model: User) {
         val item = getItem(position)
         holder.bind(item, context)
         holder.itemView.setOnClickListener {

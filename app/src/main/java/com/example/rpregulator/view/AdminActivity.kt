@@ -20,12 +20,12 @@ class AdminActivity : AppCompatActivity() {
         binding = ActivityAdminBinding.inflate(layoutInflater)
         val sharedPref = getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
-        val options =  FirebaseRecyclerOptions.Builder<User>()
+        val options = FirebaseRecyclerOptions.Builder<User>()
                 .setQuery(UsersFirebase.databaseReference, User::class.java)
                 .setLifecycleOwner(this)
                 .build()
 
-        val adapter = CharSelectAdapter(options,this, CharSelectAdapter.OnClickListener{
+        val adapter = CharSelectAdapter(options, this, CharSelectAdapter.OnClickListener {
             editor.apply {
                 putString("id", it.id)
             }.apply()
@@ -35,7 +35,6 @@ class AdminActivity : AppCompatActivity() {
             startActivity(intent)
 
         })
-
 
 
         val layoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)

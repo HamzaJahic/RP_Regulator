@@ -8,16 +8,15 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 
-class CharAdminViewModel(id : String) : ViewModel() {
+class CharAdminViewModel(val id: String) : ViewModel() {
 
-    val id = id
     private val _charName = MutableLiveData<String?>()
-    val charName : LiveData<String?>
+    val charName: LiveData<String?>
         get() = _charName
 
     private val _gold = MutableLiveData<String?>()
-    val gold : LiveData<String?>
-    get() = _gold
+    val gold: LiveData<String?>
+        get() = _gold
 
 
     private val _img = MutableLiveData<String?>()
@@ -25,8 +24,6 @@ class CharAdminViewModel(id : String) : ViewModel() {
         get() = _img
 
     private val _changePhoto = MutableLiveData<Boolean?>()
-    val changePhoto: LiveData<Boolean?>
-        get() = _changePhoto
 
     private val _navigateToSkills = MutableLiveData<String?>()
     val navigateToSkills: LiveData<String?>
@@ -56,109 +53,106 @@ class CharAdminViewModel(id : String) : ViewModel() {
         get() = _navigateToXP
 
     init {
-       getUserInfo()
+        getUserInfo()
     }
 
-    fun changePhoto(){
+    fun changePhoto() {
         _changePhoto.value = true
         doneChangePhoto()
     }
 
-    fun doneChangePhoto(){
+    private fun doneChangePhoto() {
         _changePhoto.value = null
     }
 
 
-    fun increaseGold(inc : Int){
-        var oldValue = _gold.value!!.toInt()
-        var newValue = oldValue+inc
+    fun increaseGold(inc: Int) {
+        val oldValue = _gold.value!!.toInt()
+        val newValue = oldValue + inc
         UsersFirebase.databaseReference.child(id).child("gold").setValue(newValue.toString())
         _gold.value = newValue.toString()
     }
 
-    fun getUserInfo(){
+    private fun getUserInfo() {
 
-        UsersFirebase.databaseReference.child(id).addListenerForSingleValueEvent(object : ValueEventListener{
+        UsersFirebase.databaseReference.child(id).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                _charName.value = snapshot.child("username").getValue().toString()
-                _gold.value = snapshot.child("gold").getValue().toString()
-                _img.value = snapshot.child("img").getValue().toString()
+                _charName.value = snapshot.child("username").value.toString()
+                _gold.value = snapshot.child("gold").value.toString()
+                _img.value = snapshot.child("img").value.toString()
             }
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-        } )
+        })
 
     }
 
 
-    fun navigateToSkills(){
+    fun navigateToSkills() {
         _navigateToSkills.value = id
         doneNavigateToSkills()
     }
 
-    fun doneNavigateToSkills(){
+    private fun doneNavigateToSkills() {
         _navigateToSkills.value = null
     }
 
-    fun navigateToStats(){
+    fun navigateToStats() {
         _navigateToStats.value = id
         doneNavigateToStats()
     }
 
-    fun doneNavigateToStats(){
+    private fun doneNavigateToStats() {
         _navigateToStats.value = null
     }
 
 
-    fun navigateToInventory(){
+    fun navigateToInventory() {
         _navigateToInventory.value = id
         doneNavigateToInventory()
     }
 
-    fun doneNavigateToInventory(){
+    private fun doneNavigateToInventory() {
         _navigateToInventory.value = null
     }
 
-    fun navigateToBlessings(){
+    fun navigateToBlessings() {
         _navigateToBlessings.value = id
         doneNavigateToBlessings()
     }
 
-    fun doneNavigateToBlessings(){
+    private fun doneNavigateToBlessings() {
         _navigateToBlessings.value = null
     }
 
-    fun navigateToCurses(){
+    fun navigateToCurses() {
         _navigateToCurses.value = id
         doneNavigateToCurses()
     }
 
-    fun doneNavigateToCurses(){
+    private fun doneNavigateToCurses() {
         _navigateToCurses.value = null
     }
 
-    fun navigateToStatus(){
+    fun navigateToStatus() {
         _navigateToStatus.value = id
         doneNavigateToStatus()
     }
 
-    fun doneNavigateToStatus(){
+    private fun doneNavigateToStatus() {
         _navigateToStatus.value = null
     }
 
-    fun navigateToXP(){
+    fun navigateToXP() {
         _navigateToXP.value = id
         doneNavigateToXP()
     }
 
-    fun doneNavigateToXP(){
+    private fun doneNavigateToXP() {
         _navigateToXP.value = null
     }
-
-
-
 
 
 }

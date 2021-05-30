@@ -21,7 +21,7 @@ class CreatureDetailsFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentCreatureDetailsBinding.inflate(inflater, container, false)
         val view = binding.root

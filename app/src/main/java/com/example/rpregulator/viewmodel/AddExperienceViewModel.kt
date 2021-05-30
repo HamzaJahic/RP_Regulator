@@ -8,12 +8,11 @@ import com.example.rpregulator.firebase.UsersFirebase
 import com.example.rpregulator.models.Stats
 import kotlinx.coroutines.launch
 
-class AddExperienceViewModel(id: String) : ViewModel() {
+class AddExperienceViewModel(val id: String) : ViewModel() {
 
     val entryName = MutableLiveData<String?>()
     val entryValue = MutableLiveData<String?>()
     val entryDesc = MutableLiveData<String?>()
-    val id = id
 
 
     private val _navigateToMain = MutableLiveData<Boolean?>()
@@ -26,7 +25,7 @@ class AddExperienceViewModel(id: String) : ViewModel() {
 
     }
 
-    fun doneNavigateToMain() {
+    private fun doneNavigateToMain() {
         _navigateToMain.value = null
     }
 
@@ -42,7 +41,7 @@ class AddExperienceViewModel(id: String) : ViewModel() {
                 ""
         )
         viewModelScope.launch {
-           UsersFirebase.uploadData(entryID, entry, id)
+            UsersFirebase.uploadData(entryID, entry, id)
         }
 
         navigateToMain()

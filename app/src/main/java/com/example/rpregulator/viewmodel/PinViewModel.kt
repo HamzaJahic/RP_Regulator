@@ -1,6 +1,7 @@
 package com.example.rpregulator.viewmodel
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,32 +13,25 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.launch
 
-class PinViewModel(user: User, context: Context) : ViewModel() {
+class PinViewModel(val user: User, context: Context) : ViewModel() {
     val pin = MutableLiveData<String?>()
-    val sharedPref = context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
-    val editor = sharedPref.edit()
-    val user = user
-    val userName = user.username.toString()
-    val _showError = MutableLiveData<Boolean?>()
-    val showError: LiveData<Boolean?> get() = _showError
+    private val sharedPref: SharedPreferences = context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+    private val editor: SharedPreferences.Editor = sharedPref.edit()
+    private val userName = user.username.toString()
 
-    val _navigateToMain = MutableLiveData<Boolean?>()
+    private val _navigateToMain = MutableLiveData<Boolean?>()
     val navigateToMain: LiveData<Boolean?>
-            get() = _navigateToMain
+        get() = _navigateToMain
 
-    val _navigateToAdmin = MutableLiveData<Boolean?>()
-    val navigateToAdmin: LiveData<Boolean?>
-        get() = _navigateToAdmin
-
-    fun loginUser(){
+    fun loginUser() {
         val userRef = UsersFirebase.databaseReference.child(userName)
         viewModelScope.launch {
-            userRef.addListenerForSingleValueEvent(object : ValueEventListener{
+            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    snapshot?.let {
-                        val pinDatabase = it.child("password").getValue().toString()
+                    snapshot.let {
+                        val pinDatabase = it.child("password").value.toString()
 
-                        if(pin.value.toString() == pinDatabase){
+                        if (pin.value.toString() == pinDatabase) {
                             navigateToMain()
                         }
                     }
@@ -51,8 +45,7 @@ class PinViewModel(user: User, context: Context) : ViewModel() {
     }
 
 
-
-    fun navigateToMain(){
+    fun navigateToMain() {
         _navigateToMain.value = true
         editor.apply {
             putString("id", user.id)
@@ -61,16 +54,8 @@ class PinViewModel(user: User, context: Context) : ViewModel() {
         doneNavigateToMain()
     }
 
-    fun doneNavigateToMain(){
+    private fun doneNavigateToMain() {
         _navigateToMain.value = null
     }
 
-    fun showError() {
-        _showError.value = true
-
-    }
-
-    fun endShowError() {
-        _showError.value = null
-    }
 }

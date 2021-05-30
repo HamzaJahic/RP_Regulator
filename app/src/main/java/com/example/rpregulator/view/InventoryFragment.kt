@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rpregulator.adapters.InventoryAdapter
@@ -17,15 +16,15 @@ import com.example.rpregulator.viewmodel.InventoryViewModel
 import com.example.rpregulator.viewmodel.InventoryViewModelFactory
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class InventoryFragment: Fragment() {
+class InventoryFragment : Fragment() {
     private var _binding: FragmentInventoryBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentInventoryBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -35,32 +34,37 @@ class InventoryFragment: Fragment() {
         binding.viewModel = inventoryViewModel
 
         val options = FirebaseRecyclerOptions.Builder<Inventory>()
-            .setQuery(InventoryFirebase.databaseReference.orderByChild("sorting"), Inventory::class.java)
-            .setLifecycleOwner(this)
-            .build()
+                .setQuery(InventoryFirebase.databaseReference.orderByChild("sorting"), Inventory::class.java)
+                .setLifecycleOwner(this)
+                .build()
 
-        val adapter = InventoryAdapter(options, USER_ID.value!!, InventoryAdapter.OnClickListener{
+        val adapter = InventoryAdapter(options, requireContext(), USER_ID.value!!, InventoryAdapter.OnClickListener {
             inventoryViewModel.navigateToInventoryDetails(it)
         })
 
         binding.listInventory.adapter = adapter
 
-        inventoryViewModel.navigateToAddInventory.observe(viewLifecycleOwner, Observer {
+        inventoryViewModel.navigateToAddInventory.observe(viewLifecycleOwner, {
             it?.let {
-                val action = MainFragmentDirections.actionMainFragmentToAddInventoryFragment()
+                val action = MainFragmentDirections.actionMainFragmentToAddInventoryFragment(USER_ID.value!!)
                 findNavController().navigate(action)
             }
         })
 
         inventoryViewModel.navigateToInventoryDetails.observe(viewLifecycleOwner, {
-            it?.let{
+            it?.let {
                 val action = MainFragmentDirections.actionMainFragmentToInventoryDetailsFragment(it)
                 findNavController().navigate(action)
             }
         })
-
+        adapter.progressBar.observe(viewLifecycleOwner, {
+            it?.let {
+                binding.progressBar.visibility = View.GONE
+            }
+        })
         return view
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

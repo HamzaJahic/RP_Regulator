@@ -10,7 +10,8 @@ class NotesFirebase {
 
     companion object {
         val databaseReference: DatabaseReference = Firebase.database.reference.child("Users").child(USER_ID.value!!).child("notes")
-        suspend fun uploadData(key: String, entry: Notes) {
+
+        fun uploadData(key: String, entry: Notes) {
             databaseReference.child(key).setValue(entry)
         }
     }

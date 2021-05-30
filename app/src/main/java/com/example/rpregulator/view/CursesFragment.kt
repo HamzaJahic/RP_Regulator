@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rpregulator.adapters.CursesAdapter
@@ -17,15 +16,15 @@ import com.example.rpregulator.viewmodel.CursesViewModel
 import com.example.rpregulator.viewmodel.CursesViewModelFactory
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class CursesFragment: Fragment() {
+class CursesFragment : Fragment() {
     private var _binding: FragmentCursesBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentCursesBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -38,28 +37,33 @@ class CursesFragment: Fragment() {
                 .setLifecycleOwner(this)
                 .build()
 
-        val adapter = CursesAdapter(options, USER_ID.value!!, CursesAdapter.OnClickListener{
+        val adapter = CursesAdapter(options, USER_ID.value!!, requireContext(), CursesAdapter.OnClickListener {
             cursesViewModel.navigateToCurseDetails(it)
         })
 
         binding.listCurses.adapter = adapter
 
         cursesViewModel.navigateToCurseDetails.observe(viewLifecycleOwner, {
-            it?.let{
+            it?.let {
                 val action = StatusFragmentDirections.actionStatusFragmentToCurseDetailsFragment(it)
                 findNavController().navigate(action)
             }
         })
 
-        cursesViewModel.navigateToAddCurses.observe(viewLifecycleOwner, Observer {
-            it?.let{
-                val action = StatusFragmentDirections.actionStatusFragmentToAddCurseFragment()
+        cursesViewModel.navigateToAddCurses.observe(viewLifecycleOwner, {
+            it?.let {
+                val action = StatusFragmentDirections.actionStatusFragmentToAddCurseFragment(USER_ID.value!!)
                 findNavController().navigate(action)
             }
         })
-
+        adapter.progressBar.observe(viewLifecycleOwner, {
+            it?.let {
+                binding.progressBar.visibility = View.GONE
+            }
+        })
         return view
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

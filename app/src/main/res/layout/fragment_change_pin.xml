@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.example.rpregulator.viewmodel.ChangePinViewModel" />
@@ -13,8 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primaryLightColor"
-        >
+        android:background="@color/primaryLightColor">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -26,74 +25,71 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etOldPin"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="@string/old_pin"
             app:boxStrokeColor="@color/primaryColor"
             app:boxStrokeWidth="2dp"
-            android:hint="Old Pin"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@id/guideline"
+            app:endIconMode="clear_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.8"
-            app:endIconMode="clear_text"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            app:layout_constraintWidth_percent="0.8">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@={viewModel.oldPin}"
-                android:textColor="@color/primaryTextColor"
-                />
+                android:textColor="@color/primaryTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etNewPin"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="@string/new_pin"
             app:boxStrokeColor="@color/primaryColor"
             app:boxStrokeWidth="2dp"
-            android:hint="New Pin"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@id/etOldPin"
+            app:endIconMode="clear_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etOldPin"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.8"
-            app:endIconMode="clear_text"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            app:layout_constraintWidth_percent="0.8">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@={viewModel.newPin}"
-                android:textColor="@color/primaryTextColor"
-                />
+                android:textColor="@color/primaryTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etNewPinAgain"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="@string/new_pin_again"
             app:boxStrokeColor="@color/primaryColor"
             app:boxStrokeWidth="2dp"
-            android:hint="New Pin Again"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@id/etNewPin"
+            app:endIconMode="clear_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etNewPin"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.8"
-            app:endIconMode="clear_text"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            app:layout_constraintWidth_percent="0.8">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@={viewModel.newPinAgain}"
-                android:textColor="@color/primaryTextColor"
-                />
+                android:textColor="@color/primaryTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -105,8 +101,8 @@
             android:src="@drawable/ic_accept"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etNewPinAgain" />
-
+            app:layout_constraintTop_toBottomOf="@id/etNewPinAgain"
+             />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.rpregulator.databinding.FragmentCharAdminBinding
 import com.example.rpregulator.firebase.UsersFirebase
+import com.example.rpregulator.utils.GlobalConstants.Companion.GALLERY_REQUEST_CODE
 import com.example.rpregulator.viewmodel.CharAdminViewModel
 import com.example.rpregulator.viewmodel.CharAdminViewModelFactory
 import com.google.firebase.storage.FirebaseStorage
@@ -22,8 +23,7 @@ const val STEFAN_ID = "Stefan"
 class CharStefanFragment: Fragment() {
     private var _binding: FragmentCharAdminBinding? = null
     private val binding get() = _binding!!
-    val GALLERY_REQUEST_CODE = 123
-    lateinit var charAdminViewModel: CharAdminViewModel
+    private lateinit var charAdminViewModel: CharAdminViewModel
     val storageRefrence = FirebaseStorage.getInstance().reference
 
 
@@ -31,7 +31,7 @@ class CharStefanFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCharAdminBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -98,6 +98,12 @@ class CharStefanFragment: Fragment() {
             it?.let{
                 val action = AdminTabFragmentDirections.actionAdminTabFragmentToExperienceAdminFragment(it)
                 findNavController().navigate(action)
+            }
+        })
+
+        charAdminViewModel.gold.observe(viewLifecycleOwner,{
+            it?.let{
+                binding.tvCharGold.text = it
             }
         })
 

@@ -8,15 +8,15 @@ import com.example.rpregulator.firebase.NotesFirebase
 import com.example.rpregulator.models.Notes
 import kotlinx.coroutines.launch
 
-class AddNotesViewModel() : ViewModel() {
+class AddNotesViewModel : ViewModel() {
 
     val noteTitle = MutableLiveData<String?>()
     val noteDesc = MutableLiveData<String?>()
     var img = String()
 
-  private val _navigateToNotes = MutableLiveData<Boolean?>()
+    private val _navigateToNotes = MutableLiveData<Boolean?>()
     val navigateToNotes: LiveData<Boolean?>
-    get() = _navigateToNotes
+        get() = _navigateToNotes
 
     private val _uploadPhoto = MutableLiveData<Boolean?>()
     val uploadPhoto: LiveData<Boolean?>
@@ -26,32 +26,32 @@ class AddNotesViewModel() : ViewModel() {
         img = ""
     }
 
-    fun navigateToNotes(){
+    fun navigateToNotes() {
         _navigateToNotes.value = true
         doneNavigateToNotes()
-      
+
     }
 
-    fun doneNavigateToNotes(){
+    private fun doneNavigateToNotes() {
         _navigateToNotes.value = null
     }
 
-    fun uploadPhoto(){
+    fun uploadPhoto() {
         _uploadPhoto.value = true
         doneUploadPhoto()
 
     }
 
-    fun doneUploadPhoto(){
+    private fun doneUploadPhoto() {
         _uploadPhoto.value = null
     }
 
 
-    fun uploadData(){
+    fun uploadData() {
         val databaseReference = NotesFirebase.databaseReference
-        val entryID= databaseReference.push().key.toString()
+        val entryID = databaseReference.push().key.toString()
         val entry = Notes(
-              entryID,
+                entryID,
                 img,
                 noteTitle.value,
                 noteDesc.value

@@ -9,14 +9,13 @@ import com.example.rpregulator.firebase.CreaturesFirebase
 import com.example.rpregulator.models.Creatures
 import kotlinx.coroutines.launch
 
-class CreatureDetailsViewModel(creature: Creatures) : ViewModel() {
+class CreatureDetailsViewModel(var creature: Creatures) : ViewModel() {
 
     val creatureName = MutableLiveData<String?>()
     val creatureApperance = MutableLiveData<String?>()
     val creatureDesc = MutableLiveData<String?>()
     var id = String()
     var img = String()
-    var creature = creature
 
 
     init {
@@ -24,14 +23,13 @@ class CreatureDetailsViewModel(creature: Creatures) : ViewModel() {
         creatureApperance.value = creature.ark
         creatureDesc.value = creature.desc
         id = creature.id!!
-        img= creature.img!!
+        img = creature.img!!
     }
 
 
-
-  private val _navigateToCreatureEdit = MutableLiveData<Creatures?>()
+    private val _navigateToCreatureEdit = MutableLiveData<Creatures?>()
     val navigateToCreatureEdit: LiveData<Creatures?>
-    get() = _navigateToCreatureEdit
+        get() = _navigateToCreatureEdit
 
     private val _navigateToCreature = MutableLiveData<Boolean?>()
     val navigateToCreature: LiveData<Boolean?>
@@ -46,31 +44,30 @@ class CreatureDetailsViewModel(creature: Creatures) : ViewModel() {
         get() = _uploadPhoto
 
 
-    fun navigateToCreatureEdit(){
+    fun navigateToCreatureEdit() {
         _navigateToCreatureEdit.value = creature
         doneNavigateToCreatureEdit()
 
     }
 
-    fun doneNavigateToCreatureEdit(){
+    private fun doneNavigateToCreatureEdit() {
         _navigateToCreatureEdit.value = null
     }
 
-    fun navigateToCreature(){
+    private fun navigateToCreature() {
         _navigateToCreature.value = true
         doneNavigateToCreature()
-      
+
     }
 
-    fun doneNavigateToCreature(){
+    private fun doneNavigateToCreature() {
         _navigateToCreature.value = null
     }
 
 
-
-    fun editData(){
-        val databaseReference = CreaturesFirebase.databaseReference
-        val entryID= id
+    fun editData() {
+        CreaturesFirebase.databaseReference
+        val entryID = id
         val entry = Creatures(
                 entryID,
                 img,
@@ -80,14 +77,14 @@ class CreatureDetailsViewModel(creature: Creatures) : ViewModel() {
         )
         viewModelScope.launch {
             CreaturesFirebase.uploadData(entryID, entry)
-            Log.d("Img", "${img}")
+            Log.d("Img", img)
             CreaturesFirebase.databaseReference.child(creature.id!!).child("img").setValue(img)
         }
     }
 
-    fun deleteEntry(){
+    fun deleteEntry() {
         val entryID = id
-        viewModelScope.launch{
+        viewModelScope.launch {
             CreaturesFirebase.databaseReference.child(entryID).removeValue()
             navigateToCreature()
         }
@@ -98,18 +95,18 @@ class CreatureDetailsViewModel(creature: Creatures) : ViewModel() {
         doneShow()
     }
 
-    fun doneShow() {
+    private fun doneShow() {
         _showAlertDialog.value = null
     }
 
 
-    fun uploadPhoto(){
+    fun uploadPhoto() {
         _uploadPhoto.value = true
         doneUploadPhoto()
 
     }
 
-    fun doneUploadPhoto(){
+    private fun doneUploadPhoto() {
         _uploadPhoto.value = null
     }
 

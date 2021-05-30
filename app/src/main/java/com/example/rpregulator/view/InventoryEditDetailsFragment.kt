@@ -10,15 +10,15 @@ import com.example.rpregulator.databinding.FragmentInventoryEditDetailsBinding
 import com.example.rpregulator.viewmodel.InventoryDetailsViewModel
 import com.example.rpregulator.viewmodel.InventoryDetailsViewModelFactory
 
-class InventoryEditDetailsFragment: Fragment() {
+class InventoryEditDetailsFragment : Fragment() {
     private var _binding: FragmentInventoryEditDetailsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
 
         _binding = FragmentInventoryEditDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -31,6 +31,7 @@ class InventoryEditDetailsFragment: Fragment() {
 
         return view
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

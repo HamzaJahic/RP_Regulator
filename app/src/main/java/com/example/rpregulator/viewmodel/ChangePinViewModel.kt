@@ -10,7 +10,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.launch
 
-class ChangePinViewModel() : ViewModel() {
+class ChangePinViewModel : ViewModel() {
 
 
     val oldPin = MutableLiveData<String?>()
@@ -19,17 +19,17 @@ class ChangePinViewModel() : ViewModel() {
     var pin = String()
 
 
-    init{
+    init {
         getPass()
     }
 
-    fun getPass(){
+    private fun getPass() {
         val userRef = UsersFirebase.databaseReference.child(USER_ID.value!!)
         viewModelScope.launch {
-            userRef.addListenerForSingleValueEvent(object : ValueEventListener{
+            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    snapshot?.let {
-                        pin = it.child("password").getValue().toString()
+                    snapshot.let {
+                        pin = it.child("password").value.toString()
 
 
                     }
@@ -43,8 +43,8 @@ class ChangePinViewModel() : ViewModel() {
     }
 
 
-    fun changePass(){
-        if(oldPin.value == pin && newPin.value==newPinAgain.value){
+    fun changePass() {
+        if (oldPin.value == pin && newPin.value == newPinAgain.value) {
             UsersFirebase.databaseReference.child(USER_ID.value!!).child("password").setValue(newPin.value)
         }
     }

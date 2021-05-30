@@ -1,20 +1,28 @@
 package com.example.rpregulator.adapters
 
+import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rpregulator.databinding.RvItemMainBinding
 import com.example.rpregulator.firebase.UsersFirebase
 import com.example.rpregulator.models.Stats
+import com.example.rpregulator.utils.AlertDialogBuilders
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class StatsAdapter(private val options: FirebaseRecyclerOptions<Stats>,val user_id: String, val onClickListener: StatsAdapter.OnClickListener)
+class StatsAdapter(options: FirebaseRecyclerOptions<Stats>, private val context: Context, val user_id: String, val onClickListener: OnClickListener)
     : FirebaseRecyclerAdapter<Stats, StatsAdapter.StatsHolder>(options){
 
+    private val _progressBarShow = MutableLiveData<Boolean?>()
+    val progressBar: LiveData<Boolean?>
+        get() = _progressBarShow
+
     class StatsHolder(private var binding: RvItemMainBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(stats: Stats, user_id: String){
+        fun bind(stats: Stats, user_id: String, context: Context){
             binding.txtName.text = stats.name
             binding.txtValue.text = "${stats.value}"
             binding.textBackground.setBackgroundColor( when(stats.name){
@@ -37,12 +45,22 @@ class StatsAdapter(private val options: FirebaseRecyclerOptions<Stats>,val user_
             binding.btnDecrease.setOnClickListener {
                 decreaseValue(stats, user_id)
             }
+            binding.cardView.setOnLongClickListener {
+                AlertDialogBuilders.createDeleteAlert(context) {
+                    UsersFirebase.databaseReference
+                            .child(user_id)
+                            .child("stats")
+                            .child(stats.id.toString())
+                            .removeValue()
+                }
+                true
+            }
         }
 
-        fun increaseValue(stats: Stats, user_id: String){
+        private fun increaseValue(stats: Stats, user_id: String){
             var valueOld = stats.value!!.toInt()
 
-            var valueNew = if(stats.name == "Stamina") valueOld+10 else ++valueOld
+            val valueNew = if(stats.name == "Stamina") valueOld+10 else ++valueOld
 
             UsersFirebase.databaseReference
                     .child(user_id)
@@ -51,10 +69,10 @@ class StatsAdapter(private val options: FirebaseRecyclerOptions<Stats>,val user_
                     .child("value")
                     .setValue(valueNew.toString())        }
 
-        fun decreaseValue(stats: Stats, user_id: String){
+        private fun decreaseValue(stats: Stats, user_id: String){
             var valueOld = stats.value!!.toInt()
 
-            var valueNew =if(stats.name == "Stamina") valueOld-10 else --valueOld
+            val valueNew =if(stats.name == "Stamina") valueOld-10 else --valueOld
 
             UsersFirebase.databaseReference
                     .child(user_id)
@@ -64,14 +82,14 @@ class StatsAdapter(private val options: FirebaseRecyclerOptions<Stats>,val user_
                     .setValue(valueNew.toString())         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StatsAdapter.StatsHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StatsHolder {
         return StatsHolder(RvItemMainBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
 
-    override fun onBindViewHolder(holder: StatsAdapter.StatsHolder, position: Int, model: Stats) {
+    override fun onBindViewHolder(holder: StatsHolder, position: Int, model: Stats) {
         val item = getItem(position)
-        holder.bind(item, user_id)
+        holder.bind(item, user_id, context)
         holder.itemView.setOnClickListener{
             onClickListener.onClick(item)
         }
@@ -82,7 +100,10 @@ class StatsAdapter(private val options: FirebaseRecyclerOptions<Stats>,val user_
     }
 
 
-
+    override fun onDataChanged() {
+        super.onDataChanged()
+        _progressBarShow.value = true
+    }
 
 
 }

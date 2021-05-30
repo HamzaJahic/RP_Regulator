@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
     </data>
-    <androidx.drawerlayout.widget.DrawerLayout
+
+    <androidx.drawerlayout.widget.DrawerLayout xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:tools="http://schemas.android.com/tools"
         tools:context=".ui.MainActivity">
 
         <RelativeLayout
@@ -33,7 +31,6 @@
                 app:navGraph="@navigation/nav_graph_login" />
 
         </RelativeLayout>
-
 
 
     </androidx.drawerlayout.widget.DrawerLayout>

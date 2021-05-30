@@ -34,7 +34,8 @@
             android:src="@drawable/curses"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+             />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -48,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="Curse Name:"
+            android:text="@string/curse_name"
             android:textColor="@color/primaryTextColor"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -63,8 +64,8 @@
             android:layout_marginTop="5dp"
             android:text="@{viewModel.curseName}"
             android:textColor="@color/primaryTextColor"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtCurseName"
             tools:text="Golem Heart" />
 
@@ -74,20 +75,20 @@
             android:layout_height="2dp"
             android:layout_marginTop="10dp"
             android:background="@color/primaryColor"
-            app:layout_constraintTop_toBottomOf="@+id/tvCurseName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCurseName" />
 
         <TextView
             android:id="@+id/txtCurseIntensity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textSize="15sp"
-            android:text="Intensity:"
+            android:text="@string/intensity"
             android:textColor="@color/primaryTextColor"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/horizontalDevider" />
 
         <TextView
@@ -97,11 +98,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@{viewModel.curseIntensity}"
-            tools:text="25"
             android:textColor="@color/primaryTextColor"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtCurseIntensity" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtCurseIntensity"
+            tools:text="25" />
 
         <View
             android:id="@+id/horizontalDevider2"
@@ -109,10 +110,9 @@
             android:layout_height="2dp"
             android:layout_marginTop="10dp"
             android:background="@color/primaryColor"
-            app:layout_constraintTop_toBottomOf="@+id/imgCurseIntensity"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgCurseIntensity" />
 
 
         <TextView
@@ -120,25 +120,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Description:"
+            android:text="@string/description"
             android:textColor="@color/primaryTextColor"
             android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/horizontalDevider2" />
 
         <TextView
             android:id="@+id/tvCurseDesc"
             android:layout_width="0dp"
             android:layout_height="200dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/photo_bg"
             android:padding="8dp"
             android:text="@{viewModel.CurseDesc}"
             android:textColor="@color/primaryTextColor"
             android:textSize="18sp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtCurseDesc"

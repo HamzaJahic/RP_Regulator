@@ -6,15 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rpregulator.firebase.BlessingsFirebase
 import com.example.rpregulator.models.CursesBlessingsHealth
+import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
 import kotlinx.coroutines.launch
 
-class BlessingDetailsViewModel(blessing: CursesBlessingsHealth) : ViewModel() {
+class BlessingDetailsViewModel(var blessing: CursesBlessingsHealth) : ViewModel() {
 
     val blessingName = MutableLiveData<String?>()
     val blessingIntensity = MutableLiveData<String?>()
     val blessingDesc = MutableLiveData<String?>()
     var id = String()
-    var blessing = blessing
 
 
     init {
@@ -25,10 +25,9 @@ class BlessingDetailsViewModel(blessing: CursesBlessingsHealth) : ViewModel() {
     }
 
 
-
-  private val _navigateToBlessingEdit = MutableLiveData<CursesBlessingsHealth?>()
+    private val _navigateToBlessingEdit = MutableLiveData<CursesBlessingsHealth?>()
     val navigateToBlessingEdit: LiveData<CursesBlessingsHealth?>
-    get() = _navigateToBlessingEdit
+        get() = _navigateToBlessingEdit
 
     private val _navigateToBlessing = MutableLiveData<Boolean?>()
     val navigateToBlessing: LiveData<Boolean?>
@@ -39,31 +38,30 @@ class BlessingDetailsViewModel(blessing: CursesBlessingsHealth) : ViewModel() {
         get() = _showAlertDialog
 
 
-    fun navigateToBlessingEdit(){
+    fun navigateToBlessingEdit() {
         _navigateToBlessingEdit.value = blessing
         doneNavigateToBlessingEdit()
 
     }
 
-    fun doneNavigateToBlessingEdit(){
+    private fun doneNavigateToBlessingEdit() {
         _navigateToBlessingEdit.value = null
     }
 
-    fun navigateToBlessing(){
+    private fun navigateToBlessing() {
         _navigateToBlessing.value = true
         doneNavigateToBlessing()
-      
+
     }
 
-    fun doneNavigateToBlessing(){
+    private fun doneNavigateToBlessing() {
         _navigateToBlessing.value = null
     }
 
 
-
-    fun editData(){
-        val databaseReference = BlessingsFirebase.databaseReference
-        val entryID= id
+    fun editData() {
+        BlessingsFirebase.databaseReference
+        val entryID = id
         val entry = CursesBlessingsHealth(
                 entryID,
                 blessingName.value,
@@ -71,13 +69,13 @@ class BlessingDetailsViewModel(blessing: CursesBlessingsHealth) : ViewModel() {
                 blessingDesc.value
         )
         viewModelScope.launch {
-            BlessingsFirebase.uploadData(entryID, entry)
+            BlessingsFirebase.uploadData(entryID, entry, USER_ID.value!!)
         }
     }
 
-    fun deleteEntry(){
+    fun deleteEntry() {
         val entryID = id
-        viewModelScope.launch{
+        viewModelScope.launch {
             BlessingsFirebase.databaseReference.child(entryID).removeValue()
             navigateToBlessing()
         }
@@ -88,7 +86,7 @@ class BlessingDetailsViewModel(blessing: CursesBlessingsHealth) : ViewModel() {
         doneShow()
     }
 
-    fun doneShow() {
+    private fun doneShow() {
         _showAlertDialog.value = null
     }
 

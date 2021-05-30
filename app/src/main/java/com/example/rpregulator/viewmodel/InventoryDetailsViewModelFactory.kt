@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.rpregulator.models.Inventory
 
-class InventoryDetailsViewModelFactory(private val inventory: Inventory): ViewModelProvider.Factory {
+class InventoryDetailsViewModelFactory(private val inventory: Inventory) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(InventoryDetailsViewModel::class.java)) {

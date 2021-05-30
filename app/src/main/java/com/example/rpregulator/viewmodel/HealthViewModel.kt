@@ -9,16 +9,16 @@ class HealthViewModel() : ViewModel() {
 
     private val _navigateToAddHealth = MutableLiveData<Boolean?>()
     val navigateToAddHealth: LiveData<Boolean?>
-    get() = _navigateToAddHealth
+        get() = _navigateToAddHealth
 
 
-    fun navigateToAddHealth(){
+    fun navigateToAddHealth() {
         _navigateToAddHealth.value = true
         doneNavigateToAddHealth()
-      
+
     }
 
-    fun doneNavigateToAddHealth(){
+    private fun doneNavigateToAddHealth() {
         _navigateToAddHealth.value = null
     }
 

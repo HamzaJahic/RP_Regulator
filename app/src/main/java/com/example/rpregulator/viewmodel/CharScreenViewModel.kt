@@ -9,15 +9,15 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 
-class CharScreenViewModel() : ViewModel() {
+class CharScreenViewModel : ViewModel() {
 
     private val _charName = MutableLiveData<String?>()
-    val charName : LiveData<String?>
+    val charName: LiveData<String?>
         get() = _charName
 
     private val _gold = MutableLiveData<String?>()
-    val gold : LiveData<String?>
-    get() = _gold
+    val gold: LiveData<String?>
+        get() = _gold
 
 
     private val _img = MutableLiveData<String?>()
@@ -30,45 +30,41 @@ class CharScreenViewModel() : ViewModel() {
 
 
     init {
-       getUserInfo()
+        getUserInfo()
     }
 
-    fun changePhoto(){
+    fun changePhoto() {
         _changePhoto.value = true
         doneChangePhoto()
     }
 
-    fun doneChangePhoto(){
+    private fun doneChangePhoto() {
         _changePhoto.value = null
     }
 
 
-    fun increaseGold(inc : Int){
-        var oldValue = _gold.value!!.toInt()
-        var newValue = oldValue+inc
+    fun increaseGold(inc: Int) {
+        val oldValue = _gold.value!!.toInt()
+        val newValue = oldValue + inc
         UsersFirebase.databaseReference.child(USER_ID.value!!).child("gold").setValue(newValue.toString())
         _gold.value = newValue.toString()
     }
 
-    fun getUserInfo(){
+    private fun getUserInfo() {
 
-        UsersFirebase.databaseReference.child(USER_ID.value!!).addListenerForSingleValueEvent(object : ValueEventListener{
+        UsersFirebase.databaseReference.child(USER_ID.value!!).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                _charName.value = snapshot.child("username").getValue().toString()
-                _gold.value = snapshot.child("gold").getValue().toString()
-                _img.value = snapshot.child("img").getValue().toString()
+                _charName.value = snapshot.child("username").value.toString()
+                _gold.value = snapshot.child("gold").value.toString()
+                _img.value = snapshot.child("img").value.toString()
             }
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-        } )
+        })
 
     }
-
-
-
-
 
 
 }

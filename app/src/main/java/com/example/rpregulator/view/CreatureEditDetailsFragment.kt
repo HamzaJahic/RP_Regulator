@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.rpregulator.view
 
 import android.app.Activity
@@ -13,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.rpregulator.databinding.FragmentCreatureEditDetailsBinding
+import com.example.rpregulator.utils.GlobalConstants.Companion.GALLERY_REQUEST_CODE
 import com.example.rpregulator.viewmodel.CreatureDetailsViewModel
 import com.example.rpregulator.viewmodel.CreatureDetailsViewModelFactory
 import com.google.firebase.storage.FirebaseStorage
@@ -20,19 +23,18 @@ import com.google.firebase.storage.FirebaseStorage
 class CreatureEditDetailsFragment: Fragment() {
     private var _binding: FragmentCreatureEditDetailsBinding? = null
     private val binding get() = _binding!!
-    val GALLERY_REQUEST_CODE = 123
-    lateinit var creatureDetailViewModel : CreatureDetailsViewModel
+    private lateinit var creatureDetailViewModel : CreatureDetailsViewModel
     val storageRefrence = FirebaseStorage.getInstance().reference
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
 
         _binding = FragmentCreatureEditDetailsBinding.inflate(inflater, container, false)
-        val view = binding.root
+        val view = this.binding.root
         val creature = CreatureEditDetailsFragmentArgs.fromBundle(requireArguments()).creature
         val viewModelFactory = CreatureDetailsViewModelFactory(creature)
         creatureDetailViewModel = ViewModelProvider(this, viewModelFactory).get(CreatureDetailsViewModel::class.java)
@@ -42,8 +44,8 @@ class CreatureEditDetailsFragment: Fragment() {
         creatureDetailViewModel.uploadPhoto.observe(viewLifecycleOwner,  {
             it?.let {
                 val intent = Intent()
-                intent.setType("image/*")
-                intent.setAction(Intent.ACTION_GET_CONTENT)
+                intent.type = "image/*"
+                intent.action = Intent.ACTION_GET_CONTENT
                 startActivityForResult(Intent.createChooser(intent,"Choose photo"), GALLERY_REQUEST_CODE)
             }
         })

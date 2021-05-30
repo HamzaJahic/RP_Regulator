@@ -13,15 +13,15 @@ import com.example.rpregulator.utils.AlertDialogBuilders
 import com.example.rpregulator.viewmodel.SkillDetailsViewModel
 import com.example.rpregulator.viewmodel.SkillDetailsViewModelFactory
 
-class SkillDetailsFragment: Fragment() {
+class SkillDetailsFragment : Fragment() {
     private var _binding: FragmentSkillDetailsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
 
         _binding = FragmentSkillDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -31,36 +31,37 @@ class SkillDetailsFragment: Fragment() {
 
         binding.viewModel = skillDetailViewModel
 
-        if (skill.cost == " "){
-            binding.tvSkillCost.text="-"
+        if (skill.cost == " ") {
+            binding.tvSkillCost.text = "-"
         }
 
-        if(skill.type == "ACTIVE"){
+        if (skill.type == "ACTIVE") {
             binding.imgSkillType.setImageResource(R.drawable.ic_active)
         } else binding.imgSkillType.setImageResource(R.drawable.ic_passive)
 
         skillDetailViewModel.navigateToSkillEdit.observe(viewLifecycleOwner, {
-            it?.let{
+            it?.let {
                 val action = SkillDetailsFragmentDirections.actionSkillDetailsFragmentToSkillEditDetailsFragment(it)
                 findNavController().navigate(action)
             }
         })
 
         skillDetailViewModel.navigateToSkills.observe(viewLifecycleOwner, {
-            it?.let{
+            it?.let {
                 val action = SkillDetailsFragmentDirections.actionSkillDetailsFragmentToMainFragment()
                 findNavController().navigate(action)
             }
         })
 
         skillDetailViewModel.showAlertDialog.observe(viewLifecycleOwner, {
-            it?.let{
+            it?.let {
                 AlertDialogBuilders.createDeleteAlert(requireContext()) { skillDetailViewModel.deleteEntry() }
             }
         })
 
         return view
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

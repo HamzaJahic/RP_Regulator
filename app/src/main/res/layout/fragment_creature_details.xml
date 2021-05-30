@@ -35,7 +35,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-            <tag android:id="@+id/zoomable" android:value="ZoomableViewTag" />
+
+            <tag
+                android:id="@+id/zoomable"
+                android:value="ZoomableViewTag" />
 
         </ImageView>
 
@@ -51,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="Creatureacter Name:"
+            android:text="@string/creature_name"
             android:textColor="@color/primaryTextColor"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,31 +69,31 @@
             android:layout_marginTop="5dp"
             android:text="@{viewModel.creatureName}"
             android:textColor="@color/primaryTextColor"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtCreatureName"
             tools:text="Golem Heart" />
-        
+
         <View
             android:id="@+id/horizontalDevider"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginTop="10dp"
             android:background="@color/primaryColor"
-            app:layout_constraintTop_toBottomOf="@+id/tvCreatureName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCreatureName" />
 
         <TextView
             android:id="@+id/txtCreatureQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textSize="15sp"
-            android:text="First Appearance"
+            android:text="@string/first_appearance"
             android:textColor="@color/primaryTextColor"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/horizontalDevider" />
 
         <TextView
@@ -100,11 +103,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@{viewModel.creatureApperance}"
-            tools:text="25"
             android:textColor="@color/primaryTextColor"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtCreatureQuantity" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtCreatureQuantity"
+            tools:text="25" />
 
         <View
             android:id="@+id/horizontalDevider2"
@@ -112,10 +115,9 @@
             android:layout_height="2dp"
             android:layout_marginTop="10dp"
             android:background="@color/primaryColor"
-            app:layout_constraintTop_toBottomOf="@+id/tvtCreatureAppearance"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvtCreatureAppearance" />
 
 
         <TextView
@@ -123,25 +125,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Description:"
+            android:text="@string/description"
             android:textColor="@color/primaryTextColor"
             android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/horizontalDevider2" />
 
         <TextView
             android:id="@+id/tvCreatureDesc"
             android:layout_width="0dp"
             android:layout_height="200dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/photo_bg"
             android:padding="8dp"
             android:text="@{viewModel.creatureDesc}"
             android:textColor="@color/primaryTextColor"
             android:textSize="18sp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtCreatureDesc"

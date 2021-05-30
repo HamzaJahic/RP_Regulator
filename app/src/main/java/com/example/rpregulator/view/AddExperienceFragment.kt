@@ -10,15 +10,15 @@ import com.example.rpregulator.databinding.FragmentAddDataBinding
 import com.example.rpregulator.viewmodel.AddExperienceViewModel
 import com.example.rpregulator.viewmodel.AddExperienceViewModelFactory
 
-class AddExperienceFragment: Fragment() {
+class AddExperienceFragment : Fragment() {
     private var _binding: FragmentAddDataBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
 
         _binding = FragmentAddDataBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -32,7 +32,7 @@ class AddExperienceFragment: Fragment() {
         binding.viewModel = addExperienceViewModel
 
         addExperienceViewModel.navigateToMain.observe(viewLifecycleOwner, {
-            it?.let{
+            it?.let {
 
             }
         })
@@ -42,6 +42,7 @@ class AddExperienceFragment: Fragment() {
 
         return view
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

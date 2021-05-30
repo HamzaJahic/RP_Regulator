@@ -13,15 +13,15 @@ import com.example.rpregulator.databinding.FragmentRvLayoutBinding
 import com.example.rpregulator.viewmodel.DataViewModel
 import com.example.rpregulator.viewmodel.DataViewModelFactory
 
-class ExperienceAdminFragment: Fragment() {
+class ExperienceAdminFragment : Fragment() {
     private var _binding: FragmentRvLayoutBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
 
         _binding = FragmentRvLayoutBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -31,7 +31,7 @@ class ExperienceAdminFragment: Fragment() {
         val viewModelFactory = DataViewModelFactory(this, id)
         val dataDetailViewModel = ViewModelProvider(this, viewModelFactory).get(DataViewModel::class.java)
 
-        val adapter = ExperienceAdapter(dataDetailViewModel.optionsExperience, ExperienceAdapter.OnClickListener{
+        val adapter = ExperienceAdapter(dataDetailViewModel.optionsExperience, ExperienceAdapter.OnClickListener {
 
         }, id)
 
@@ -40,9 +40,9 @@ class ExperienceAdminFragment: Fragment() {
         binding.viewModel = dataDetailViewModel
         binding.recyclerView.adapter = adapter
 
-        dataDetailViewModel.navigateToAdd.observe(viewLifecycleOwner,{
-            it?.let{
-                Log.d("Experience", "${it}")
+        dataDetailViewModel.navigateToAdd.observe(viewLifecycleOwner, {
+            it?.let {
+                Log.d("Experience", "$it")
                 val action = ExperienceAdminFragmentDirections.actionExperienceAdminFragmentToAddExperienceFragment(id)
                 findNavController().navigate(action)
             }
@@ -54,6 +54,7 @@ class ExperienceAdminFragment: Fragment() {
 
         return view
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

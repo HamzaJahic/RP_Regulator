@@ -12,19 +12,17 @@ import com.example.rpregulator.models.Chars
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class CharsAdapter(private val options: FirebaseRecyclerOptions<Chars>, context: Context, val onClickListener: CharsAdapter.OnClickListener)
-    : FirebaseRecyclerAdapter<Chars, CharsAdapter.CharHolder>(options){
+class CharsAdapter(options: FirebaseRecyclerOptions<Chars>, val context: Context, val onClickListener: OnClickListener)
+    : FirebaseRecyclerAdapter<Chars, CharsAdapter.CharHolder>(options) {
 
 
-
-    val context = context
-    val _progressBarShow = MutableLiveData<Boolean?>()
+    private val _progressBarShow = MutableLiveData<Boolean?>()
     val progressBar: LiveData<Boolean?>
         get() = _progressBarShow
 
 
-    class CharHolder(private var binding: RvItemCharsBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(chars: Chars,context: Context, onClickListener: OnClickListener) {
+    class CharHolder(private var binding: RvItemCharsBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(chars: Chars, context: Context, onClickListener: OnClickListener) {
             binding.txtTitle.text = chars.name
             binding.txtDesc.text = chars.desc
             Glide.with(context).load(chars.img).into(binding.imgChar)
@@ -35,20 +33,20 @@ class CharsAdapter(private val options: FirebaseRecyclerOptions<Chars>, context:
         }
     }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharsAdapter.CharHolder {
-            return CharsAdapter.CharHolder(RvItemCharsBinding.inflate(LayoutInflater.from(parent.context)))
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharHolder {
+        return CharHolder(RvItemCharsBinding.inflate(LayoutInflater.from(parent.context)))
+    }
 
 
-        override fun onBindViewHolder(holder: CharsAdapter.CharHolder, position: Int, model:Chars) {
-            val item = getItem(position)
-            holder.bind(item, context, onClickListener)
+    override fun onBindViewHolder(holder: CharHolder, position: Int, model: Chars) {
+        val item = getItem(position)
+        holder.bind(item, context, onClickListener)
 
-        }
+    }
 
-        class OnClickListener(val clickListener: (chars:Chars) ->Unit){
-            fun onClick(chars: Chars) = clickListener(chars)
-        }
+    class OnClickListener(val clickListener: (chars: Chars) -> Unit) {
+        fun onClick(chars: Chars) = clickListener(chars)
+    }
 
     override fun onDataChanged() {
         super.onDataChanged()

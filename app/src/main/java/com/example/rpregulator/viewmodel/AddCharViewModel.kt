@@ -8,7 +8,7 @@ import com.example.rpregulator.firebase.CharsFirebase
 import com.example.rpregulator.models.Chars
 import kotlinx.coroutines.launch
 
-class AddCharViewModel() : ViewModel() {
+class AddCharViewModel : ViewModel() {
 
     val charName = MutableLiveData<String?>()
     val charArk = MutableLiveData<String?>()
@@ -16,12 +16,9 @@ class AddCharViewModel() : ViewModel() {
     var img = String()
 
 
-
-
-
-  private val _navigateToChars = MutableLiveData<Boolean?>()
+    private val _navigateToChars = MutableLiveData<Boolean?>()
     val navigateToChars: LiveData<Boolean?>
-    get() = _navigateToChars
+        get() = _navigateToChars
 
     private val _uploadPhoto = MutableLiveData<Boolean?>()
     val uploadPhoto: LiveData<Boolean?>
@@ -32,20 +29,20 @@ class AddCharViewModel() : ViewModel() {
     }
 
 
-    fun navigateToChars(){
+    fun navigateToChars() {
         _navigateToChars.value = true
         doneNavigateToChars()
     }
 
-    fun doneNavigateToChars(){
+    private fun doneNavigateToChars() {
         _navigateToChars.value = null
     }
 
-    fun uploadData(){
+    fun uploadData() {
         val databaseReference = CharsFirebase.databaseReference
-        val entryID= databaseReference.push().key.toString()
+        val entryID = databaseReference.push().key.toString()
         val entry = Chars(
-              entryID,
+                entryID,
                 img,
                 charName.value,
                 charArk.value,
@@ -56,13 +53,13 @@ class AddCharViewModel() : ViewModel() {
         }
     }
 
-    fun uploadPhoto(){
+    fun uploadPhoto() {
         _uploadPhoto.value = true
         doneUploadPhoto()
 
     }
 
-    fun doneUploadPhoto(){
+    private fun doneUploadPhoto() {
         _uploadPhoto.value = null
     }
 

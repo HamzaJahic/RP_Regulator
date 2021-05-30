@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.rpregulator.view
 
 import android.os.Bundle
@@ -9,7 +11,7 @@ import com.example.rpregulator.R
 import com.example.rpregulator.adapters.TabFragmentAdapter
 import com.example.rpregulator.databinding.FragmentTabLayoutBinding
 
-class AdminTabFragment: Fragment() {
+class AdminTabFragment : Fragment() {
     private var _binding: FragmentTabLayoutBinding? = null
     private val binding get() = _binding!!
 
@@ -18,15 +20,15 @@ class AdminTabFragment: Fragment() {
         setUpTabs()
 
     }
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentTabLayoutBinding.inflate(inflater, container, false)
-        val view = binding.root
 
-        return view
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentTabLayoutBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
 
     override fun onDestroyView() {
@@ -35,7 +37,7 @@ class AdminTabFragment: Fragment() {
     }
 
 
-    private fun setUpTabs(){
+    private fun setUpTabs() {
         val adapter = TabFragmentAdapter(childFragmentManager)
         adapter.addFragment(CharDejoFragment())
         adapter.addFragment(CharHamzaFragment())

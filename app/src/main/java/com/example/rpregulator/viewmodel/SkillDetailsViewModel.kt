@@ -7,16 +7,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rpregulator.firebase.SkillsFirebase
 import com.example.rpregulator.models.Skills
+import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
 import kotlinx.coroutines.launch
 
-class SkillDetailsViewModel(skill: Skills) : ViewModel() {
+class SkillDetailsViewModel(private var skill: Skills) : ViewModel() {
 
     val skillName = MutableLiveData<String?>()
     val skillCost = MutableLiveData<String?>()
     val skillDesc = MutableLiveData<String?>()
     var type = String()
     var id = String()
-    var skill = skill
 
 
     init {
@@ -28,10 +28,9 @@ class SkillDetailsViewModel(skill: Skills) : ViewModel() {
     }
 
 
-
-  private val _navigateToSkillEdit = MutableLiveData<Skills?>()
+    private val _navigateToSkillEdit = MutableLiveData<Skills?>()
     val navigateToSkillEdit: LiveData<Skills?>
-    get() = _navigateToSkillEdit
+        get() = _navigateToSkillEdit
 
     private val _navigateToSkills = MutableLiveData<Boolean?>()
     val navigateToSkills: LiveData<Boolean?>
@@ -42,54 +41,55 @@ class SkillDetailsViewModel(skill: Skills) : ViewModel() {
         get() = _showAlertDialog
 
 
-    fun navigateToSkillEdit(){
+    fun navigateToSkillEdit() {
         _navigateToSkillEdit.value = skill
         doneNavigateToSkillEdit()
 
     }
 
-    fun doneNavigateToSkillEdit(){
+    private fun doneNavigateToSkillEdit() {
         _navigateToSkillEdit.value = null
     }
 
-    fun navigateToSkills(){
+    fun navigateToSkills() {
         _navigateToSkills.value = true
         doneNavigateToSkills()
-      
+
     }
 
-    fun doneNavigateToSkills(){
+    private fun doneNavigateToSkills() {
         _navigateToSkills.value = null
     }
 
-    fun setTypeToActive(){
+    fun setTypeToActive() {
         type = "ACTIVE"
         Log.d("Type", type)
     }
-    fun setTypeToPassive(){
+
+    fun setTypeToPassive() {
         type = "PASSIVE"
-        Log.d("Type",type)
+        Log.d("Type", type)
     }
 
-    fun editData(){
-        val databaseReference = SkillsFirebase.databaseReference
-        val entryID= id
+    fun editData() {
+        SkillsFirebase.databaseReference
+        val entryID = id
         val entry = Skills(
                 entryID,
                 skillName.value,
                 type,
                 skillCost.value,
                 skillDesc.value,
-            skill.value
+                skill.value
         )
         viewModelScope.launch {
-            SkillsFirebase.uploadData(entryID, entry)
+            SkillsFirebase.uploadData(entryID, entry, USER_ID.value!!)
         }
     }
 
-    fun deleteEntry(){
+    fun deleteEntry() {
         val entryID = id
-        viewModelScope.launch{
+        viewModelScope.launch {
             SkillsFirebase.databaseReference.child(entryID).removeValue()
             navigateToSkills()
         }
@@ -100,7 +100,7 @@ class SkillDetailsViewModel(skill: Skills) : ViewModel() {
         doneShow()
     }
 
-    fun doneShow() {
+    private fun doneShow() {
         _showAlertDialog.value = null
     }
 

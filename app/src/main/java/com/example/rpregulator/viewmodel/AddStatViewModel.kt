@@ -8,7 +8,7 @@ import com.example.rpregulator.firebase.StatsFirebase
 import com.example.rpregulator.models.Stats
 import kotlinx.coroutines.launch
 
-class AddStatViewModel() : ViewModel() {
+class AddStatViewModel(private val id: String) : ViewModel() {
 
     val statName = MutableLiveData<String?>()
     val statValue = MutableLiveData<String?>()
@@ -17,20 +17,20 @@ class AddStatViewModel() : ViewModel() {
 
     private val _navigateToStats = MutableLiveData<Boolean?>()
     val navigateToStats: LiveData<Boolean?>
-    get() = _navigateToStats
+        get() = _navigateToStats
 
 
-    fun navigateToStats(){
+    fun navigateToStats() {
         _navigateToStats.value = true
         donenavigateToStats()
-      
+
     }
 
-    fun donenavigateToStats(){
+    private fun donenavigateToStats() {
         _navigateToStats.value = null
     }
 
-    fun uploadData(){
+    fun uploadData() {
 
         val databaseReference = StatsFirebase.databaseReference
         val entryID = databaseReference.push().key.toString()
@@ -40,11 +40,11 @@ class AddStatViewModel() : ViewModel() {
                 statName.value,
                 statValue.value,
                 statDesc.value,
-            ""
+                ""
         )
 
         viewModelScope.launch {
-            StatsFirebase.uploadData(entryID, entry)
+            StatsFirebase.uploadData(entryID, entry, id)
         }
 
     }

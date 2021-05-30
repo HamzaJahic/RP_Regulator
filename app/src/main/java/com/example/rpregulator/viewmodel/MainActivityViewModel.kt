@@ -14,22 +14,22 @@ class MainActivityViewModel(context: Context) : ViewModel() {
 
 
     private val _imgUri = MutableLiveData<String?>()
-    val imgUri : LiveData<String?>
+    val imgUri: LiveData<String?>
         get() = _imgUri
-    val admin = context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE).getBoolean("admin", false)
 
     init {
         USER_ID.value = context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE).getString("id", null)
+        getImg()
     }
 
-    fun getImg(){
+    private fun getImg() {
 
         val img = UsersFirebase.databaseReference.child(USER_ID.value.toString())
 
         img.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                snapshot?.let {
-                    _imgUri.value = it.child("img").getValue().toString()
+                snapshot.let {
+                    _imgUri.value = it.child("img").value.toString()
                 }
             }
 

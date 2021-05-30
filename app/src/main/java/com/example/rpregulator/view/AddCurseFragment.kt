@@ -5,31 +5,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rpregulator.databinding.FragmentAddCurseBinding
 import com.example.rpregulator.viewmodel.AddCurseViewModel
 import com.example.rpregulator.viewmodel.AddCurseViewModelFactory
 
-class AddCurseFragment: Fragment() {
+class AddCurseFragment : Fragment() {
     private var _binding: FragmentAddCurseBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
 
         _binding = FragmentAddCurseBinding.inflate(inflater, container, false)
         val view = binding.root
-        val viewModelFactory = AddCurseViewModelFactory()
+        val id = AddCurseFragmentArgs.fromBundle(requireArguments()).id
+        val viewModelFactory = AddCurseViewModelFactory(id)
         val curseViewModel = ViewModelProvider(this, viewModelFactory).get(AddCurseViewModel::class.java)
 
         binding.viewModel = curseViewModel
 
-        curseViewModel.navigateToCurses.observe(viewLifecycleOwner, Observer {
+        curseViewModel.navigateToCurses.observe(viewLifecycleOwner, {
             it?.let {
                 val action = AddCurseFragmentDirections.actionAddCurseFragmentToStatusFragment()
                 findNavController().navigate(action)
@@ -38,6 +38,7 @@ class AddCurseFragment: Fragment() {
 
         return view
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

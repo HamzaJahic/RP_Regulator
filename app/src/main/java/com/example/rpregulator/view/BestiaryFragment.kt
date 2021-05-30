@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.rpregulator.view
 
 import android.os.Bundle
@@ -9,7 +11,7 @@ import com.example.rpregulator.R
 import com.example.rpregulator.adapters.TabFragmentAdapter
 import com.example.rpregulator.databinding.FragmentBestiaryBinding
 
-class BestiaryFragment: Fragment() {
+class BestiaryFragment : Fragment() {
     private var _binding: FragmentBestiaryBinding? = null
     private val binding get() = _binding!!
 
@@ -18,15 +20,15 @@ class BestiaryFragment: Fragment() {
         setUpTabs()
 
     }
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentBestiaryBinding.inflate(inflater, container, false)
-        val view = binding.root
 
-        return view
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentBestiaryBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
 
     override fun onDestroyView() {
@@ -35,7 +37,7 @@ class BestiaryFragment: Fragment() {
     }
 
 
-    private fun setUpTabs(){
+    private fun setUpTabs() {
         val adapter = TabFragmentAdapter(childFragmentManager)
         adapter.addFragment(PeopleFragment())
         adapter.addFragment(CreaturesFragment())

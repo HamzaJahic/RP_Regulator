@@ -96,6 +96,9 @@
         <action
             android:id="@+id/action_addSkillFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addStatFragment"
@@ -104,6 +107,9 @@
         <action
             android:id="@+id/action_addStatFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/statsFragment"
@@ -120,6 +126,9 @@
         <action
             android:id="@+id/action_addInventoryFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/inventoryFragment"
@@ -144,6 +153,9 @@
         <action
             android:id="@+id/action_addBlessingFragment_to_statusFragment"
             app:destination="@id/statusFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addCurseFragment"
@@ -152,6 +164,9 @@
         <action
             android:id="@+id/action_addCurseFragment_to_statusFragment"
             app:destination="@id/statusFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addHealthFragment"
@@ -160,6 +175,9 @@
         <action
             android:id="@+id/action_addHealthFragment_to_statusFragment"
             app:destination="@id/statusFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/creaturesFragment"
@@ -385,6 +403,9 @@
         <argument
             android:name="id"
             app:argType="string" />
+        <action
+            android:id="@+id/action_blessingsAdminFragment_to_addBlessingFragment"
+            app:destination="@id/addBlessingFragment" />
     </fragment>
     <fragment
         android:id="@+id/cursesAdminFragment"
@@ -393,6 +414,9 @@
         <argument
             android:name="id"
             app:argType="string" />
+        <action
+            android:id="@+id/action_cursesAdminFragment_to_addCurseFragment"
+            app:destination="@id/addCurseFragment" />
     </fragment>
     <fragment
         android:id="@+id/inventoryAdminFragment"
@@ -401,6 +425,9 @@
         <argument
             android:name="id"
             app:argType="string" />
+        <action
+            android:id="@+id/action_inventoryAdminFragment_to_addInventoryFragment"
+            app:destination="@id/addInventoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/skillsAdminFragment"
@@ -409,6 +436,9 @@
         <argument
             android:name="id"
             app:argType="string" />
+        <action
+            android:id="@+id/action_skillsAdminFragment_to_addSkillFragment"
+            app:destination="@id/addSkillFragment" />
     </fragment>
     <fragment
         android:id="@+id/statsAdminFragment"
@@ -417,6 +447,9 @@
         <argument
             android:name="id"
             app:argType="string" />
+        <action
+            android:id="@+id/action_statsAdminFragment_to_addStatFragment"
+            app:destination="@id/addStatFragment" />
     </fragment>
     <fragment
         android:id="@+id/statusAdminFragment"
@@ -425,6 +458,9 @@
         <argument
             android:name="id"
             app:argType="string" />
+        <action
+            android:id="@+id/action_statusAdminFragment_to_addHealthFragment"
+            app:destination="@id/addHealthFragment" />
     </fragment>
     <fragment
         android:id="@+id/changePinFragment"

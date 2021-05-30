@@ -6,15 +6,15 @@
         android:id="@+id/menuMain">
         <item
             android:id="@+id/statsFragment"
-            android:title="Stats"
+            android:title="@string/stats"
             android:icon="@drawable/ic_add"/>
         <item
             android:id="@+id/skillsFragment"
-            android:title="Skills"
+            android:title="@string/skills"
             android:icon="@drawable/ic_drugi"/>
         <item
             android:id="@+id/paperworkFragment"
-            android:title="Inventory"
+            android:title="@string/inventory"
             android:icon="@drawable/ic_treci"/>
     </group>
 

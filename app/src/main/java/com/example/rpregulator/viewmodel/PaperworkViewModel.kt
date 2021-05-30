@@ -13,7 +13,7 @@ class PaperworkViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
 
     private val _navigateToAddPaperWork = MutableLiveData<Boolean?>()
     val navigateToAddPaperWork: LiveData<Boolean?>
-    get() = _navigateToAddPaperWork
+        get() = _navigateToAddPaperWork
 
 
     private val _navigateToPaperWorkDetails = MutableLiveData<PaperWork?>()
@@ -26,23 +26,23 @@ class PaperworkViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
             .build()
 
 
-    fun navigateToAddPaperWork(){
+    fun navigateToAddPaperWork() {
         _navigateToAddPaperWork.value = true
         doneNavigateToAddPaperWork()
-      
+
     }
 
-    fun doneNavigateToAddPaperWork(){
+    private fun doneNavigateToAddPaperWork() {
         _navigateToAddPaperWork.value = null
     }
 
-    fun navigateToPaperWorkDetails(paperWork: PaperWork){
+    fun navigateToPaperWorkDetails(paperWork: PaperWork) {
         _navigateToPaperWorkDetails.value = paperWork
         doneNavigateToPaperWorkDetails()
 
     }
 
-    fun doneNavigateToPaperWorkDetails(){
+    private fun doneNavigateToPaperWorkDetails() {
         _navigateToPaperWorkDetails.value = null
     }
 

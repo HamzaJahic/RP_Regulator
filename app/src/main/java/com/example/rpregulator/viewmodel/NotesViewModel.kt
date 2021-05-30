@@ -13,7 +13,7 @@ class NotesViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
 
     private val _navigateToAddNotes = MutableLiveData<Boolean?>()
     val navigateToAddNotes: LiveData<Boolean?>
-    get() = _navigateToAddNotes
+        get() = _navigateToAddNotes
 
 
     private val _navigateToNotesDetails = MutableLiveData<Notes?>()
@@ -26,23 +26,23 @@ class NotesViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
             .build()
 
 
-    fun navigateToAddNotes(){
+    fun navigateToAddNotes() {
         _navigateToAddNotes.value = true
         doneNavigateToAddNotes()
-      
+
     }
 
-    fun doneNavigateToAddNotes(){
+    fun doneNavigateToAddNotes() {
         _navigateToAddNotes.value = null
     }
 
-    fun navigateToNotesDetails(notes: Notes){
+    fun navigateToNotesDetails(notes: Notes) {
         _navigateToNotesDetails.value = notes
         doneNavigateToNotesDetails()
 
     }
 
-    fun doneNavigateToNotesDetails(){
+    fun doneNavigateToNotesDetails() {
         _navigateToNotesDetails.value = null
     }
 

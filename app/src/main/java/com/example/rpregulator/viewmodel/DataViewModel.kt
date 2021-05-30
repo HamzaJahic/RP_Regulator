@@ -1,5 +1,6 @@
 package com.example.rpregulator.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,7 +17,7 @@ class DataViewModel(lifecycleOwner: LifecycleOwner, id: String) : ViewModel() {
 
     private val _navigateToAdd = MutableLiveData<Boolean?>()
     val navigateToAdd: LiveData<Boolean?>
-    get() = _navigateToAdd
+        get() = _navigateToAdd
 
     val optionsStats = FirebaseRecyclerOptions.Builder<Stats>()
             .setQuery(UsersFirebase.databaseReference.child(id).child("stats"), Stats::class.java)
@@ -54,14 +55,14 @@ class DataViewModel(lifecycleOwner: LifecycleOwner, id: String) : ViewModel() {
             .build()
 
 
-
-    fun navigateToAdd(){
+    fun navigateToAdd() {
         _navigateToAdd.value = true
+        Log.d("Admin", "Navigate To Add")
         doneNavigateToAdd()
-      
+
     }
 
-    fun doneNavigateToAdd(){
+    private fun doneNavigateToAdd() {
         _navigateToAdd.value = null
     }
 

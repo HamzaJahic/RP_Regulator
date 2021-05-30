@@ -14,15 +14,13 @@ import com.google.firebase.storage.FirebaseStorage
 class ChangePinFragment : Fragment() {
     private var _binding: FragmentChangePinBinding? = null
     private val binding get() = _binding!!
-    val GALLERY_REQUEST_CODE = 123
-
     val storageRefrence = FirebaseStorage.getInstance().reference
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
 
         _binding = FragmentChangePinBinding.inflate(inflater, container, false)

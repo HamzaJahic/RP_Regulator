@@ -12,15 +12,15 @@ import com.example.rpregulator.utils.AlertDialogBuilders
 import com.example.rpregulator.viewmodel.CurseDetailsViewModel
 import com.example.rpregulator.viewmodel.CurseDetailsViewModelFactory
 
-class CurseDetailsFragment: Fragment() {
+class CurseDetailsFragment : Fragment() {
     private var _binding: FragmentCursesDetailsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
 
         _binding = FragmentCursesDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -33,28 +33,29 @@ class CurseDetailsFragment: Fragment() {
 
 
         curseDetailViewModel.navigateToCurseEdit.observe(viewLifecycleOwner, {
-            it?.let{
+            it?.let {
                 val action = CurseDetailsFragmentDirections.actionCurseDetailsFragmentToCurseEditDetailsFragment(it)
-               findNavController().navigate(action)
+                findNavController().navigate(action)
             }
         })
 
-        curseDetailViewModel.navigateToCurse.observe(viewLifecycleOwner,{
-            it?.let{
-               val action = CurseDetailsFragmentDirections.actionCurseDetailsFragmentToStatusFragment()
-               findNavController().navigate(action)
+        curseDetailViewModel.navigateToCurse.observe(viewLifecycleOwner, {
+            it?.let {
+                val action = CurseDetailsFragmentDirections.actionCurseDetailsFragmentToStatusFragment()
+                findNavController().navigate(action)
             }
         })
 
 
         curseDetailViewModel.showAlertDialog.observe(viewLifecycleOwner, {
-            it?.let{
+            it?.let {
                 AlertDialogBuilders.createDeleteAlert(requireContext()) { curseDetailViewModel.deleteEntry() }
             }
         })
 
         return view
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

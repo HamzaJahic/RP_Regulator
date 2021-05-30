@@ -8,11 +8,11 @@ import com.google.firebase.ktx.Firebase
 
 class BlessingsFirebase {
 
-    companion object{
+    companion object {
         val databaseReference: DatabaseReference = Firebase.database.reference.child("Users").child(USER_ID.value!!).child("blessings")
 
-        fun uploadData(key: String, entry: CursesBlessingsHealth){
-            databaseReference.child(key).setValue(entry)
+        fun uploadData(key: String, entry: CursesBlessingsHealth, id: String) {
+            UsersFirebase.databaseReference.child(id).child("blessings").child(key).setValue(entry)
 
         }
     }

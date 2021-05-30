@@ -9,14 +9,13 @@ import com.example.rpregulator.firebase.CharsFirebase
 import com.example.rpregulator.models.Chars
 import kotlinx.coroutines.launch
 
-class CharDetailsViewModel(char: Chars) : ViewModel() {
+class CharDetailsViewModel(var char: Chars) : ViewModel() {
 
     val charName = MutableLiveData<String?>()
     val charApperance = MutableLiveData<String?>()
     val charDesc = MutableLiveData<String?>()
     var id = String()
     var img = String()
-    var char = char
 
 
     init {
@@ -24,14 +23,13 @@ class CharDetailsViewModel(char: Chars) : ViewModel() {
         charApperance.value = char.ark
         charDesc.value = char.desc
         id = char.id!!
-        img= char.img!!
+        img = char.img!!
     }
 
 
-
-  private val _navigateToCharEdit = MutableLiveData<Chars?>()
+    private val _navigateToCharEdit = MutableLiveData<Chars?>()
     val navigateToCharEdit: LiveData<Chars?>
-    get() = _navigateToCharEdit
+        get() = _navigateToCharEdit
 
     private val _navigateToChar = MutableLiveData<Boolean?>()
     val navigateToChar: LiveData<Boolean?>
@@ -46,31 +44,30 @@ class CharDetailsViewModel(char: Chars) : ViewModel() {
         get() = _uploadPhoto
 
 
-    fun navigateToCharEdit(){
+    fun navigateToCharEdit() {
         _navigateToCharEdit.value = char
         doneNavigateToCharEdit()
 
     }
 
-    fun doneNavigateToCharEdit(){
+    private fun doneNavigateToCharEdit() {
         _navigateToCharEdit.value = null
     }
 
-    fun navigateToChar(){
+    private fun navigateToChar() {
         _navigateToChar.value = true
         doneNavigateToChar()
-      
+
     }
 
-    fun doneNavigateToChar(){
+    private fun doneNavigateToChar() {
         _navigateToChar.value = null
     }
 
 
-
-    fun editData(){
-        val databaseReference = CharsFirebase.databaseReference
-        val entryID= id
+    fun editData() {
+        CharsFirebase.databaseReference
+        val entryID = id
         val entry = Chars(
                 entryID,
                 img,
@@ -80,14 +77,14 @@ class CharDetailsViewModel(char: Chars) : ViewModel() {
         )
         viewModelScope.launch {
             CharsFirebase.uploadData(entryID, entry)
-            Log.d("Img", "${img}")
+            Log.d("Img", img)
             CharsFirebase.databaseReference.child(char.id!!).child("img").setValue(img)
         }
     }
 
-    fun deleteEntry(){
+    fun deleteEntry() {
         val entryID = id
-        viewModelScope.launch{
+        viewModelScope.launch {
             CharsFirebase.databaseReference.child(entryID).removeValue()
             navigateToChar()
         }
@@ -98,18 +95,18 @@ class CharDetailsViewModel(char: Chars) : ViewModel() {
         doneShow()
     }
 
-    fun doneShow() {
+    private fun doneShow() {
         _showAlertDialog.value = null
     }
 
 
-    fun uploadPhoto(){
+    fun uploadPhoto() {
         _uploadPhoto.value = true
         doneUploadPhoto()
 
     }
 
-    fun doneUploadPhoto(){
+    private fun doneUploadPhoto() {
         _uploadPhoto.value = null
     }
 

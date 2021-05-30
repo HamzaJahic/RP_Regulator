@@ -19,31 +19,31 @@ class SkillsViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
 
     private val _navigateToAddSkills = MutableLiveData<Boolean?>()
     val navigateToAddSkills: LiveData<Boolean?>
-    get() = _navigateToAddSkills
+        get() = _navigateToAddSkills
 
-    private val _navigateToSkillDetails= MutableLiveData<Skills?>()
+    private val _navigateToSkillDetails = MutableLiveData<Skills?>()
     val navigateToSkillDetails: LiveData<Skills?>
         get() = _navigateToSkillDetails
 
 
-    fun navigateToSkillDetails(skills: Skills){
+    fun navigateToSkillDetails(skills: Skills) {
         _navigateToSkillDetails.value = skills
         doneNavigateToSkillDetails()
 
     }
 
-    fun doneNavigateToSkillDetails(){
+    private fun doneNavigateToSkillDetails() {
         _navigateToSkillDetails.value = null
     }
 
 
-    fun navigateToAddSkills(){
+    fun navigateToAddSkills() {
         _navigateToAddSkills.value = true
         doneNavigateToAddSkills()
-      
+
     }
 
-    fun doneNavigateToAddSkills(){
+    private fun doneNavigateToAddSkills() {
         _navigateToAddSkills.value = null
     }
 

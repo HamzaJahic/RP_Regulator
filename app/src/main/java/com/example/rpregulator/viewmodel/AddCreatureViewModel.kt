@@ -8,7 +8,7 @@ import com.example.rpregulator.firebase.CreaturesFirebase
 import com.example.rpregulator.models.Creatures
 import kotlinx.coroutines.launch
 
-class AddCreatureViewModel() : ViewModel() {
+class AddCreatureViewModel : ViewModel() {
 
     val creatureName = MutableLiveData<String?>()
     val creatureArk = MutableLiveData<String?>()
@@ -16,9 +16,9 @@ class AddCreatureViewModel() : ViewModel() {
     var img = String()
 
 
-  private val _navigateToCreatures = MutableLiveData<Boolean?>()
+    private val _navigateToCreatures = MutableLiveData<Boolean?>()
     val navigateToCreatures: LiveData<Boolean?>
-    get() = _navigateToCreatures
+        get() = _navigateToCreatures
 
     private val _uploadPhoto = MutableLiveData<Boolean?>()
     val uploadPhoto: LiveData<Boolean?>
@@ -29,21 +29,21 @@ class AddCreatureViewModel() : ViewModel() {
     }
 
 
-    fun navigateToCreatures(){
+    fun navigateToCreatures() {
         _navigateToCreatures.value = true
         doneNavigateToCreatures()
-      
+
     }
 
-    fun doneNavigateToCreatures(){
+    private fun doneNavigateToCreatures() {
         _navigateToCreatures.value = null
     }
 
-    fun uploadData(){
+    fun uploadData() {
         val databaseReference = CreaturesFirebase.databaseReference
-        val entryID= databaseReference.push().key.toString()
+        val entryID = databaseReference.push().key.toString()
         val entry = Creatures(
-              entryID,
+                entryID,
                 img,
                 creatureName.value,
                 creatureArk.value,
@@ -54,13 +54,13 @@ class AddCreatureViewModel() : ViewModel() {
         }
     }
 
-    fun uploadPhoto(){
+    fun uploadPhoto() {
         _uploadPhoto.value = true
         doneUploadPhoto()
 
     }
 
-    fun doneUploadPhoto(){
+    private fun doneUploadPhoto() {
         _uploadPhoto.value = null
     }
 

@@ -10,10 +10,9 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 
 class CharsViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
 
-
     private val _navigateToAddChars = MutableLiveData<Boolean?>()
     val navigateToAddChars: LiveData<Boolean?>
-    get() = _navigateToAddChars
+        get() = _navigateToAddChars
 
     private val _navigateToCharsDetails = MutableLiveData<Chars?>()
     val navigateToCharsDetails: LiveData<Chars?>
@@ -25,27 +24,25 @@ class CharsViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
             .build()
 
 
-    fun navigateToCharsDetails(chars: Chars){
+    fun navigateToCharsDetails(chars: Chars) {
         _navigateToCharsDetails.value = chars
         doneNavigateToCharsDetails()
-      
+
     }
 
-    fun doneNavigateToCharsDetails(){
+    private fun doneNavigateToCharsDetails() {
         _navigateToCharsDetails.value = null
     }
 
-    fun navigateToAddChars(){
+    fun navigateToAddChars() {
         _navigateToAddChars.value = true
         doneNavigateToAddChars()
 
     }
 
-    fun doneNavigateToAddChars(){
+    private fun doneNavigateToAddChars() {
         _navigateToAddChars.value = null
     }
-
-
 
 
 }

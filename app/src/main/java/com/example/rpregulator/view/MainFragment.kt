@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.rpregulator.view
 
 import android.os.Bundle
@@ -13,10 +15,9 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 
-class MainFragment: Fragment() {
+class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
-    val GALLERY_REQUEST_CODE = 123
     val storageRefrence = FirebaseStorage.getInstance().reference
     val databaseReference: DatabaseReference = Firebase.database.reference.child("Users")
 
@@ -25,18 +26,15 @@ class MainFragment: Fragment() {
 
         setUpTabs()
     }
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-        val view = binding.root
 
-
-
-
-        return view
+        return binding.root
     }
 
     override fun onDestroyView() {
@@ -45,7 +43,7 @@ class MainFragment: Fragment() {
     }
 
 
-    private fun setUpTabs(){
+    private fun setUpTabs() {
         val adapter = TabFragmentAdapter(childFragmentManager)
         adapter.addFragment(StatsFragment())
         adapter.addFragment(SkillsFragment())

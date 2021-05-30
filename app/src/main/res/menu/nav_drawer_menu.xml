@@ -7,20 +7,20 @@
 
         <item
             android:id="@+id/adminTabFragment"
-            android:title="Players"
+            android:title="@string/players"
             android:icon="@drawable/ic_people"/>
 
         <item
             android:id="@+id/mainFragment"
-            android:title="Main"
+            android:title="@string/main"
             android:icon="@drawable/ic_main"/>
         <item
             android:id="@+id/statusFragment"
-            android:title="Status"
+            android:title="@string/status"
             android:icon="@drawable/ic_status"/>
         <item
             android:id="@+id/paperworkFragment"
-            android:title="Paperwork"
+            android:title="@string/paperwork"
             android:icon="@drawable/ic_paperwork"/>
     </group>
 
@@ -29,23 +29,23 @@
 
         <item
             android:id="@+id/notesFragment"
-            android:title="Notes"
+            android:title="@string/notes"
             android:icon="@drawable/ic_notes"/>
 
         <item
             android:id="@+id/bestiaryFragment"
-            android:title="Chars and Monsters"
+            android:title="@string/chars_and_monsters"
             android:icon="@drawable/ic_creatures"/>
 
 
         <item
             android:id="@+id/settingsFragment"
-            android:title="Settings"
+            android:title="@string/settings"
             android:icon="@drawable/ic_settings"/>
 
         <item
             android:id="@+id/rpInstFrag"
-            android:title="RP Instagram"
+            android:title="@string/rp_instagram"
             android:icon="@drawable/ic_instagram"/>
 
 

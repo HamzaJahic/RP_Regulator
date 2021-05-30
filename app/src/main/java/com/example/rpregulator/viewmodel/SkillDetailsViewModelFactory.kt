@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.rpregulator.models.Skills
 
-class SkillDetailsViewModelFactory(private val skill: Skills): ViewModelProvider.Factory {
+class SkillDetailsViewModelFactory(private val skill: Skills) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(SkillDetailsViewModel::class.java)) {

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.rpregulator.models.User
 
-class PinViewModelFactory(private val user: User, private val context: Context): ViewModelProvider.Factory {
+class PinViewModelFactory(private val user: User, private val context: Context) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(PinViewModel::class.java)) {

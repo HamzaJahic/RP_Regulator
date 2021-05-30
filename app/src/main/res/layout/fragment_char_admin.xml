@@ -11,190 +11,311 @@
             type="com.example.rpregulator.viewmodel.CharAdminViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primaryLightColor">
+        android:background="@color/primaryLightColor"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <View
-            android:id="@+id/textBackground"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/primaryColor"
-            app:layout_constraintBottom_toTopOf="@id/guideline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:background="@color/primaryLightColor">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgOfChar"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/ic_active"
-            app:civ_border_color="#FF000000"
-            app:civ_border_width="1dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:onClick="@{onClick -> viewModel.changePhoto()}">
+            <View
+                android:id="@+id/textBackground"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/primaryColor"
+                app:layout_constraintBottom_toTopOf="@id/guideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <tag
-                android:id="@+id/zoomable"
-                android:value="ZoomableViewTag" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgOfChar"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="10dp"
+                android:onClick="@{onClick -> viewModel.changePhoto()}"
+                android:src="@drawable/ic_active"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-
-        </de.hdodenhof.circleimageview.CircleImageView>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="165dp" />
-
-        <TextView
-            android:id="@+id/txtCharName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="Character Name:"
-            android:textColor="@color/primaryTextColor"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guideline" />
-
-        <TextView
-            android:id="@+id/tvCharName"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="@{viewModel.charName}"
-            android:textColor="@color/primaryTextColor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtCharName"
-            tools:text="Golem Heart" />
-
-        <View
-            android:id="@+id/horizontalDevider"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/primaryColor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCharName" />
-
-        <TextView
-            android:id="@+id/txtAdminNav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Navigation"
-            android:textColor="@color/primaryTextColor"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/horizontalDevider" />
+                <tag
+                    android:id="@+id/zoomable"
+                    android:value="ZoomableViewTag" />
 
 
+            </de.hdodenhof.circleimageview.CircleImageView>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="165dp" />
+
+            <TextView
+                android:id="@+id/txtCharName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Character Name:"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline" />
+
+            <TextView
+                android:id="@+id/tvCharName"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@{viewModel.charName}"
+                android:textColor="@color/primaryTextColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtCharName"
+                tools:text="Golem Heart" />
+
+            <View
+                android:id="@+id/horizontalDevider"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/primaryColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCharName" />
+
+            <TextView
+                android:id="@+id/txtAdminNav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Navigation"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/horizontalDevider" />
 
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/adminStats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="40dp"
+                android:onClick="@{onClick -> viewModel.navigateToStats()}"
+                android:src="@drawable/stats"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtAdminNav" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/adminSkill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:onClick="@{onClick -> viewModel.navigateToSkills()}"
+                android:src="@drawable/skills"
+                app:layout_constraintEnd_toStartOf="@id/adminInventory"
+                app:layout_constraintStart_toEndOf="@id/adminStats"
+                app:layout_constraintTop_toBottomOf="@id/txtAdminNav" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/adminInventory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="30dp"
+                android:onClick="@{onClick -> viewModel.navigateToInventory()}"
+                android:src="@drawable/inventory"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtAdminNav" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/adminBlessings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="40dp"
+                android:onClick="@{onClick -> viewModel.navigateToBlessings()}"
+                android:src="@drawable/blessings"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/adminStats" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/adminCurses"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:onClick="@{onClick -> viewModel.navigateToCurses()}"
+                android:src="@drawable/curses"
+                app:layout_constraintEnd_toEndOf="@+id/adminSkill"
+                app:layout_constraintStart_toStartOf="@+id/adminSkill"
+                app:layout_constraintTop_toBottomOf="@id/adminStats" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/adminStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:onClick="@{onClick -> viewModel.navigateToStatus()}"
+                android:src="@drawable/status"
+                app:layout_constraintBottom_toBottomOf="@+id/adminCurses"
+                app:layout_constraintEnd_toEndOf="@+id/adminInventory"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/adminInventory"
+                app:layout_constraintTop_toBottomOf="@id/adminStats"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/adminXP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:onClick="@{onClick -> viewModel.navigateToXP()}"
+                android:src="@drawable/ic_experience"
+                app:layout_constraintEnd_toEndOf="@+id/adminCurses"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/adminCurses"
+                app:layout_constraintTop_toBottomOf="@id/adminCurses"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/txtCoinMngmt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Navigation"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/adminXP" />
+
+            <TextView
+                android:id="@+id/tvCharGold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:padding="8dp"
+                android:text="@{viewModel.gold}"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtCoinMngmt"
+                tools:text="Cost:" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/coin"
+                app:layout_constraintBottom_toBottomOf="@id/tvCharGold"
+                app:layout_constraintStart_toEndOf="@id/tvCharGold"
+                app:layout_constraintTop_toTopOf="@id/tvCharGold" />
+
+            <Button
+                android:id="@+id/btnIncrease1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="40dp"
+                android:drawableRight="@drawable/coin"
+                android:onClick="@{onClick -> viewModel.increaseGold(1)}"
+                android:src="@drawable/ic_edit"
+                android:text="+1"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCharGold" />
+
+            <Button
+                android:id="@+id/btnIncrease10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:drawableRight="@drawable/coin"
+                android:onClick="@{onClick -> viewModel.increaseGold(10)}"
+                android:text="+10"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@id/btnIncrease100"
+                app:layout_constraintStart_toEndOf="@id/btnIncrease1"
+                app:layout_constraintTop_toBottomOf="@id/tvCharGold" />
+
+            <Button
+                android:id="@+id/btnIncrease100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="30dp"
+                android:drawableRight="@drawable/coin"
+                android:onClick="@{onClick -> viewModel.increaseGold(100)}"
+                android:text="+100"
+                android:textSize="15sp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCharGold" />
+
+            <Button
+                android:id="@+id/btnDecrease1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="40dp"
+                android:drawableRight="@drawable/coin"
+
+                android:onClick="@{onClick -> viewModel.increaseGold(-1)}"
+                android:text="-1"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnIncrease1" />
+
+            <Button
+                android:id="@+id/btnDecrease10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:drawableRight="@drawable/coin"
+                android:onClick="@{onClick -> viewModel.increaseGold(-10)}"
+                android:text="-10"
+
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/btnIncrease10"
+                app:layout_constraintStart_toStartOf="@+id/btnIncrease10"
+                app:layout_constraintTop_toBottomOf="@id/btnIncrease1" />
+
+            <Button
+                android:id="@+id/btnDecrease100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
 
 
+                android:drawableRight="@drawable/coin"
+                android:onClick="@{onClick -> viewModel.increaseGold(-100)}"
+                android:text="-100"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnDecrease10"
+                app:layout_constraintEnd_toEndOf="@+id/btnIncrease100"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/btnIncrease100"
+                app:layout_constraintTop_toBottomOf="@id/btnIncrease1"
+                app:layout_constraintVertical_bias="1.0" />
 
-
-
-
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/adminStats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="30dp"
-            android:onClick="@{onClick -> viewModel.navigateToStats()}"
-            android:src="@drawable/stats"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtAdminNav" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/adminSkill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/skills"
-            android:onClick="@{onClick -> viewModel.navigateToSkills()}"
-            app:layout_constraintStart_toEndOf="@id/adminStats"
-            app:layout_constraintEnd_toStartOf="@id/adminInventory"
-            app:layout_constraintTop_toBottomOf="@id/txtAdminNav" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/adminInventory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginRight="30dp"
-            android:src="@drawable/inventory"
-            android:onClick="@{onClick -> viewModel.navigateToInventory()}"
-            
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtAdminNav" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/adminBlessings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="30dp"
-            android:src="@drawable/blessings"
-            android:onClick="@{onClick -> viewModel.navigateToBlessings()}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/adminStats" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/adminCurses"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/curses"
-            android:onClick="@{onClick -> viewModel.navigateToCurses()}"
-            app:layout_constraintEnd_toEndOf="@+id/adminSkill"
-            app:layout_constraintStart_toStartOf="@+id/adminSkill"
-            app:layout_constraintTop_toBottomOf="@id/adminStats" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/adminStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:src="@drawable/status"
-            android:onClick="@{onClick -> viewModel.navigateToStatus()}"
-            app:layout_constraintBottom_toBottomOf="@+id/adminCurses"
-            app:layout_constraintEnd_toEndOf="@+id/adminInventory"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/adminInventory"
-            app:layout_constraintTop_toBottomOf="@id/adminStats"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/adminXP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:src="@drawable/ic_experience"
-            android:onClick="@{onClick -> viewModel.navigateToXP()}"
-            app:layout_constraintEnd_toEndOf="@+id/adminCurses"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/adminCurses"
-            app:layout_constraintTop_toBottomOf="@id/adminCurses"
-            app:layout_constraintVertical_bias="1.0" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 
 </layout>

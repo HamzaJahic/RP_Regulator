@@ -13,22 +13,23 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.rpregulator.databinding.FragmentCharEditDetailsBinding
+import com.example.rpregulator.utils.GlobalConstants.Companion.GALLERY_REQUEST_CODE
 import com.example.rpregulator.viewmodel.CharDetailsViewModel
 import com.example.rpregulator.viewmodel.CharDetailsViewModelFactory
 import com.google.firebase.storage.FirebaseStorage
 
-class CharEditDetailsFragment: Fragment() {
+class CharEditDetailsFragment : Fragment() {
     private var _binding: FragmentCharEditDetailsBinding? = null
     private val binding get() = _binding!!
-    val GALLERY_REQUEST_CODE = 123
-    lateinit var charDetailViewModel : CharDetailsViewModel
+    private lateinit var charDetailViewModel: CharDetailsViewModel
     val storageRefrence = FirebaseStorage.getInstance().reference
 
+    @Suppress("DEPRECATION")
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
 
 
         _binding = FragmentCharEditDetailsBinding.inflate(inflater, container, false)
@@ -39,12 +40,12 @@ class CharEditDetailsFragment: Fragment() {
 
         Glide.with(this).load(char.img).into(binding.imgOfAdd)
 
-        charDetailViewModel.uploadPhoto.observe(viewLifecycleOwner,  {
+        charDetailViewModel.uploadPhoto.observe(viewLifecycleOwner, {
             it?.let {
                 val intent = Intent()
-                intent.setType("image/*")
-                intent.setAction(Intent.ACTION_GET_CONTENT)
-                startActivityForResult(Intent.createChooser(intent,"Choose photo"), GALLERY_REQUEST_CODE)
+                intent.type = "image/*"
+                intent.action = Intent.ACTION_GET_CONTENT
+                startActivityForResult(Intent.createChooser(intent, "Choose photo"), GALLERY_REQUEST_CODE)
             }
         })
 
@@ -55,34 +56,33 @@ class CharEditDetailsFragment: Fragment() {
     }
 
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if(requestCode == GALLERY_REQUEST_CODE && resultCode == Activity.RESULT_OK && data!=null){
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
             val imageUri = data.data
             binding.imgOfAdd.setImageURI(imageUri)
             uploadToFirebase(imageUri!!)
         }
     }
 
-    fun uploadToFirebase(uri: Uri){
+    fun uploadToFirebase(uri: Uri) {
         val fileRef = storageRefrence.child("${System.currentTimeMillis()} ${charDetailViewModel.charName.value}")
         fileRef.putFile(uri).addOnSuccessListener {
             fileRef.downloadUrl.addOnSuccessListener {
-                Log.d("ImageUp","Upload")
+                Log.d("ImageUp", "Upload")
                 charDetailViewModel.img = it.toString()
                 Toast.makeText(requireContext(), "Upload successful!", Toast.LENGTH_LONG).show()
 
             }
         }.addOnProgressListener {
-            Log.d("ImageUp","Upload")
+            Log.d("ImageUp", "Upload")
             Toast.makeText(requireContext(), "Uploading..", Toast.LENGTH_SHORT).show()
 
-        }.addOnFailureListener{
+        }.addOnFailureListener {
             Log.d("ImageUp", it.toString())
         }
     }

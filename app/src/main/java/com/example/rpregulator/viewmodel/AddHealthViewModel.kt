@@ -8,7 +8,7 @@ import com.example.rpregulator.firebase.HealthFirebase
 import com.example.rpregulator.models.CursesBlessingsHealth
 import kotlinx.coroutines.launch
 
-class AddHealthViewModel() : ViewModel() {
+class AddHealthViewModel(private val id: String) : ViewModel() {
 
     val healthName = MutableLiveData<String?>()
     val healthIntesity = MutableLiveData<String?>()
@@ -21,35 +21,33 @@ class AddHealthViewModel() : ViewModel() {
     }
 
 
-
-  private val _navigateToHealths = MutableLiveData<Boolean?>()
+    private val _navigateToHealths = MutableLiveData<Boolean?>()
     val navigateToHealths: LiveData<Boolean?>
-    get() = _navigateToHealths
+        get() = _navigateToHealths
 
 
-    fun navigateToHealths(){
+    fun navigateToHealths() {
         _navigateToHealths.value = true
         doneNavigateToHealths()
-      
+
     }
 
-    fun doneNavigateToHealths(){
+    private fun doneNavigateToHealths() {
         _navigateToHealths.value = null
     }
 
 
-
-    fun uploadData(){
+    fun uploadData() {
         val databaseReference = HealthFirebase.databaseReference
-        val entryID= databaseReference.push().key.toString()
+        val entryID = databaseReference.push().key.toString()
         val entry = CursesBlessingsHealth(
-              entryID,
+                entryID,
                 healthName.value,
                 healthIntesity.value,
                 healthDesc.value
         )
         viewModelScope.launch {
-            HealthFirebase.uploadData(entryID, entry)
+            HealthFirebase.uploadData(entryID, entry, id)
         }
     }
 
