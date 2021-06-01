@@ -23,23 +23,25 @@ class CharSelectFragment : Fragment() {
     val storageRefrence = FirebaseStorage.getInstance().reference
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCharSelectBinding.inflate(inflater, container, false)
         val view = binding.root
 
         val options = FirebaseRecyclerOptions.Builder<User>()
-                .setQuery(UsersFirebase.databaseReference, User::class.java)
-                .setLifecycleOwner(this)
-                .build()
+            .setQuery(UsersFirebase.databaseReference, User::class.java)
+            .setLifecycleOwner(this)
+            .build()
         val viewModelFactory = CharSelectViewModelFactory()
-        val charSelectViewModel = ViewModelProvider(this, viewModelFactory).get(CharSelectViewModel::class.java)
+        val charSelectViewModel =
+            ViewModelProvider(this, viewModelFactory).get(CharSelectViewModel::class.java)
 
-        val adapter = CharSelectAdapter(options, requireActivity(), CharSelectAdapter.OnClickListener {
-            charSelectViewModel.navigateToPin(it)
-        })
+        val adapter =
+            CharSelectAdapter(options, requireActivity(), CharSelectAdapter.OnClickListener {
+                charSelectViewModel.navigateToPin(it)
+            })
 
         val layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
         binding.charLista.layoutManager = layoutManager

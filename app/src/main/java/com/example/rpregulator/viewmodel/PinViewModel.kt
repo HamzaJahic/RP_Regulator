@@ -15,7 +15,8 @@ import kotlinx.coroutines.launch
 
 class PinViewModel(val user: User, context: Context) : ViewModel() {
     val pin = MutableLiveData<String?>()
-    private val sharedPref: SharedPreferences = context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+    private val sharedPref: SharedPreferences =
+        context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
     private val editor: SharedPreferences.Editor = sharedPref.edit()
     private val userName = user.username.toString()
 

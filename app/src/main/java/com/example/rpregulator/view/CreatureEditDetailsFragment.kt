@@ -20,10 +20,10 @@ import com.example.rpregulator.viewmodel.CreatureDetailsViewModel
 import com.example.rpregulator.viewmodel.CreatureDetailsViewModelFactory
 import com.google.firebase.storage.FirebaseStorage
 
-class CreatureEditDetailsFragment: Fragment() {
+class CreatureEditDetailsFragment : Fragment() {
     private var _binding: FragmentCreatureEditDetailsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var creatureDetailViewModel : CreatureDetailsViewModel
+    private lateinit var creatureDetailViewModel: CreatureDetailsViewModel
     val storageRefrence = FirebaseStorage.getInstance().reference
 
     override fun onCreateView(
@@ -37,16 +37,20 @@ class CreatureEditDetailsFragment: Fragment() {
         val view = this.binding.root
         val creature = CreatureEditDetailsFragmentArgs.fromBundle(requireArguments()).creature
         val viewModelFactory = CreatureDetailsViewModelFactory(creature)
-        creatureDetailViewModel = ViewModelProvider(this, viewModelFactory).get(CreatureDetailsViewModel::class.java)
+        creatureDetailViewModel =
+            ViewModelProvider(this, viewModelFactory).get(CreatureDetailsViewModel::class.java)
 
         Glide.with(this).load(creature.img).into(binding.imgOfAdd)
 
-        creatureDetailViewModel.uploadPhoto.observe(viewLifecycleOwner,  {
+        creatureDetailViewModel.uploadPhoto.observe(viewLifecycleOwner, {
             it?.let {
                 val intent = Intent()
                 intent.type = "image/*"
                 intent.action = Intent.ACTION_GET_CONTENT
-                startActivityForResult(Intent.createChooser(intent,"Choose photo"), GALLERY_REQUEST_CODE)
+                startActivityForResult(
+                    Intent.createChooser(intent, "Choose photo"),
+                    GALLERY_REQUEST_CODE
+                )
             }
         })
 
@@ -57,34 +61,34 @@ class CreatureEditDetailsFragment: Fragment() {
     }
 
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if(requestCode == GALLERY_REQUEST_CODE && resultCode == Activity.RESULT_OK && data!=null){
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
             val imageUri = data.data
             binding.imgOfAdd.setImageURI(imageUri)
             uploadToFirebase(imageUri!!)
         }
     }
 
-    fun uploadToFirebase(uri: Uri){
-        val fileRef = storageRefrence.child("${System.currentTimeMillis()} ${creatureDetailViewModel.creatureName.value}")
+    fun uploadToFirebase(uri: Uri) {
+        val fileRef =
+            storageRefrence.child("${System.currentTimeMillis()} ${creatureDetailViewModel.creatureName.value}")
         fileRef.putFile(uri).addOnSuccessListener {
             fileRef.downloadUrl.addOnSuccessListener {
-                Log.d("ImageUp","Upload")
+                Log.d("ImageUp", "Upload")
                 creatureDetailViewModel.img = it.toString()
                 Toast.makeText(requireContext(), "Upload successful!", Toast.LENGTH_LONG).show()
 
             }
         }.addOnProgressListener {
-            Log.d("ImageUp","Upload")
+            Log.d("ImageUp", "Upload")
             Toast.makeText(requireContext(), "Uploading..", Toast.LENGTH_SHORT).show()
 
-        }.addOnFailureListener{
+        }.addOnFailureListener {
             Log.d("ImageUp", it.toString())
         }
     }

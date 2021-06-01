@@ -164,8 +164,7 @@
                 android:src="@drawable/coin"
                 app:layout_constraintBottom_toBottomOf="@id/tvCharGold"
                 app:layout_constraintStart_toEndOf="@id/tvCharGold"
-                app:layout_constraintTop_toTopOf="@id/tvCharGold"
-             />
+                app:layout_constraintTop_toTopOf="@id/tvCharGold" />
 
             <Button
                 android:id="@+id/btnIncrease1"

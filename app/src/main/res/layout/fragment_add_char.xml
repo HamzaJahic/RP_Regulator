@@ -38,13 +38,13 @@
             android:layout_height="160dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/photo_bg"
+            android:contentDescription="@string/add_photo"
             android:onClick="@{onClick -> viewModel.uploadPhoto()}"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_photo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/add_photo">
+            app:layout_constraintTop_toTopOf="parent">
 
             <tag
                 android:id="@+id/zoomable"
@@ -131,8 +131,7 @@
             android:onClick="@{onClick -> viewModel.uploadData()}"
             android:src="@drawable/ic_accept"
             app:layout_constraintStart_toStartOf="@id/etHealthDesc"
-            app:layout_constraintTop_toBottomOf="@id/etHealthDesc"
-           />
+            app:layout_constraintTop_toBottomOf="@id/etHealthDesc" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabCancel"
@@ -142,8 +141,7 @@
             android:onClick="@{onClick -> viewModel.navigateToChars()}"
             android:src="@drawable/ic_cancel"
             app:layout_constraintEnd_toEndOf="@id/etHealthDesc"
-            app:layout_constraintTop_toBottomOf="@id/etHealthDesc"
-            />
+            app:layout_constraintTop_toBottomOf="@id/etHealthDesc" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

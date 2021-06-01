@@ -8,10 +8,11 @@ import com.example.rpregulator.models.Notes
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class NotesAdapter(options: FirebaseRecyclerOptions<Notes>, val onClickListener: OnClickListener)
-    : FirebaseRecyclerAdapter<Notes, NotesAdapter.NotesHolder>(options) {
+class NotesAdapter(options: FirebaseRecyclerOptions<Notes>, val onClickListener: OnClickListener) :
+    FirebaseRecyclerAdapter<Notes, NotesAdapter.NotesHolder>(options) {
 
-    class NotesHolder(private var binding: RvItemNotesBinding) : RecyclerView.ViewHolder(binding.root) {
+    class NotesHolder(private var binding: RvItemNotesBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(notes: Notes) {
             binding.txtTitle.text = notes.title
             binding.txtDesc.text = notes.desc

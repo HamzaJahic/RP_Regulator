@@ -10,15 +10,18 @@ import com.example.rpregulator.models.PaperWork
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class PaperworkAdapter(options: FirebaseRecyclerOptions<PaperWork>, val onClickListener: OnClickListener)
-    : FirebaseRecyclerAdapter<PaperWork, PaperworkAdapter.PaperWorkHolder>(options) {
+class PaperworkAdapter(
+    options: FirebaseRecyclerOptions<PaperWork>,
+    val onClickListener: OnClickListener
+) : FirebaseRecyclerAdapter<PaperWork, PaperworkAdapter.PaperWorkHolder>(options) {
 
     private val _progressBarShow = MutableLiveData<Boolean?>()
     val progressBar: LiveData<Boolean?>
         get() = _progressBarShow
 
 
-    class PaperWorkHolder(private var binding: RvItemNotesBinding) : RecyclerView.ViewHolder(binding.root) {
+    class PaperWorkHolder(private var binding: RvItemNotesBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(paperWork: PaperWork) {
             binding.txtTitle.text = paperWork.title
             binding.txtDesc.text = paperWork.desc

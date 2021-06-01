@@ -22,26 +22,28 @@ class StatsFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentStatsBinding.inflate(inflater, container, false)
         val view = binding.root
         val viewModelFactory = StatsViewModelFactory()
-        val statsViewModel = ViewModelProvider(this, viewModelFactory).get(StatsViewModel::class.java)
+        val statsViewModel =
+            ViewModelProvider(this, viewModelFactory).get(StatsViewModel::class.java)
         binding.viewModel = statsViewModel
 
         binding.listStats.invalidate()
 
         val options = FirebaseRecyclerOptions.Builder<Stats>()
-                .setQuery(StatsFirebase.databaseReference.orderByChild("sorting"), Stats::class.java)
-                .setLifecycleOwner(this)
-                .build()
+            .setQuery(StatsFirebase.databaseReference.orderByChild("sorting"), Stats::class.java)
+            .setLifecycleOwner(this)
+            .build()
 
-        val adapter = StatsAdapter(options, requireContext(), USER_ID.value!!, StatsAdapter.OnClickListener {
-            Log.d("Click", "${it.name}")
-        })
+        val adapter =
+            StatsAdapter(options, requireContext(), USER_ID.value!!, StatsAdapter.OnClickListener {
+                Log.d("Click", "${it.name}")
+            })
 
 
         binding.listStats.adapter = adapter
@@ -49,7 +51,8 @@ class StatsFragment : Fragment() {
 
         statsViewModel.navigateToAddStats.observe(viewLifecycleOwner, {
             it?.let {
-                val action = MainFragmentDirections.actionMainFragmentToAddStatFragment(USER_ID.value!!)
+                val action =
+                    MainFragmentDirections.actionMainFragmentToAddStatFragment(USER_ID.value!!)
                 findNavController().navigate(action)
             }
 

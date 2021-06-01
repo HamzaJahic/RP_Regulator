@@ -19,29 +19,35 @@ class SkillsFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSkillsBinding.inflate(inflater, container, false)
         val view = binding.root
 
         val viewModelFactory = SkillsViewModelFactory(this)
-        val skillsViewModel = ViewModelProvider(this, viewModelFactory).get(SkillsViewModel::class.java)
+        val skillsViewModel =
+            ViewModelProvider(this, viewModelFactory).get(SkillsViewModel::class.java)
 
         binding.viewModel = skillsViewModel
 
 
-        val adapter = SkillsAdapter(skillsViewModel.options, requireContext(), USER_ID.value!!, SkillsAdapter.OnClickListener {
-            skillsViewModel.navigateToSkillDetails(it)
-            Log.d("Navigate", "Klik se desio na ${it.id}")
-        })
+        val adapter = SkillsAdapter(
+            skillsViewModel.options,
+            requireContext(),
+            USER_ID.value!!,
+            SkillsAdapter.OnClickListener {
+                skillsViewModel.navigateToSkillDetails(it)
+                Log.d("Navigate", "Klik se desio na ${it.id}")
+            })
 
         binding.listSkills.adapter = adapter
 
         skillsViewModel.navigateToAddSkills.observe(viewLifecycleOwner, {
             it?.let {
-                val action = MainFragmentDirections.actionMainFragmentToAddSkillFragment(USER_ID.value!!)
+                val action =
+                    MainFragmentDirections.actionMainFragmentToAddSkillFragment(USER_ID.value!!)
                 findNavController().navigate(action)
             }
         })

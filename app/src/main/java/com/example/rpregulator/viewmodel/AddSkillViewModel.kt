@@ -49,12 +49,12 @@ class AddSkillViewModel(private val id: String) : ViewModel() {
         val databaseReference = SkillsFirebase.databaseReference
         val entryID = databaseReference.push().key.toString()
         val entry = Skills(
-                entryID,
-                skillName.value,
-                type,
-                skillCost.value,
-                skillDesc.value,
-                "1"
+            entryID,
+            skillName.value,
+            type,
+            skillCost.value,
+            skillDesc.value,
+            "1"
 
         )
         viewModelScope.launch {

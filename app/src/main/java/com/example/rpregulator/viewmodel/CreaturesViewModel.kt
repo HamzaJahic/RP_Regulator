@@ -20,9 +20,9 @@ class CreaturesViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
         get() = _navigateToCreaturesDetails
 
     val options = FirebaseRecyclerOptions.Builder<Creatures>()
-            .setQuery(CreaturesFirebase.databaseReference.orderByChild("name"), Creatures::class.java)
-            .setLifecycleOwner(lifecycleOwner)
-            .build()
+        .setQuery(CreaturesFirebase.databaseReference.orderByChild("name"), Creatures::class.java)
+        .setLifecycleOwner(lifecycleOwner)
+        .build()
 
 
     fun navigateToCreaturesDetails(Creatures: Creatures) {

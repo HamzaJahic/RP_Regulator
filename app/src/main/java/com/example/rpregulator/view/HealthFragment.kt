@@ -22,32 +22,38 @@ class HealthFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHealthBinding.inflate(inflater, container, false)
         val view = binding.root
 
         val viewModelFactory = HealthViewModelFactory()
-        val healthViewModel = ViewModelProvider(this, viewModelFactory).get(HealthViewModel::class.java)
+        val healthViewModel =
+            ViewModelProvider(this, viewModelFactory).get(HealthViewModel::class.java)
         binding.viewModel = healthViewModel
 
 
         val options = FirebaseRecyclerOptions.Builder<CursesBlessingsHealth>()
-                .setQuery(HealthFirebase.databaseReference, CursesBlessingsHealth::class.java)
-                .setLifecycleOwner(this)
-                .build()
+            .setQuery(HealthFirebase.databaseReference, CursesBlessingsHealth::class.java)
+            .setLifecycleOwner(this)
+            .build()
 
-        val adapter = StatusAdapter(options, requireContext(), USER_ID.value!!, StatusAdapter.OnClickListener {
-            Log.d("Click", "${it.name}")
-        })
+        val adapter = StatusAdapter(
+            options,
+            requireContext(),
+            USER_ID.value!!,
+            StatusAdapter.OnClickListener {
+                Log.d("Click", "${it.name}")
+            })
 
         binding.listHealth.adapter = adapter
 
         healthViewModel.navigateToAddHealth.observe(viewLifecycleOwner, {
             it?.let {
-                val action = StatusFragmentDirections.actionStatusFragmentToAddHealthFragment(USER_ID.value!!)
+                val action =
+                    StatusFragmentDirections.actionStatusFragmentToAddHealthFragment(USER_ID.value!!)
                 findNavController().navigate(action)
             }
         })

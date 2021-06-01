@@ -17,9 +17,9 @@ class BlessingsAdminFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentRvLayoutBinding.inflate(inflater, container, false)
@@ -27,16 +27,24 @@ class BlessingsAdminFragment : Fragment() {
         val id = BlessingsAdminFragmentArgs.fromBundle(requireArguments()).id
 
         val viewModelFactory = DataViewModelFactory(this, id)
-        val dataDetailViewModel = ViewModelProvider(this, viewModelFactory).get(DataViewModel::class.java)
+        val dataDetailViewModel =
+            ViewModelProvider(this, viewModelFactory).get(DataViewModel::class.java)
         binding.viewModel = dataDetailViewModel
 
-        val adapter = BlessingsAdapter(dataDetailViewModel.optionsBlessings, requireContext(), id, BlessingsAdapter.OnClickListener {
+        val adapter = BlessingsAdapter(
+            dataDetailViewModel.optionsBlessings,
+            requireContext(),
+            id,
+            BlessingsAdapter.OnClickListener {
 
-        })
+            })
 
         dataDetailViewModel.navigateToAdd.observe(viewLifecycleOwner, {
             it?.let {
-                val action = BlessingsAdminFragmentDirections.actionBlessingsAdminFragmentToAddBlessingFragment(id)
+                val action =
+                    BlessingsAdminFragmentDirections.actionBlessingsAdminFragmentToAddBlessingFragment(
+                        id
+                    )
                 findNavController().navigate(action)
             }
         })

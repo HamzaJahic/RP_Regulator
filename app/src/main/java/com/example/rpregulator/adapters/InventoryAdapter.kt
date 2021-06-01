@@ -13,15 +13,25 @@ import com.example.rpregulator.utils.AlertDialogBuilders
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class InventoryAdapter(options: FirebaseRecyclerOptions<Inventory>, private val context: Context, val user_id: String, val onClickListener: OnClickListener)
-    : FirebaseRecyclerAdapter<Inventory, InventoryAdapter.InventoryHolder>(options) {
+class InventoryAdapter(
+    options: FirebaseRecyclerOptions<Inventory>,
+    private val context: Context,
+    val user_id: String,
+    val onClickListener: OnClickListener
+) : FirebaseRecyclerAdapter<Inventory, InventoryAdapter.InventoryHolder>(options) {
 
     private val _progressBarShow = MutableLiveData<Boolean?>()
     val progressBar: LiveData<Boolean?>
         get() = _progressBarShow
 
-    class InventoryHolder(private var binding: RvItemMainBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(inventory: Inventory, onClickListener: OnClickListener, user_id: String, context: Context) {
+    class InventoryHolder(private var binding: RvItemMainBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(
+            inventory: Inventory,
+            onClickListener: OnClickListener,
+            user_id: String,
+            context: Context
+        ) {
             binding.txtName.text = inventory.name
             binding.txtValue.text = "x${inventory.value}"
 
@@ -38,10 +48,10 @@ class InventoryAdapter(options: FirebaseRecyclerOptions<Inventory>, private val 
             binding.cardView.setOnLongClickListener {
                 AlertDialogBuilders.createDeleteAlert(context) {
                     UsersFirebase.databaseReference
-                            .child(user_id)
-                            .child("inventory")
-                            .child(inventory.id.toString())
-                            .removeValue()
+                        .child(user_id)
+                        .child("inventory")
+                        .child(inventory.id.toString())
+                        .removeValue()
                 }
                 true
             }
@@ -53,11 +63,11 @@ class InventoryAdapter(options: FirebaseRecyclerOptions<Inventory>, private val 
             val valueNew = ++valueOld
 
             UsersFirebase.databaseReference
-                    .child(user_id)
-                    .child("inventory")
-                    .child(inventory.id.toString())
-                    .child("value")
-                    .setValue(valueNew.toString())
+                .child(user_id)
+                .child("inventory")
+                .child(inventory.id.toString())
+                .child("value")
+                .setValue(valueNew.toString())
         }
 
         private fun decreaseValue(inventory: Inventory, user_id: String) {
@@ -66,11 +76,11 @@ class InventoryAdapter(options: FirebaseRecyclerOptions<Inventory>, private val 
             val valueNew = --valueOld
 
             UsersFirebase.databaseReference
-                    .child(user_id)
-                    .child("inventory")
-                    .child(inventory.id.toString())
-                    .child("value")
-                    .setValue(valueNew.toString())
+                .child(user_id)
+                .child("inventory")
+                .child(inventory.id.toString())
+                .child("value")
+                .setValue(valueNew.toString())
         }
 
 

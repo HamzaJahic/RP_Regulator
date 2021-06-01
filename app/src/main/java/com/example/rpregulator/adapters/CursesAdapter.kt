@@ -14,16 +14,22 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
 class CursesAdapter(
-        options: FirebaseRecyclerOptions<CursesBlessingsHealth>,
-        val user_id: String, val context: Context, val onClickListener: OnClickListener,
+    options: FirebaseRecyclerOptions<CursesBlessingsHealth>,
+    val user_id: String, val context: Context, val onClickListener: OnClickListener,
 ) : FirebaseRecyclerAdapter<CursesBlessingsHealth, CursesAdapter.StatusHolder>(options) {
 
-   private val _progressBarShow = MutableLiveData<Boolean?>()
+    private val _progressBarShow = MutableLiveData<Boolean?>()
     val progressBar: LiveData<Boolean?>
         get() = _progressBarShow
 
-    class StatusHolder(private var binding: RvItemMainBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(cursesBlessingsHealth: CursesBlessingsHealth, onClickListener: OnClickListener, user_id: String, context: Context) {
+    class StatusHolder(private var binding: RvItemMainBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(
+            cursesBlessingsHealth: CursesBlessingsHealth,
+            onClickListener: OnClickListener,
+            user_id: String,
+            context: Context
+        ) {
             binding.txtName.text = cursesBlessingsHealth.name
             binding.txtValue.text = "${cursesBlessingsHealth.value}"
 
@@ -41,10 +47,10 @@ class CursesAdapter(
             binding.cardView.setOnLongClickListener {
                 AlertDialogBuilders.createDeleteAlert(context) {
                     UsersFirebase.databaseReference
-                            .child(user_id)
-                            .child("curses")
-                            .child(cursesBlessingsHealth.id.toString())
-                            .removeValue()
+                        .child(user_id)
+                        .child("curses")
+                        .child(cursesBlessingsHealth.id.toString())
+                        .removeValue()
                 }
                 true
             }
@@ -56,11 +62,11 @@ class CursesAdapter(
             val valueNew = ++valueOld
 
             UsersFirebase.databaseReference
-                    .child(user_id)
-                    .child("curses")
-                    .child(cursesBlessingsHealth.id.toString())
-                    .child("value")
-                    .setValue(valueNew.toString())
+                .child(user_id)
+                .child("curses")
+                .child(cursesBlessingsHealth.id.toString())
+                .child("value")
+                .setValue(valueNew.toString())
         }
 
         private fun decreaseValue(cursesBlessingsHealth: CursesBlessingsHealth, user_id: String) {
@@ -69,11 +75,11 @@ class CursesAdapter(
             val valueNew = --valueOld
 
             UsersFirebase.databaseReference
-                    .child(user_id)
-                    .child("curses")
-                    .child(cursesBlessingsHealth.id.toString())
-                    .child("value")
-                    .setValue(valueNew.toString())
+                .child(user_id)
+                .child("curses")
+                .child(cursesBlessingsHealth.id.toString())
+                .child("value")
+                .setValue(valueNew.toString())
         }
     }
 
@@ -82,14 +88,19 @@ class CursesAdapter(
     }
 
 
-    override fun onBindViewHolder(holder: StatusHolder, position: Int, model: CursesBlessingsHealth) {
+    override fun onBindViewHolder(
+        holder: StatusHolder,
+        position: Int,
+        model: CursesBlessingsHealth
+    ) {
         val item = getItem(position)
         holder.bind(item, onClickListener, user_id, context)
 
     }
 
     class OnClickListener(val clickListener: (cursesBlessingsHealth: CursesBlessingsHealth) -> Unit) {
-        fun onClick(cursesBlessingsHealth: CursesBlessingsHealth) = clickListener(cursesBlessingsHealth)
+        fun onClick(cursesBlessingsHealth: CursesBlessingsHealth) =
+            clickListener(cursesBlessingsHealth)
     }
 
 

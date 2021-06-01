@@ -41,10 +41,10 @@ class AddHealthViewModel(private val id: String) : ViewModel() {
         val databaseReference = HealthFirebase.databaseReference
         val entryID = databaseReference.push().key.toString()
         val entry = CursesBlessingsHealth(
-                entryID,
-                healthName.value,
-                healthIntesity.value,
-                healthDesc.value
+            entryID,
+            healthName.value,
+            healthIntesity.value,
+            healthDesc.value
         )
         viewModelScope.launch {
             HealthFirebase.uploadData(entryID, entry, id)

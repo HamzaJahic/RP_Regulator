@@ -15,9 +15,9 @@ class AddStatFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentAddStatBinding.inflate(inflater, container, false)
@@ -25,7 +25,8 @@ class AddStatFragment : Fragment() {
         val id = AddStatFragmentArgs.fromBundle(requireArguments()).id
 
         val viewModelFactory = AddStatViewModelFactory(id)
-        val addStatViewModel = ViewModelProvider(this, viewModelFactory).get(AddStatViewModel::class.java)
+        val addStatViewModel =
+            ViewModelProvider(this, viewModelFactory).get(AddStatViewModel::class.java)
 
         binding.viewModel = addStatViewModel
 

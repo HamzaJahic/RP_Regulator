@@ -101,8 +101,7 @@
             android:src="@drawable/ic_accept"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etNewPinAgain"
-             />
+            app:layout_constraintTop_toBottomOf="@id/etNewPinAgain" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,11 +9,15 @@ import com.example.rpregulator.models.Stats
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class ExperienceAdapter(options: FirebaseRecyclerOptions<Stats>, val onClickListener: OnClickListener, private val id: String)
-    : FirebaseRecyclerAdapter<Stats, ExperienceAdapter.StatsHolder>(options) {
+class ExperienceAdapter(
+    options: FirebaseRecyclerOptions<Stats>,
+    val onClickListener: OnClickListener,
+    private val id: String
+) : FirebaseRecyclerAdapter<Stats, ExperienceAdapter.StatsHolder>(options) {
 
 
-    class StatsHolder(private var binding: RvItemMainBinding) : RecyclerView.ViewHolder(binding.root) {
+    class StatsHolder(private var binding: RvItemMainBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(stats: Stats, id: String) {
             binding.txtName.text = stats.name
             binding.txtValue.text = stats.value
@@ -31,7 +35,8 @@ class ExperienceAdapter(options: FirebaseRecyclerOptions<Stats>, val onClickList
 
             valueOld = if (valueOld == 95) 0 else valueOld + 5
 
-            UsersFirebase.databaseReference.child(id).child("experience").child(stats.id.toString()).child("value").setValue(valueOld.toString())
+            UsersFirebase.databaseReference.child(id).child("experience").child(stats.id.toString())
+                .child("value").setValue(valueOld.toString())
         }
 
 
@@ -40,7 +45,8 @@ class ExperienceAdapter(options: FirebaseRecyclerOptions<Stats>, val onClickList
 
             valueOld -= 5
 
-            UsersFirebase.databaseReference.child(id).child("experience").child(stats.id.toString()).child("value").setValue(valueOld.toString())
+            UsersFirebase.databaseReference.child(id).child("experience").child(stats.id.toString())
+                .child("value").setValue(valueOld.toString())
         }
 
     }

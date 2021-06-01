@@ -36,8 +36,7 @@
             android:src="@drawable/ic_photo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-          >
+            app:layout_constraintTop_toTopOf="parent">
 
             <tag
                 android:id="@+id/zoomable"
@@ -102,8 +101,7 @@
             android:onClick="@{onClick -> viewModel.uploadData()}"
             android:src="@drawable/ic_accept"
             app:layout_constraintStart_toStartOf="@id/etBlessingDesc"
-            app:layout_constraintTop_toBottomOf="@id/etBlessingDesc"
-             />
+            app:layout_constraintTop_toBottomOf="@id/etBlessingDesc" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabCancel"
@@ -113,8 +111,7 @@
             android:onClick="@{onClick -> viewModel.navigateToNotes()}"
             android:src="@drawable/ic_cancel"
             app:layout_constraintEnd_toEndOf="@id/etBlessingDesc"
-            app:layout_constraintTop_toBottomOf="@id/etBlessingDesc"
-            />
+            app:layout_constraintTop_toBottomOf="@id/etBlessingDesc" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"

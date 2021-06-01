@@ -5,11 +5,11 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Stats(
-        val id: String?,
-        val name: String?,
-        val value: String?,
-        val desc: String?,
-        val sorting: String?,
+    val id: String?,
+    val name: String?,
+    val value: String?,
+    val desc: String?,
+    val sorting: String?,
 ) : Parcelable {
     constructor() : this("", "", "", "", "")
 }

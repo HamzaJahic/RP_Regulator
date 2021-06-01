@@ -35,10 +35,10 @@ class AddCurseViewModel(private val id: String) : ViewModel() {
         val databaseReference = CursesFirebase.databaseReference
         val entryID = databaseReference.push().key.toString()
         val entry = CursesBlessingsHealth(
-                entryID,
-                curseName.value,
-                curseIntesity.value,
-                curseDesc.value
+            entryID,
+            curseName.value,
+            curseIntesity.value,
+            curseDesc.value
         )
         viewModelScope.launch {
             CursesFirebase.uploadData(entryID, entry, id)

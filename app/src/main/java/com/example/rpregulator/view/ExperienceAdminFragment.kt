@@ -18,9 +18,9 @@ class ExperienceAdminFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentRvLayoutBinding.inflate(inflater, container, false)
@@ -29,11 +29,16 @@ class ExperienceAdminFragment : Fragment() {
         val id = ExperienceAdminFragmentArgs.fromBundle(requireArguments()).id
 
         val viewModelFactory = DataViewModelFactory(this, id)
-        val dataDetailViewModel = ViewModelProvider(this, viewModelFactory).get(DataViewModel::class.java)
+        val dataDetailViewModel =
+            ViewModelProvider(this, viewModelFactory).get(DataViewModel::class.java)
 
-        val adapter = ExperienceAdapter(dataDetailViewModel.optionsExperience, ExperienceAdapter.OnClickListener {
+        val adapter = ExperienceAdapter(
+            dataDetailViewModel.optionsExperience,
+            ExperienceAdapter.OnClickListener {
 
-        }, id)
+            },
+            id
+        )
 
 
 
@@ -43,7 +48,10 @@ class ExperienceAdminFragment : Fragment() {
         dataDetailViewModel.navigateToAdd.observe(viewLifecycleOwner, {
             it?.let {
                 Log.d("Experience", "$it")
-                val action = ExperienceAdminFragmentDirections.actionExperienceAdminFragmentToAddExperienceFragment(id)
+                val action =
+                    ExperienceAdminFragmentDirections.actionExperienceAdminFragmentToAddExperienceFragment(
+                        id
+                    )
                 findNavController().navigate(action)
             }
         })

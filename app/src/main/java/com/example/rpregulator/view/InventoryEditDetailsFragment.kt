@@ -15,16 +15,17 @@ class InventoryEditDetailsFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentInventoryEditDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
         val inventory = InventoryDetailsFragmentArgs.fromBundle(requireArguments()).inventory
         val viewModelFactory = InventoryDetailsViewModelFactory(inventory)
-        val inventoryDetailViewModel = ViewModelProvider(this, viewModelFactory).get(InventoryDetailsViewModel::class.java)
+        val inventoryDetailViewModel =
+            ViewModelProvider(this, viewModelFactory).get(InventoryDetailsViewModel::class.java)
 
         binding.viewModel = inventoryDetailViewModel
 

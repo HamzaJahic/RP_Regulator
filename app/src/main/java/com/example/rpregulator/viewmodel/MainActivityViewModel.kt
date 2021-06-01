@@ -18,7 +18,8 @@ class MainActivityViewModel(context: Context) : ViewModel() {
         get() = _imgUri
 
     init {
-        USER_ID.value = context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE).getString("id", null)
+        USER_ID.value =
+            context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE).getString("id", null)
         getImg()
     }
 

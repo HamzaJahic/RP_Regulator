@@ -21,38 +21,45 @@ class BlessingsFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentBlessingsBinding.inflate(inflater, container, false)
         val view = binding.root
 
         val viewModelFactory = BlessingsViewModelFactory()
-        val blessingsViewModel = ViewModelProvider(this, viewModelFactory).get(BlessingsViewModel::class.java)
+        val blessingsViewModel =
+            ViewModelProvider(this, viewModelFactory).get(BlessingsViewModel::class.java)
         binding.viewModel = blessingsViewModel
 
         val options = FirebaseRecyclerOptions.Builder<CursesBlessingsHealth>()
-                .setQuery(BlessingsFirebase.databaseReference, CursesBlessingsHealth::class.java)
-                .setLifecycleOwner(this)
-                .build()
+            .setQuery(BlessingsFirebase.databaseReference, CursesBlessingsHealth::class.java)
+            .setLifecycleOwner(this)
+            .build()
 
-        val adapter = BlessingsAdapter(options, requireContext(), USER_ID.value!!, BlessingsAdapter.OnClickListener {
-            blessingsViewModel.navigateToBlessingDetail(it)
-        })
+        val adapter = BlessingsAdapter(
+            options,
+            requireContext(),
+            USER_ID.value!!,
+            BlessingsAdapter.OnClickListener {
+                blessingsViewModel.navigateToBlessingDetail(it)
+            })
 
         binding.listBlessing.adapter = adapter
 
         blessingsViewModel.navigateToBlessingDetail.observe(viewLifecycleOwner, {
             it?.let {
-                val action = StatusFragmentDirections.actionStatusFragmentToBlessingDetailsFragment(it)
+                val action =
+                    StatusFragmentDirections.actionStatusFragmentToBlessingDetailsFragment(it)
                 findNavController().navigate(action)
             }
         })
 
         blessingsViewModel.navigateToAddBlessings.observe(viewLifecycleOwner, {
             it?.let {
-                val action = StatusFragmentDirections.actionStatusFragmentToAddBlessingFragment(USER_ID.value!!)
+                val action =
+                    StatusFragmentDirections.actionStatusFragmentToAddBlessingFragment(USER_ID.value!!)
                 findNavController().navigate(action)
             }
         })

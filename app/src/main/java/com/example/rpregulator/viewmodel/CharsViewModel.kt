@@ -19,9 +19,9 @@ class CharsViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
         get() = _navigateToCharsDetails
 
     val options = FirebaseRecyclerOptions.Builder<Chars>()
-            .setQuery(CharsFirebase.databaseReference.orderByChild("name"), Chars::class.java)
-            .setLifecycleOwner(lifecycleOwner)
-            .build()
+        .setQuery(CharsFirebase.databaseReference.orderByChild("name"), Chars::class.java)
+        .setLifecycleOwner(lifecycleOwner)
+        .build()
 
 
     fun navigateToCharsDetails(chars: Chars) {

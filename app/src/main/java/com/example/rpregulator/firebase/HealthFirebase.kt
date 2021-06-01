@@ -9,7 +9,8 @@ import com.google.firebase.ktx.Firebase
 class HealthFirebase {
 
     companion object {
-        val databaseReference: DatabaseReference = Firebase.database.reference.child("Users").child(USER_ID.value!!).child("health")
+        val databaseReference: DatabaseReference =
+            Firebase.database.reference.child("Users").child(USER_ID.value!!).child("health")
 
         fun uploadData(key: String, entry: CursesBlessingsHealth, id: String) {
             UsersFirebase.databaseReference.child(id).child("health").child(key).setValue(entry)

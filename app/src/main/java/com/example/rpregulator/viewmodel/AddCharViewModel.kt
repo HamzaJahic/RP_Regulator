@@ -42,11 +42,11 @@ class AddCharViewModel : ViewModel() {
         val databaseReference = CharsFirebase.databaseReference
         val entryID = databaseReference.push().key.toString()
         val entry = Chars(
-                entryID,
-                img,
-                charName.value,
-                charArk.value,
-                charDesc.value
+            entryID,
+            img,
+            charName.value,
+            charArk.value,
+            charDesc.value
         )
         viewModelScope.launch {
             CharsFirebase.uploadData(entryID, entry)

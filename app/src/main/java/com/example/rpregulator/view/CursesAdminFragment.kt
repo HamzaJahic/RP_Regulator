@@ -17,9 +17,9 @@ class CursesAdminFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentRvLayoutBinding.inflate(inflater, container, false)
@@ -27,18 +27,24 @@ class CursesAdminFragment : Fragment() {
         val id = CursesAdminFragmentArgs.fromBundle(requireArguments()).id
 
         val viewModelFactory = DataViewModelFactory(this, id)
-        val dataDetailViewModel = ViewModelProvider(this, viewModelFactory).get(DataViewModel::class.java)
+        val dataDetailViewModel =
+            ViewModelProvider(this, viewModelFactory).get(DataViewModel::class.java)
 
-        val adapter = CursesAdapter(dataDetailViewModel.optionsCurses, id, requireContext(), CursesAdapter.OnClickListener {
+        val adapter = CursesAdapter(
+            dataDetailViewModel.optionsCurses,
+            id,
+            requireContext(),
+            CursesAdapter.OnClickListener {
 
-        })
+            })
 
         binding.viewModel = dataDetailViewModel
 
 
         dataDetailViewModel.navigateToAdd.observe(viewLifecycleOwner, {
             it?.let {
-                val action = CursesAdminFragmentDirections.actionCursesAdminFragmentToAddCurseFragment(id)
+                val action =
+                    CursesAdminFragmentDirections.actionCursesAdminFragmentToAddCurseFragment(id)
                 findNavController().navigate(action)
             }
         })

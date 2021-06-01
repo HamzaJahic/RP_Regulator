@@ -17,9 +17,9 @@ class ChangePinFragment : Fragment() {
     val storageRefrence = FirebaseStorage.getInstance().reference
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
 
@@ -28,7 +28,8 @@ class ChangePinFragment : Fragment() {
 
 
         val viewModelFactory = ChangePinViewModelFactory()
-        val changePinViewModel = ViewModelProvider(this, viewModelFactory).get(ChangePinViewModel::class.java)
+        val changePinViewModel =
+            ViewModelProvider(this, viewModelFactory).get(ChangePinViewModel::class.java)
 
 
         binding.viewModel = changePinViewModel

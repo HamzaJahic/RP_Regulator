@@ -17,15 +17,16 @@ class NotesFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNotesBinding.inflate(inflater, container, false)
         val view: View = binding.root
 
         val viewModelFactory = NotesViewModelFactory(this)
-        val notesViewModel = ViewModelProvider(this, viewModelFactory).get(NotesViewModel::class.java)
+        val notesViewModel =
+            ViewModelProvider(this, viewModelFactory).get(NotesViewModel::class.java)
 
         binding.viewModel = notesViewModel
 

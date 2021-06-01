@@ -13,14 +13,17 @@ import com.example.rpregulator.models.User
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class CharSelectAdapter(options: FirebaseRecyclerOptions<User>,
-                        val context: Context, val onClickListener: OnClickListener) : FirebaseRecyclerAdapter<User, CharSelectAdapter.UserHolder>(options) {
+class CharSelectAdapter(
+    options: FirebaseRecyclerOptions<User>,
+    val context: Context, val onClickListener: OnClickListener
+) : FirebaseRecyclerAdapter<User, CharSelectAdapter.UserHolder>(options) {
 
     private val _progressBarShow = MutableLiveData<Boolean?>()
     val progressBar: LiveData<Boolean?>
         get() = _progressBarShow
 
-    class UserHolder(private var binding: CharSelectRvItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class UserHolder(private var binding: CharSelectRvItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User, context: Context) {
             Log.d("Username", user.username.toString())
             Glide.with(context).load(user.img).into(binding.imgUser)
@@ -30,7 +33,13 @@ class CharSelectAdapter(options: FirebaseRecyclerOptions<User>,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHolder {
         Log.d("Adapter", "Created")
-        return UserHolder(CharSelectRvItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return UserHolder(
+            CharSelectRvItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
 

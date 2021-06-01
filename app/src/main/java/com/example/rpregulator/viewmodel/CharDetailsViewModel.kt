@@ -69,11 +69,11 @@ class CharDetailsViewModel(var char: Chars) : ViewModel() {
         CharsFirebase.databaseReference
         val entryID = id
         val entry = Chars(
-                entryID,
-                img,
-                charName.value,
-                charApperance.value,
-                charDesc.value
+            entryID,
+            img,
+            charName.value,
+            charApperance.value,
+            charDesc.value
         )
         viewModelScope.launch {
             CharsFirebase.uploadData(entryID, entry)

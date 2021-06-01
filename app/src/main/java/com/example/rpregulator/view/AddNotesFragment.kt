@@ -26,15 +26,16 @@ class AddNotesFragment : Fragment() {
 
     @Suppress("DEPRECATION")
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentAddNoteBinding.inflate(inflater, container, false)
         val view = binding.root
         val viewModelFactory = AddNotesViewModelFactory()
-        addNotesViewModel = ViewModelProvider(this, viewModelFactory).get(AddNotesViewModel::class.java)
+        addNotesViewModel =
+            ViewModelProvider(this, viewModelFactory).get(AddNotesViewModel::class.java)
 
         binding.viewModel = addNotesViewModel
 
@@ -50,7 +51,10 @@ class AddNotesFragment : Fragment() {
                 val intent = Intent()
                 intent.type = "image/*"
                 intent.action = Intent.ACTION_GET_CONTENT
-                startActivityForResult(Intent.createChooser(intent, "Choose photo"), GALLERY_REQUEST_CODE)
+                startActivityForResult(
+                    Intent.createChooser(intent, "Choose photo"),
+                    GALLERY_REQUEST_CODE
+                )
             }
         })
 
@@ -71,7 +75,8 @@ class AddNotesFragment : Fragment() {
     }
 
     fun uploadToFirebase(uri: Uri) {
-        val fileRef = storageRefrence.child("${System.currentTimeMillis()} ${addNotesViewModel.noteTitle.value}")
+        val fileRef =
+            storageRefrence.child("${System.currentTimeMillis()} ${addNotesViewModel.noteTitle.value}")
         fileRef.putFile(uri).addOnSuccessListener {
             fileRef.downloadUrl.addOnSuccessListener {
                 Log.d("ImageUp", "Upload")

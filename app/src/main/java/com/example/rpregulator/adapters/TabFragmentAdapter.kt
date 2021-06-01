@@ -7,8 +7,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
 
-class TabFragmentAdapter(supportFragmentManager: FragmentManager):
-        FragmentPagerAdapter(supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class TabFragmentAdapter(supportFragmentManager: FragmentManager) :
+    FragmentPagerAdapter(supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private val fragmentList = ArrayList<Fragment>()
 
@@ -20,7 +20,7 @@ class TabFragmentAdapter(supportFragmentManager: FragmentManager):
         return fragmentList.size
     }
 
-    fun addFragment(fragment: Fragment){
+    fun addFragment(fragment: Fragment) {
         fragmentList.add(fragment)
     }
 }

@@ -26,9 +26,9 @@ class CharEditDetailsFragment : Fragment() {
 
     @Suppress("DEPRECATION")
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
 
@@ -36,7 +36,8 @@ class CharEditDetailsFragment : Fragment() {
         val view = binding.root
         val char = CharEditDetailsFragmentArgs.fromBundle(requireArguments()).char
         val viewModelFactory = CharDetailsViewModelFactory(char)
-        charDetailViewModel = ViewModelProvider(this, viewModelFactory).get(CharDetailsViewModel::class.java)
+        charDetailViewModel =
+            ViewModelProvider(this, viewModelFactory).get(CharDetailsViewModel::class.java)
 
         Glide.with(this).load(char.img).into(binding.imgOfAdd)
 
@@ -45,7 +46,10 @@ class CharEditDetailsFragment : Fragment() {
                 val intent = Intent()
                 intent.type = "image/*"
                 intent.action = Intent.ACTION_GET_CONTENT
-                startActivityForResult(Intent.createChooser(intent, "Choose photo"), GALLERY_REQUEST_CODE)
+                startActivityForResult(
+                    Intent.createChooser(intent, "Choose photo"),
+                    GALLERY_REQUEST_CODE
+                )
             }
         })
 
@@ -70,7 +74,8 @@ class CharEditDetailsFragment : Fragment() {
     }
 
     fun uploadToFirebase(uri: Uri) {
-        val fileRef = storageRefrence.child("${System.currentTimeMillis()} ${charDetailViewModel.charName.value}")
+        val fileRef =
+            storageRefrence.child("${System.currentTimeMillis()} ${charDetailViewModel.charName.value}")
         fileRef.putFile(uri).addOnSuccessListener {
             fileRef.downloadUrl.addOnSuccessListener {
                 Log.d("ImageUp", "Upload")

@@ -21,9 +21,9 @@ class PaperworkViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
         get() = _navigateToPaperWorkDetails
 
     val options = FirebaseRecyclerOptions.Builder<PaperWork>()
-            .setQuery(PaperworkFirebase.databaseReference, PaperWork::class.java)
-            .setLifecycleOwner(lifecycleOwner)
-            .build()
+        .setQuery(PaperworkFirebase.databaseReference, PaperWork::class.java)
+        .setLifecycleOwner(lifecycleOwner)
+        .build()
 
 
     fun navigateToAddPaperWork() {

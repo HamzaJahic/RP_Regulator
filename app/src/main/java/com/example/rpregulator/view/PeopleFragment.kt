@@ -17,21 +17,23 @@ class PeopleFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPeopleBinding.inflate(inflater, container, false)
         val view = binding.root
 
         val viewModelFactory = CharsViewModelFactory(this)
-        val charsViewModel = ViewModelProvider(this, viewModelFactory).get(CharsViewModel::class.java)
+        val charsViewModel =
+            ViewModelProvider(this, viewModelFactory).get(CharsViewModel::class.java)
 
         binding.viewModel = charsViewModel
 
-        val adapter = CharsAdapter(charsViewModel.options, requireActivity(), CharsAdapter.OnClickListener {
-            charsViewModel.navigateToCharsDetails(it)
-        })
+        val adapter =
+            CharsAdapter(charsViewModel.options, requireActivity(), CharsAdapter.OnClickListener {
+                charsViewModel.navigateToCharsDetails(it)
+            })
 
         binding.listPeople.adapter = adapter
 
@@ -44,7 +46,8 @@ class PeopleFragment : Fragment() {
 
         charsViewModel.navigateToCharsDetails.observe(viewLifecycleOwner, {
             it?.let {
-                val action = BestiaryFragmentDirections.actionBestiaryFragmentToCharDetailsFragment(it)
+                val action =
+                    BestiaryFragmentDirections.actionBestiaryFragmentToCharDetailsFragment(it)
                 findNavController().navigate(action)
             }
         })

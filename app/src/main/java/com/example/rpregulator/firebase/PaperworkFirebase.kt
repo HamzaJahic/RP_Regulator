@@ -9,7 +9,8 @@ import com.google.firebase.ktx.Firebase
 class PaperworkFirebase {
 
     companion object {
-        val databaseReference: DatabaseReference = Firebase.database.reference.child("Users").child(USER_ID.value!!).child("paperwork")
+        val databaseReference: DatabaseReference =
+            Firebase.database.reference.child("Users").child(USER_ID.value!!).child("paperwork")
 
         fun uploadData(key: String, entry: PaperWork) {
             databaseReference.child(key).setValue(entry)

@@ -17,9 +17,9 @@ class PinFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPinBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -34,8 +34,10 @@ class PinFragment : Fragment() {
 
         pinViewModel.navigateToMain.observe(viewLifecycleOwner, {
             it?.let {
-                val intent = Intent(requireActivity(), MainActivity::class.java).putExtra("id", user.id)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                val intent =
+                    Intent(requireActivity(), MainActivity::class.java).putExtra("id", user.id)
+                intent.flags =
+                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
             }
         })

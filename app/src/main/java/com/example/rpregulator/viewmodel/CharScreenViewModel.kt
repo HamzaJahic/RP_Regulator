@@ -46,23 +46,25 @@ class CharScreenViewModel : ViewModel() {
     fun increaseGold(inc: Int) {
         val oldValue = _gold.value!!.toInt()
         val newValue = oldValue + inc
-        UsersFirebase.databaseReference.child(USER_ID.value!!).child("gold").setValue(newValue.toString())
+        UsersFirebase.databaseReference.child(USER_ID.value!!).child("gold")
+            .setValue(newValue.toString())
         _gold.value = newValue.toString()
     }
 
     private fun getUserInfo() {
 
-        UsersFirebase.databaseReference.child(USER_ID.value!!).addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                _charName.value = snapshot.child("username").value.toString()
-                _gold.value = snapshot.child("gold").value.toString()
-                _img.value = snapshot.child("img").value.toString()
-            }
+        UsersFirebase.databaseReference.child(USER_ID.value!!)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    _charName.value = snapshot.child("username").value.toString()
+                    _gold.value = snapshot.child("gold").value.toString()
+                    _img.value = snapshot.child("img").value.toString()
+                }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
 
     }
 

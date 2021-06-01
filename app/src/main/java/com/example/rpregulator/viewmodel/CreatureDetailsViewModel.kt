@@ -69,11 +69,11 @@ class CreatureDetailsViewModel(var creature: Creatures) : ViewModel() {
         CreaturesFirebase.databaseReference
         val entryID = id
         val entry = Creatures(
-                entryID,
-                img,
-                creatureName.value,
-                creatureApperance.value,
-                creatureDesc.value
+            entryID,
+            img,
+            creatureName.value,
+            creatureApperance.value,
+            creatureDesc.value
         )
         viewModelScope.launch {
             CreaturesFirebase.uploadData(entryID, entry)

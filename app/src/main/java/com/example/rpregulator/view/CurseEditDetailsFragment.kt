@@ -15,16 +15,17 @@ class CurseEditDetailsFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentCurseEditDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
         val curse = CurseEditDetailsFragmentArgs.fromBundle(requireArguments()).curse
         val viewModelFactory = CurseDetailsViewModelFactory(curse)
-        val curseDetailViewModel = ViewModelProvider(this, viewModelFactory).get(CurseDetailsViewModel::class.java)
+        val curseDetailViewModel =
+            ViewModelProvider(this, viewModelFactory).get(CurseDetailsViewModel::class.java)
 
         binding.viewModel = curseDetailViewModel
 

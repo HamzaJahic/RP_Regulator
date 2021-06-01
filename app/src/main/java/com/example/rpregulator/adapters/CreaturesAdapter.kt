@@ -12,8 +12,11 @@ import com.example.rpregulator.models.Creatures
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class CreaturesAdapter(options: FirebaseRecyclerOptions<Creatures>, val context: Context, val onClickListener: OnClickListener)
-    : FirebaseRecyclerAdapter<Creatures, CreaturesAdapter.CreaturesHolder>(options) {
+class CreaturesAdapter(
+    options: FirebaseRecyclerOptions<Creatures>,
+    val context: Context,
+    val onClickListener: OnClickListener
+) : FirebaseRecyclerAdapter<Creatures, CreaturesAdapter.CreaturesHolder>(options) {
 
 
     private val _progressBarShow = MutableLiveData<Boolean?>()
@@ -21,7 +24,8 @@ class CreaturesAdapter(options: FirebaseRecyclerOptions<Creatures>, val context:
         get() = _progressBarShow
 
 
-    class CreaturesHolder(private var binding: RvItemCharsBinding) : RecyclerView.ViewHolder(binding.root) {
+    class CreaturesHolder(private var binding: RvItemCharsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(creatures: Creatures, context: Context, onClickListener: OnClickListener) {
             binding.txtTitle.text = creatures.name
             binding.txtDesc.text = creatures.desc

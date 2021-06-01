@@ -15,16 +15,17 @@ class SkillEditDetailsFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentSkillEditDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
         val skill = SkillEditDetailsFragmentArgs.fromBundle(requireArguments()).skills
         val viewModelFactory = SkillDetailsViewModelFactory(skill)
-        val skillDetailViewModel = ViewModelProvider(this, viewModelFactory).get(SkillDetailsViewModel::class.java)
+        val skillDetailViewModel =
+            ViewModelProvider(this, viewModelFactory).get(SkillDetailsViewModel::class.java)
 
         binding.viewModel = skillDetailViewModel
 

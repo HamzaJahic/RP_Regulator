@@ -21,9 +21,9 @@ class NotesViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
         get() = _navigateToNotesDetails
 
     val options = FirebaseRecyclerOptions.Builder<Notes>()
-            .setQuery(NotesFirebase.databaseReference, Notes::class.java)
-            .setLifecycleOwner(lifecycleOwner)
-            .build()
+        .setQuery(NotesFirebase.databaseReference, Notes::class.java)
+        .setLifecycleOwner(lifecycleOwner)
+        .build()
 
 
     fun navigateToAddNotes() {

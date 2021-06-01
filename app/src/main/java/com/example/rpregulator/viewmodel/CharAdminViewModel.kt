@@ -75,17 +75,18 @@ class CharAdminViewModel(val id: String) : ViewModel() {
 
     private fun getUserInfo() {
 
-        UsersFirebase.databaseReference.child(id).addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                _charName.value = snapshot.child("username").value.toString()
-                _gold.value = snapshot.child("gold").value.toString()
-                _img.value = snapshot.child("img").value.toString()
-            }
+        UsersFirebase.databaseReference.child(id)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    _charName.value = snapshot.child("username").value.toString()
+                    _gold.value = snapshot.child("gold").value.toString()
+                    _img.value = snapshot.child("img").value.toString()
+                }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
 
     }
 

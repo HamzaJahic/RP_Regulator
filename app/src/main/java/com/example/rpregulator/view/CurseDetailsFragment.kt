@@ -17,16 +17,17 @@ class CurseDetailsFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentCursesDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
         val curse = CurseDetailsFragmentArgs.fromBundle(requireArguments()).curse
         val viewModelFactory = CurseDetailsViewModelFactory(curse)
-        val curseDetailViewModel = ViewModelProvider(this, viewModelFactory).get(CurseDetailsViewModel::class.java)
+        val curseDetailViewModel =
+            ViewModelProvider(this, viewModelFactory).get(CurseDetailsViewModel::class.java)
 
         binding.viewModel = curseDetailViewModel
 
@@ -34,14 +35,18 @@ class CurseDetailsFragment : Fragment() {
 
         curseDetailViewModel.navigateToCurseEdit.observe(viewLifecycleOwner, {
             it?.let {
-                val action = CurseDetailsFragmentDirections.actionCurseDetailsFragmentToCurseEditDetailsFragment(it)
+                val action =
+                    CurseDetailsFragmentDirections.actionCurseDetailsFragmentToCurseEditDetailsFragment(
+                        it
+                    )
                 findNavController().navigate(action)
             }
         })
 
         curseDetailViewModel.navigateToCurse.observe(viewLifecycleOwner, {
             it?.let {
-                val action = CurseDetailsFragmentDirections.actionCurseDetailsFragmentToStatusFragment()
+                val action =
+                    CurseDetailsFragmentDirections.actionCurseDetailsFragmentToStatusFragment()
                 findNavController().navigate(action)
             }
         })

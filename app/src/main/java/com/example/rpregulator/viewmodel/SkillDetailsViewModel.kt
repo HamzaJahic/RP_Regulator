@@ -75,12 +75,12 @@ class SkillDetailsViewModel(private var skill: Skills) : ViewModel() {
         SkillsFirebase.databaseReference
         val entryID = id
         val entry = Skills(
-                entryID,
-                skillName.value,
-                type,
-                skillCost.value,
-                skillDesc.value,
-                skill.value
+            entryID,
+            skillName.value,
+            type,
+            skillCost.value,
+            skillDesc.value,
+            skill.value
         )
         viewModelScope.launch {
             SkillsFirebase.uploadData(entryID, entry, USER_ID.value!!)

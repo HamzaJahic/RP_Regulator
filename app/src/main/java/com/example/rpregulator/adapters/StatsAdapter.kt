@@ -14,30 +14,37 @@ import com.example.rpregulator.utils.AlertDialogBuilders
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class StatsAdapter(options: FirebaseRecyclerOptions<Stats>, private val context: Context, val user_id: String, val onClickListener: OnClickListener)
-    : FirebaseRecyclerAdapter<Stats, StatsAdapter.StatsHolder>(options){
+class StatsAdapter(
+    options: FirebaseRecyclerOptions<Stats>,
+    private val context: Context,
+    val user_id: String,
+    val onClickListener: OnClickListener
+) : FirebaseRecyclerAdapter<Stats, StatsAdapter.StatsHolder>(options) {
 
     private val _progressBarShow = MutableLiveData<Boolean?>()
     val progressBar: LiveData<Boolean?>
         get() = _progressBarShow
 
-    class StatsHolder(private var binding: RvItemMainBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(stats: Stats, user_id: String, context: Context){
+    class StatsHolder(private var binding: RvItemMainBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(stats: Stats, user_id: String, context: Context) {
             binding.txtName.text = stats.name
             binding.txtValue.text = "${stats.value}"
-            binding.textBackground.setBackgroundColor( when(stats.name){
-                "Health Points" -> Color.parseColor("#a33636")
-                "Mana Points" -> Color.parseColor("#368ba3")
-                "Magum" -> Color.parseColor("#36a39a")
-                "Stamina" -> Color.parseColor("#57a336")
-                "Strength" -> Color.parseColor("#c48c2b")
-                "Dexterity" -> Color.parseColor("#55a832")
-                "Defense" -> Color.parseColor("#86769c")
-                "Magic Resist" -> Color.parseColor("#6b33b5")
-                "Speed" -> Color.parseColor("#b5b333")
-                else -> Color.parseColor("#55a832")
+            binding.textBackground.setBackgroundColor(
+                when (stats.name) {
+                    "Health Points" -> Color.parseColor("#a33636")
+                    "Mana Points" -> Color.parseColor("#368ba3")
+                    "Magum" -> Color.parseColor("#36a39a")
+                    "Stamina" -> Color.parseColor("#57a336")
+                    "Strength" -> Color.parseColor("#c48c2b")
+                    "Dexterity" -> Color.parseColor("#55a832")
+                    "Defense" -> Color.parseColor("#86769c")
+                    "Magic Resist" -> Color.parseColor("#6b33b5")
+                    "Speed" -> Color.parseColor("#b5b333")
+                    else -> Color.parseColor("#55a832")
 
-            })
+                }
+            )
 
             binding.btnIncrease.setOnClickListener {
                 increaseValue(stats, user_id)
@@ -48,38 +55,40 @@ class StatsAdapter(options: FirebaseRecyclerOptions<Stats>, private val context:
             binding.cardView.setOnLongClickListener {
                 AlertDialogBuilders.createDeleteAlert(context) {
                     UsersFirebase.databaseReference
-                            .child(user_id)
-                            .child("stats")
-                            .child(stats.id.toString())
-                            .removeValue()
+                        .child(user_id)
+                        .child("stats")
+                        .child(stats.id.toString())
+                        .removeValue()
                 }
                 true
             }
         }
 
-        private fun increaseValue(stats: Stats, user_id: String){
+        private fun increaseValue(stats: Stats, user_id: String) {
             var valueOld = stats.value!!.toInt()
 
-            val valueNew = if(stats.name == "Stamina") valueOld+10 else ++valueOld
+            val valueNew = if (stats.name == "Stamina") valueOld + 10 else ++valueOld
 
             UsersFirebase.databaseReference
-                    .child(user_id)
-                    .child("stats")
-                    .child(stats.id.toString())
-                    .child("value")
-                    .setValue(valueNew.toString())        }
+                .child(user_id)
+                .child("stats")
+                .child(stats.id.toString())
+                .child("value")
+                .setValue(valueNew.toString())
+        }
 
-        private fun decreaseValue(stats: Stats, user_id: String){
+        private fun decreaseValue(stats: Stats, user_id: String) {
             var valueOld = stats.value!!.toInt()
 
-            val valueNew =if(stats.name == "Stamina") valueOld-10 else --valueOld
+            val valueNew = if (stats.name == "Stamina") valueOld - 10 else --valueOld
 
             UsersFirebase.databaseReference
-                    .child(user_id)
-                    .child("stats")
-                    .child(stats.id.toString())
-                    .child("value")
-                    .setValue(valueNew.toString())         }
+                .child(user_id)
+                .child("stats")
+                .child(stats.id.toString())
+                .child("value")
+                .setValue(valueNew.toString())
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StatsHolder {
@@ -90,12 +99,12 @@ class StatsAdapter(options: FirebaseRecyclerOptions<Stats>, private val context:
     override fun onBindViewHolder(holder: StatsHolder, position: Int, model: Stats) {
         val item = getItem(position)
         holder.bind(item, user_id, context)
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             onClickListener.onClick(item)
         }
     }
 
-    class OnClickListener(val clickListener: (stats: Stats) ->Unit){
+    class OnClickListener(val clickListener: (stats: Stats) -> Unit) {
         fun onClick(stats: Stats) = clickListener(stats)
     }
 

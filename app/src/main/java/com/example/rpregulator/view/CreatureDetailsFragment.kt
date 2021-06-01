@@ -13,7 +13,7 @@ import com.example.rpregulator.utils.AlertDialogBuilders
 import com.example.rpregulator.viewmodel.CreatureDetailsViewModel
 import com.example.rpregulator.viewmodel.CreatureDetailsViewModelFactory
 
-class CreatureDetailsFragment: Fragment() {
+class CreatureDetailsFragment : Fragment() {
     private var _binding: FragmentCreatureDetailsBinding? = null
     private val binding get() = _binding!!
 
@@ -27,35 +27,41 @@ class CreatureDetailsFragment: Fragment() {
         val view = binding.root
         val creature = CreatureDetailsFragmentArgs.fromBundle(requireArguments()).creature
         val viewModelFactory = CreatureDetailsViewModelFactory(creature)
-        val creatureDetailViewModel = ViewModelProvider(this, viewModelFactory).get(CreatureDetailsViewModel::class.java)
+        val creatureDetailViewModel =
+            ViewModelProvider(this, viewModelFactory).get(CreatureDetailsViewModel::class.java)
 
         binding.viewModel = creatureDetailViewModel
 
         Glide.with(this).load(creature.img).into(binding.imgOfCreature)
 
         creatureDetailViewModel.navigateToCreatureEdit.observe(viewLifecycleOwner, {
-            it?.let{
-               val action = CreatureDetailsFragmentDirections.actionCreatureDetailsFragmentToCreatureEditDetailsFragment(it)
-               findNavController().navigate(action)
+            it?.let {
+                val action =
+                    CreatureDetailsFragmentDirections.actionCreatureDetailsFragmentToCreatureEditDetailsFragment(
+                        it
+                    )
+                findNavController().navigate(action)
             }
         })
 
-        creatureDetailViewModel.navigateToCreature.observe(viewLifecycleOwner,{
-            it?.let{
-               val action = CreatureDetailsFragmentDirections.actionCreatureDetailsFragmentToBestiaryFragment()
+        creatureDetailViewModel.navigateToCreature.observe(viewLifecycleOwner, {
+            it?.let {
+                val action =
+                    CreatureDetailsFragmentDirections.actionCreatureDetailsFragmentToBestiaryFragment()
                 findNavController().navigate(action)
             }
         })
 
 
         creatureDetailViewModel.showAlertDialog.observe(viewLifecycleOwner, {
-            it?.let{
+            it?.let {
                 AlertDialogBuilders.createDeleteAlert(requireContext()) { creatureDetailViewModel.deleteEntry() }
             }
         })
 
         return view
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

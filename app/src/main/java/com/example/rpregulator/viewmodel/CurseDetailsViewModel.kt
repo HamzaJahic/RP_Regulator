@@ -63,10 +63,10 @@ class CurseDetailsViewModel(var curse: CursesBlessingsHealth) : ViewModel() {
         CursesFirebase.databaseReference
         val entryID = id
         val entry = CursesBlessingsHealth(
-                entryID,
-                curseName.value,
-                curseIntensity.value,
-                curseDesc.value
+            entryID,
+            curseName.value,
+            curseIntensity.value,
+            curseDesc.value
         )
         viewModelScope.launch {
             CursesFirebase.uploadData(entryID, entry, USER_ID.value!!)

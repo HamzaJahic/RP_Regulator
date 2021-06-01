@@ -51,10 +51,10 @@ class AddNotesViewModel : ViewModel() {
         val databaseReference = NotesFirebase.databaseReference
         val entryID = databaseReference.push().key.toString()
         val entry = Notes(
-                entryID,
-                img,
-                noteTitle.value,
-                noteDesc.value
+            entryID,
+            img,
+            noteTitle.value,
+            noteDesc.value
         )
         viewModelScope.launch {
             NotesFirebase.uploadData(entryID, entry)

@@ -34,8 +34,7 @@
             android:src="@drawable/emblems"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etPaperWorkTitle"
@@ -94,8 +93,7 @@
             android:onClick="@{onClick -> viewModel.uploadData()}"
             android:src="@drawable/ic_accept"
             app:layout_constraintStart_toStartOf="@id/etPaperWorkDesc"
-            app:layout_constraintTop_toBottomOf="@id/etPaperWorkDesc"
-            />
+            app:layout_constraintTop_toBottomOf="@id/etPaperWorkDesc" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabCancel"
@@ -105,8 +103,7 @@
             android:onClick="@{onClick -> viewModel.navigateToPaperWorks()}"
             android:src="@drawable/ic_cancel"
             app:layout_constraintEnd_toEndOf="@id/etPaperWorkDesc"
-            app:layout_constraintTop_toBottomOf="@id/etPaperWorkDesc"
-             />
+            app:layout_constraintTop_toBottomOf="@id/etPaperWorkDesc" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"

@@ -17,27 +17,30 @@ class PaperworkFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPaperworkBinding.inflate(inflater, container, false)
         val view = binding.root
 
         val viewModelFactory = PaperworkViewModelFactory(this)
-        val paperworkViewModel = ViewModelProvider(this, viewModelFactory).get(PaperworkViewModel::class.java)
+        val paperworkViewModel =
+            ViewModelProvider(this, viewModelFactory).get(PaperworkViewModel::class.java)
 
         binding.viewModel = paperworkViewModel
 
-        val adapter = PaperworkAdapter(paperworkViewModel.options, PaperworkAdapter.OnClickListener {
-            paperworkViewModel.navigateToPaperWorkDetails(it)
-        })
+        val adapter =
+            PaperworkAdapter(paperworkViewModel.options, PaperworkAdapter.OnClickListener {
+                paperworkViewModel.navigateToPaperWorkDetails(it)
+            })
 
         binding.listPaperwork.adapter = adapter
 
         paperworkViewModel.navigateToAddPaperWork.observe(viewLifecycleOwner, {
             it?.let {
-                val action = PaperworkFragmentDirections.actionPaperworkFragmentToAddPaperWorkFragment()
+                val action =
+                    PaperworkFragmentDirections.actionPaperworkFragmentToAddPaperWorkFragment()
                 findNavController().navigate(action)
             }
         })

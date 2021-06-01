@@ -17,9 +17,9 @@ class StatsAdminFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentRvLayoutBinding.inflate(inflater, container, false)
@@ -27,16 +27,22 @@ class StatsAdminFragment : Fragment() {
         val id = StatsAdminFragmentArgs.fromBundle(requireArguments()).id
 
         val viewModelFactory = DataViewModelFactory(this, id)
-        val dataDetailViewModel = ViewModelProvider(this, viewModelFactory).get(DataViewModel::class.java)
+        val dataDetailViewModel =
+            ViewModelProvider(this, viewModelFactory).get(DataViewModel::class.java)
 
-        val adapter = StatsAdapter(dataDetailViewModel.optionsStats, requireContext(), id, StatsAdapter.OnClickListener {
+        val adapter = StatsAdapter(
+            dataDetailViewModel.optionsStats,
+            requireContext(),
+            id,
+            StatsAdapter.OnClickListener {
 
-        })
+            })
         binding.viewModel = dataDetailViewModel
 
         dataDetailViewModel.navigateToAdd.observe(viewLifecycleOwner, {
             it?.let {
-                val action = StatsAdminFragmentDirections.actionStatsAdminFragmentToAddStatFragment(id)
+                val action =
+                    StatsAdminFragmentDirections.actionStatsAdminFragmentToAddStatFragment(id)
                 findNavController().navigate(action)
             }
         })

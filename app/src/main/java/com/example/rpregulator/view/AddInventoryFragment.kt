@@ -16,9 +16,9 @@ class AddInventoryFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceInventorye: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceInventorye: Bundle?
     ): View {
 
         _binding = FragmentAddInventoryBinding.inflate(inflater, container, false)
@@ -26,13 +26,15 @@ class AddInventoryFragment : Fragment() {
         val id = AddInventoryFragmentArgs.fromBundle(requireArguments()).id
 
         val viewModelFactory = AddInventoryViewModelFactory(id)
-        val addInventoryViewModel = ViewModelProvider(this, viewModelFactory).get(AddInventoryViewModel::class.java)
+        val addInventoryViewModel =
+            ViewModelProvider(this, viewModelFactory).get(AddInventoryViewModel::class.java)
 
         binding.viewModel = addInventoryViewModel
 
         addInventoryViewModel.navigateToInventory.observe(viewLifecycleOwner, {
             it?.let {
-                val action = AddInventoryFragmentDirections.actionAddInventoryFragmentToMainFragment()
+                val action =
+                    AddInventoryFragmentDirections.actionAddInventoryFragmentToMainFragment()
                 findNavController().navigate(action)
             }
         })

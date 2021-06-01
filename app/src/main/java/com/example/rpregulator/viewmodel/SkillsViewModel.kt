@@ -12,9 +12,9 @@ class SkillsViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
 
 
     val options = FirebaseRecyclerOptions.Builder<Skills>()
-            .setQuery(SkillsFirebase.databaseReference.orderByChild("name"), Skills::class.java)
-            .setLifecycleOwner(lifecycleOwner)
-            .build()
+        .setQuery(SkillsFirebase.databaseReference.orderByChild("name"), Skills::class.java)
+        .setLifecycleOwner(lifecycleOwner)
+        .build()
 
 
     private val _navigateToAddSkills = MutableLiveData<Boolean?>()

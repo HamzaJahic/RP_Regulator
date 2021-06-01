@@ -13,15 +13,25 @@ import com.example.rpregulator.utils.AlertDialogBuilders
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class BlessingsAdapter(options: FirebaseRecyclerOptions<CursesBlessingsHealth>, private val context: Context, private val user_id: String, val onClickListener: OnClickListener)
-    : FirebaseRecyclerAdapter<CursesBlessingsHealth, BlessingsAdapter.StatusHolder>(options) {
+class BlessingsAdapter(
+    options: FirebaseRecyclerOptions<CursesBlessingsHealth>,
+    private val context: Context,
+    private val user_id: String,
+    val onClickListener: OnClickListener
+) : FirebaseRecyclerAdapter<CursesBlessingsHealth, BlessingsAdapter.StatusHolder>(options) {
 
     private val _progressBarShow = MutableLiveData<Boolean?>()
     val progressBar: LiveData<Boolean?>
         get() = _progressBarShow
 
-    class StatusHolder(private var binding: RvItemMainBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(cursesBlessingsHealth: CursesBlessingsHealth, onClickListener: OnClickListener, user_id: String, context: Context) {
+    class StatusHolder(private var binding: RvItemMainBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(
+            cursesBlessingsHealth: CursesBlessingsHealth,
+            onClickListener: OnClickListener,
+            user_id: String,
+            context: Context
+        ) {
             binding.txtName.text = cursesBlessingsHealth.name
             binding.txtValue.text = "${cursesBlessingsHealth.value}"
 
@@ -38,10 +48,10 @@ class BlessingsAdapter(options: FirebaseRecyclerOptions<CursesBlessingsHealth>, 
             binding.cardView.setOnLongClickListener {
                 AlertDialogBuilders.createDeleteAlert(context) {
                     UsersFirebase.databaseReference
-                            .child(user_id)
-                            .child("blessings")
-                            .child(cursesBlessingsHealth.id.toString())
-                            .removeValue()
+                        .child(user_id)
+                        .child("blessings")
+                        .child(cursesBlessingsHealth.id.toString())
+                        .removeValue()
                 }
                 true
             }
@@ -53,11 +63,11 @@ class BlessingsAdapter(options: FirebaseRecyclerOptions<CursesBlessingsHealth>, 
             val valueNew = ++valueOld
 
             UsersFirebase.databaseReference
-                    .child(user_id)
-                    .child("blessings")
-                    .child(cursesBlessingsHealth.id.toString())
-                    .child("value")
-                    .setValue(valueNew.toString())
+                .child(user_id)
+                .child("blessings")
+                .child(cursesBlessingsHealth.id.toString())
+                .child("value")
+                .setValue(valueNew.toString())
         }
 
         private fun decreaseValue(cursesBlessingsHealth: CursesBlessingsHealth, user_id: String) {
@@ -66,11 +76,11 @@ class BlessingsAdapter(options: FirebaseRecyclerOptions<CursesBlessingsHealth>, 
             val valueNew = --valueOld
 
             UsersFirebase.databaseReference
-                    .child(user_id)
-                    .child("blessings")
-                    .child(cursesBlessingsHealth.id.toString())
-                    .child("value")
-                    .setValue(valueNew.toString())
+                .child(user_id)
+                .child("blessings")
+                .child(cursesBlessingsHealth.id.toString())
+                .child("value")
+                .setValue(valueNew.toString())
         }
     }
 
@@ -79,14 +89,19 @@ class BlessingsAdapter(options: FirebaseRecyclerOptions<CursesBlessingsHealth>, 
     }
 
 
-    override fun onBindViewHolder(holder: StatusHolder, position: Int, model: CursesBlessingsHealth) {
+    override fun onBindViewHolder(
+        holder: StatusHolder,
+        position: Int,
+        model: CursesBlessingsHealth
+    ) {
         val item = getItem(position)
         holder.bind(item, onClickListener, user_id, context)
 
     }
 
     class OnClickListener(val clickListener: (cursesBlessingsHealth: CursesBlessingsHealth) -> Unit) {
-        fun onClick(cursesBlessingsHealth: CursesBlessingsHealth) = clickListener(cursesBlessingsHealth)
+        fun onClick(cursesBlessingsHealth: CursesBlessingsHealth) =
+            clickListener(cursesBlessingsHealth)
     }
 
     override fun onDataChanged() {

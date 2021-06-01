@@ -18,16 +18,17 @@ class SkillDetailsFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentSkillDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
         val skill = SkillDetailsFragmentArgs.fromBundle(requireArguments()).skills
         val viewModelFactory = SkillDetailsViewModelFactory(skill)
-        val skillDetailViewModel = ViewModelProvider(this, viewModelFactory).get(SkillDetailsViewModel::class.java)
+        val skillDetailViewModel =
+            ViewModelProvider(this, viewModelFactory).get(SkillDetailsViewModel::class.java)
 
         binding.viewModel = skillDetailViewModel
 
@@ -41,14 +42,18 @@ class SkillDetailsFragment : Fragment() {
 
         skillDetailViewModel.navigateToSkillEdit.observe(viewLifecycleOwner, {
             it?.let {
-                val action = SkillDetailsFragmentDirections.actionSkillDetailsFragmentToSkillEditDetailsFragment(it)
+                val action =
+                    SkillDetailsFragmentDirections.actionSkillDetailsFragmentToSkillEditDetailsFragment(
+                        it
+                    )
                 findNavController().navigate(action)
             }
         })
 
         skillDetailViewModel.navigateToSkills.observe(viewLifecycleOwner, {
             it?.let {
-                val action = SkillDetailsFragmentDirections.actionSkillDetailsFragmentToMainFragment()
+                val action =
+                    SkillDetailsFragmentDirections.actionSkillDetailsFragmentToMainFragment()
                 findNavController().navigate(action)
             }
         })

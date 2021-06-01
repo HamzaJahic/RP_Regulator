@@ -31,15 +31,16 @@ class CharHarisFragment : Fragment() {
 
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCharAdminBinding.inflate(inflater, container, false)
         val view = binding.root
 
         val viewModelFactory = CharAdminViewModelFactory(HARIS_ID)
-        charAdminViewModel = ViewModelProvider(this, viewModelFactory).get(CharAdminViewModel::class.java)
+        charAdminViewModel =
+            ViewModelProvider(this, viewModelFactory).get(CharAdminViewModel::class.java)
 
         binding.viewModel = charAdminViewModel
 
@@ -57,49 +58,56 @@ class CharHarisFragment : Fragment() {
 
         charAdminViewModel.navigateToStats.observe(viewLifecycleOwner, {
             it?.let {
-                val action = AdminTabFragmentDirections.actionAdminTabFragmentToStatsAdminFragment(it)
+                val action =
+                    AdminTabFragmentDirections.actionAdminTabFragmentToStatsAdminFragment(it)
                 findNavController().navigate(action)
             }
         })
 
         charAdminViewModel.navigateToSkills.observe(viewLifecycleOwner, {
             it?.let {
-                val action = AdminTabFragmentDirections.actionAdminTabFragmentToSkillsAdminFragment(it)
+                val action =
+                    AdminTabFragmentDirections.actionAdminTabFragmentToSkillsAdminFragment(it)
                 findNavController().navigate(action)
             }
         })
 
         charAdminViewModel.navigateToInventory.observe(viewLifecycleOwner, {
             it?.let {
-                val action = AdminTabFragmentDirections.actionAdminTabFragmentToInventoryAdminFragment(it)
+                val action =
+                    AdminTabFragmentDirections.actionAdminTabFragmentToInventoryAdminFragment(it)
                 findNavController().navigate(action)
             }
         })
 
         charAdminViewModel.navigateToCurses.observe(viewLifecycleOwner, {
             it?.let {
-                val action = AdminTabFragmentDirections.actionAdminTabFragmentToCursesAdminFragment(it)
+                val action =
+                    AdminTabFragmentDirections.actionAdminTabFragmentToCursesAdminFragment(it)
                 findNavController().navigate(action)
             }
         })
 
         charAdminViewModel.navigateToBlessings.observe(viewLifecycleOwner, {
             it?.let {
-                val action = AdminTabFragmentDirections.actionAdminTabFragmentToBlessingsAdminFragment(it)
+                val action =
+                    AdminTabFragmentDirections.actionAdminTabFragmentToBlessingsAdminFragment(it)
                 findNavController().navigate(action)
             }
         })
 
         charAdminViewModel.navigateToStatus.observe(viewLifecycleOwner, {
             it?.let {
-                val action = AdminTabFragmentDirections.actionAdminTabFragmentToStatusAdminFragment(it)
+                val action =
+                    AdminTabFragmentDirections.actionAdminTabFragmentToStatusAdminFragment(it)
                 findNavController().navigate(action)
             }
         })
 
         charAdminViewModel.navigateToXP.observe(viewLifecycleOwner, {
             it?.let {
-                val action = AdminTabFragmentDirections.actionAdminTabFragmentToExperienceAdminFragment(it)
+                val action =
+                    AdminTabFragmentDirections.actionAdminTabFragmentToExperienceAdminFragment(it)
                 findNavController().navigate(action)
             }
         })
@@ -126,7 +134,8 @@ class CharHarisFragment : Fragment() {
     }
 
     fun uploadToFirebase(uri: Uri) {
-        val fileRef = storageRefrence.child("${System.currentTimeMillis()} ${charAdminViewModel.charName.value}")
+        val fileRef =
+            storageRefrence.child("${System.currentTimeMillis()} ${charAdminViewModel.charName.value}")
         fileRef.putFile(uri).addOnSuccessListener {
             fileRef.downloadUrl.addOnSuccessListener {
                 Log.d("ImageUp", "Upload")

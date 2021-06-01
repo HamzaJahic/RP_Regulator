@@ -17,16 +17,17 @@ class BlessingDetailsFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentBlessingsDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
         val blessing = BlessingDetailsFragmentArgs.fromBundle(requireArguments()).blessing
         val viewModelFactory = BlessingDetailsViewModelFactory(blessing)
-        val blessingDetailViewModel = ViewModelProvider(this, viewModelFactory).get(BlessingDetailsViewModel::class.java)
+        val blessingDetailViewModel =
+            ViewModelProvider(this, viewModelFactory).get(BlessingDetailsViewModel::class.java)
 
         binding.viewModel = blessingDetailViewModel
 
@@ -34,14 +35,18 @@ class BlessingDetailsFragment : Fragment() {
 
         blessingDetailViewModel.navigateToBlessingEdit.observe(viewLifecycleOwner, {
             it?.let {
-                val action = BlessingDetailsFragmentDirections.actionBlessingDetailsFragmentToBlessingEditDetailsFragment(it)
+                val action =
+                    BlessingDetailsFragmentDirections.actionBlessingDetailsFragmentToBlessingEditDetailsFragment(
+                        it
+                    )
                 findNavController().navigate(action)
             }
         })
 
         blessingDetailViewModel.navigateToBlessing.observe(viewLifecycleOwner, {
             it?.let {
-                val action = BlessingDetailsFragmentDirections.actionBlessingDetailsFragmentToStatusFragment()
+                val action =
+                    BlessingDetailsFragmentDirections.actionBlessingDetailsFragmentToStatusFragment()
                 findNavController().navigate(action)
             }
         })

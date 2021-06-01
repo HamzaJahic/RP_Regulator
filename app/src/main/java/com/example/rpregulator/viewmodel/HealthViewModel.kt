@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HealthViewModel() : ViewModel() {
+class HealthViewModel : ViewModel() {
 
 
     private val _navigateToAddHealth = MutableLiveData<Boolean?>()

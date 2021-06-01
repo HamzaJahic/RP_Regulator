@@ -19,7 +19,6 @@ class AddBlessingViewModel(private val id: String) : ViewModel() {
     val navigateToBlessings: LiveData<Boolean?>
         get() = _navigateToBlessings
 
-
     fun navigateToBlessings() {
         _navigateToBlessings.value = true
         doneNavigateToBlessings()
@@ -34,10 +33,10 @@ class AddBlessingViewModel(private val id: String) : ViewModel() {
         val databaseReference = BlessingsFirebase.databaseReference
         val entryID = databaseReference.push().key.toString()
         val entry = CursesBlessingsHealth(
-                entryID,
-                blessingName.value,
-                blessingIntesity.value,
-                blessingDesc.value
+            entryID,
+            blessingName.value,
+            blessingIntesity.value,
+            blessingDesc.value
         )
         viewModelScope.launch {
             BlessingsFirebase.uploadData(entryID, entry, id)

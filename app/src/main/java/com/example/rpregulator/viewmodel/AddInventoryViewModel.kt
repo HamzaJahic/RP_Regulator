@@ -36,10 +36,10 @@ class AddInventoryViewModel(private val id: String) : ViewModel() {
         val entryID = databaseReference.push().key.toString()
 
         val entry = Inventory(
-                entryID,
-                inventoryName.value,
-                inventoryValue.value,
-                inventoryDesc.value
+            entryID,
+            inventoryName.value,
+            inventoryValue.value,
+            inventoryDesc.value
         )
 
         viewModelScope.launch {

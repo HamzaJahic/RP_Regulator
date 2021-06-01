@@ -45,7 +45,8 @@ class ChangePinViewModel : ViewModel() {
 
     fun changePass() {
         if (oldPin.value == pin && newPin.value == newPinAgain.value) {
-            UsersFirebase.databaseReference.child(USER_ID.value!!).child("password").setValue(newPin.value)
+            UsersFirebase.databaseReference.child(USER_ID.value!!).child("password")
+                .setValue(newPin.value)
         }
     }
 

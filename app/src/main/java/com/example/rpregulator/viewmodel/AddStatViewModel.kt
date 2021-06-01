@@ -36,11 +36,11 @@ class AddStatViewModel(private val id: String) : ViewModel() {
         val entryID = databaseReference.push().key.toString()
 
         val entry = Stats(
-                entryID,
-                statName.value,
-                statValue.value,
-                statDesc.value,
-                ""
+            entryID,
+            statName.value,
+            statValue.value,
+            statDesc.value,
+            ""
         )
 
         viewModelScope.launch {

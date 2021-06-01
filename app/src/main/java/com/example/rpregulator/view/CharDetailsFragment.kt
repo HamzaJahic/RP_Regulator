@@ -18,16 +18,17 @@ class CharDetailsFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentCharDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
         val char = CharDetailsFragmentArgs.fromBundle(requireArguments()).char
         val viewModelFactory = CharDetailsViewModelFactory(char)
-        val charDetailViewModel = ViewModelProvider(this, viewModelFactory).get(CharDetailsViewModel::class.java)
+        val charDetailViewModel =
+            ViewModelProvider(this, viewModelFactory).get(CharDetailsViewModel::class.java)
 
         binding.viewModel = charDetailViewModel
 
@@ -35,14 +36,18 @@ class CharDetailsFragment : Fragment() {
 
         charDetailViewModel.navigateToCharEdit.observe(viewLifecycleOwner, {
             it?.let {
-                val action = CharDetailsFragmentDirections.actionCharDetailsFragmentToCharEditDetailsFragment(it)
+                val action =
+                    CharDetailsFragmentDirections.actionCharDetailsFragmentToCharEditDetailsFragment(
+                        it
+                    )
                 findNavController().navigate(action)
             }
         })
 
         charDetailViewModel.navigateToChar.observe(viewLifecycleOwner, {
             it?.let {
-                val action = CharDetailsFragmentDirections.actionCharDetailsFragmentToBestiaryFragment()
+                val action =
+                    CharDetailsFragmentDirections.actionCharDetailsFragmentToBestiaryFragment()
                 findNavController().navigate(action)
             }
         })

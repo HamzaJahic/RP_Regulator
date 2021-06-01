@@ -16,9 +16,9 @@ class AddSkillFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentAddSkillBinding.inflate(inflater, container, false)
@@ -26,7 +26,8 @@ class AddSkillFragment : Fragment() {
         val id = AddSkillFragmentArgs.fromBundle(requireArguments()).id
 
         val viewModelFactory = AddSkillViewModelFactory(id)
-        val addSkillViewModel = ViewModelProvider(this, viewModelFactory).get(AddSkillViewModel::class.java)
+        val addSkillViewModel =
+            ViewModelProvider(this, viewModelFactory).get(AddSkillViewModel::class.java)
 
         binding.viewModel = addSkillViewModel
 

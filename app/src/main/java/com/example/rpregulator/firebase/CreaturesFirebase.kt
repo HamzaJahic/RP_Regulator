@@ -8,7 +8,8 @@ import com.google.firebase.ktx.Firebase
 class CreaturesFirebase {
 
     companion object {
-        val databaseReference: DatabaseReference = Firebase.database.reference.child("Chars and Monsters").child("Creatures")
+        val databaseReference: DatabaseReference =
+            Firebase.database.reference.child("Chars and Monsters").child("Creatures")
 
         fun uploadData(key: String, entry: Creatures) {
             databaseReference.child(key).setValue(entry)

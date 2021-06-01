@@ -34,8 +34,7 @@
             android:src="@drawable/ic_active"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
             <tag
                 android:id="@+id/zoomable"
@@ -158,8 +157,7 @@
             android:onClick="@{onClick -> viewModel.navigateToCharEdit()}"
             android:src="@drawable/ic_edit"
             app:layout_constraintStart_toStartOf="@id/tvCharDesc"
-            app:layout_constraintTop_toBottomOf="@id/tvCharDesc"
-             />
+            app:layout_constraintTop_toBottomOf="@id/tvCharDesc" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabCancel"
@@ -169,8 +167,7 @@
             android:onClick="@{onClick -> viewModel.showAlertDialog()}"
             android:src="@drawable/ic_delete"
             app:layout_constraintEnd_toEndOf="@id/tvCharDesc"
-            app:layout_constraintTop_toBottomOf="@id/tvCharDesc"
-             />
+            app:layout_constraintTop_toBottomOf="@id/tvCharDesc" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

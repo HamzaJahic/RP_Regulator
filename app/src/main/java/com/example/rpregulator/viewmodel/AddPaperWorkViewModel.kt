@@ -47,9 +47,9 @@ class AddPaperWorkViewModel : ViewModel() {
         val databaseReference = PaperworkFirebase.databaseReference
         val entryID = databaseReference.push().key.toString()
         val entry = PaperWork(
-                entryID,
-                paperWorkTitle.value,
-                paperWorkDesc.value
+            entryID,
+            paperWorkTitle.value,
+            paperWorkDesc.value
         )
         viewModelScope.launch {
             PaperworkFirebase.uploadData(entryID, entry)

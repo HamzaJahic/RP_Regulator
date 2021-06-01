@@ -16,9 +16,9 @@ class AddBlessingFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentAddBlessingBinding.inflate(inflater, container, false)
@@ -26,13 +26,15 @@ class AddBlessingFragment : Fragment() {
         val id = AddBlessingFragmentArgs.fromBundle(requireArguments()).id
 
         val viewModelFactory = AddBlessingViewModelFactory(id)
-        val blessingViewModel = ViewModelProvider(this, viewModelFactory).get(AddBlessingViewModel::class.java)
+        val blessingViewModel =
+            ViewModelProvider(this, viewModelFactory).get(AddBlessingViewModel::class.java)
 
         binding.viewModel = blessingViewModel
 
         blessingViewModel.navigateToBlessings.observe(viewLifecycleOwner, {
             it?.let {
-                val action = AddBlessingFragmentDirections.actionAddBlessingFragmentToStatusFragment()
+                val action =
+                    AddBlessingFragmentDirections.actionAddBlessingFragmentToStatusFragment()
                 findNavController().navigate(action)
             }
         })

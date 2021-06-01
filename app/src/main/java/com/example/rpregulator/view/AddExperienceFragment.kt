@@ -15,9 +15,9 @@ class AddExperienceFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentAddDataBinding.inflate(inflater, container, false)
@@ -27,7 +27,8 @@ class AddExperienceFragment : Fragment() {
 
 
         val viewModelFactory = AddExperienceViewModelFactory(id)
-        val addExperienceViewModel = ViewModelProvider(this, viewModelFactory).get(AddExperienceViewModel::class.java)
+        val addExperienceViewModel =
+            ViewModelProvider(this, viewModelFactory).get(AddExperienceViewModel::class.java)
 
         binding.viewModel = addExperienceViewModel
 

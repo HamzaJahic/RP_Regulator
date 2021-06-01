@@ -34,11 +34,11 @@ class AddExperienceViewModel(val id: String) : ViewModel() {
         val databaseReference = UsersFirebase.databaseReference.child(id).child("experience")
         val entryID = databaseReference.push().key.toString()
         val entry = Stats(
-                entryID,
-                entryName.value,
-                "0",
-                entryDesc.value,
-                ""
+            entryID,
+            entryName.value,
+            "0",
+            entryDesc.value,
+            ""
         )
         viewModelScope.launch {
             UsersFirebase.uploadData(entryID, entry, id)

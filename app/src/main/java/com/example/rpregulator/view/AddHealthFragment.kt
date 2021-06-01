@@ -17,9 +17,9 @@ class AddHealthFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentAddHealthBinding.inflate(inflater, container, false)
@@ -27,7 +27,8 @@ class AddHealthFragment : Fragment() {
         val id = AddHealthFragmentArgs.fromBundle(requireArguments()).id
 
         val viewModelFactory = AddHealthViewModelFactory(id)
-        val addHealthViewModel = ViewModelProvider(this, viewModelFactory).get(AddHealthViewModel::class.java)
+        val addHealthViewModel =
+            ViewModelProvider(this, viewModelFactory).get(AddHealthViewModel::class.java)
 
         binding.viewModel = addHealthViewModel
 

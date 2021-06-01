@@ -31,21 +31,24 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_hostFragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_hostFragment) as NavHostFragment
         navController = navHostFragment.findNavController()
         mainActivityViewModel = MainActivityViewModel(this)
         val graphInflater = navHostFragment.navController.navInflater
         val navGraph = graphInflater.inflate(R.navigation.nav_graph)
 
         appBarConfiguration = AppBarConfiguration(
-                setOf(R.id.mainFragment,
-                        R.id.statusFragment,
-                        R.id.paperworkFragment,
-                        R.id.notesFragment,
-                        R.id.bestiaryFragment,
-                        R.id.settingsFragment,
-                        R.id.adminTabFragment),
-                binding.drawerLayout
+            setOf(
+                R.id.mainFragment,
+                R.id.statusFragment,
+                R.id.paperworkFragment,
+                R.id.notesFragment,
+                R.id.bestiaryFragment,
+                R.id.settingsFragment,
+                R.id.adminTabFragment
+            ),
+            binding.drawerLayout
         )
 
         setSupportActionBar(binding.toolbar)
@@ -81,6 +84,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        return ZoomHelper.getInstance().dispatchTouchEvent(ev!!, this) || super.dispatchTouchEvent(ev)
+        return ZoomHelper.getInstance().dispatchTouchEvent(ev!!, this) || super.dispatchTouchEvent(
+            ev
+        )
     }
 }

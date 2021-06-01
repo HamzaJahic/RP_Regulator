@@ -27,15 +27,16 @@ class AddCharFragment : Fragment() {
 
     @Suppress("DEPRECATION")
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentAddCharBinding.inflate(inflater, container, false)
         val view = binding.root
         val viewModelFactory = AddCharViewModelFactory()
-        addCharsViewModel = ViewModelProvider(this, viewModelFactory).get(AddCharViewModel::class.java)
+        addCharsViewModel =
+            ViewModelProvider(this, viewModelFactory).get(AddCharViewModel::class.java)
 
         binding.viewModel = addCharsViewModel
 
@@ -52,7 +53,10 @@ class AddCharFragment : Fragment() {
                 val intent = Intent()
                 intent.type = "image/*"
                 intent.action = Intent.ACTION_GET_CONTENT
-                startActivityForResult(Intent.createChooser(intent, "Choose photo"), GALLERY_REQUEST_CODE)
+                startActivityForResult(
+                    Intent.createChooser(intent, "Choose photo"),
+                    GALLERY_REQUEST_CODE
+                )
             }
         })
 
@@ -74,7 +78,8 @@ class AddCharFragment : Fragment() {
 
 
     fun uploadToFirebase(uri: Uri) {
-        val fileRef = storageRefrence.child("${System.currentTimeMillis()} ${addCharsViewModel.charName.value}")
+        val fileRef =
+            storageRefrence.child("${System.currentTimeMillis()} ${addCharsViewModel.charName.value}")
         fileRef.putFile(uri).addOnSuccessListener {
             fileRef.downloadUrl.addOnSuccessListener {
                 Log.d("ImageUp", "Upload")

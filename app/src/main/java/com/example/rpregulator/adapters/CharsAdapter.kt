@@ -12,8 +12,11 @@ import com.example.rpregulator.models.Chars
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class CharsAdapter(options: FirebaseRecyclerOptions<Chars>, val context: Context, val onClickListener: OnClickListener)
-    : FirebaseRecyclerAdapter<Chars, CharsAdapter.CharHolder>(options) {
+class CharsAdapter(
+    options: FirebaseRecyclerOptions<Chars>,
+    val context: Context,
+    val onClickListener: OnClickListener
+) : FirebaseRecyclerAdapter<Chars, CharsAdapter.CharHolder>(options) {
 
 
     private val _progressBarShow = MutableLiveData<Boolean?>()
@@ -21,7 +24,8 @@ class CharsAdapter(options: FirebaseRecyclerOptions<Chars>, val context: Context
         get() = _progressBarShow
 
 
-    class CharHolder(private var binding: RvItemCharsBinding) : RecyclerView.ViewHolder(binding.root) {
+    class CharHolder(private var binding: RvItemCharsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(chars: Chars, context: Context, onClickListener: OnClickListener) {
             binding.txtTitle.text = chars.name
             binding.txtDesc.text = chars.desc

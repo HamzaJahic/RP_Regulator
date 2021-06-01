@@ -20,39 +20,51 @@ class DataViewModel(lifecycleOwner: LifecycleOwner, id: String) : ViewModel() {
         get() = _navigateToAdd
 
     val optionsStats = FirebaseRecyclerOptions.Builder<Stats>()
-            .setQuery(UsersFirebase.databaseReference.child(id).child("stats"), Stats::class.java)
-            .setLifecycleOwner(lifecycleOwner)
-            .build()
+        .setQuery(UsersFirebase.databaseReference.child(id).child("stats"), Stats::class.java)
+        .setLifecycleOwner(lifecycleOwner)
+        .build()
 
     val optionsSkills = FirebaseRecyclerOptions.Builder<Skills>()
-            .setQuery(UsersFirebase.databaseReference.child(id).child("skills"), Skills::class.java)
-            .setLifecycleOwner(lifecycleOwner)
-            .build()
+        .setQuery(UsersFirebase.databaseReference.child(id).child("skills"), Skills::class.java)
+        .setLifecycleOwner(lifecycleOwner)
+        .build()
 
     val optionsInventory = FirebaseRecyclerOptions.Builder<Inventory>()
-            .setQuery(UsersFirebase.databaseReference.child(id).child("inventory"), Inventory::class.java)
-            .setLifecycleOwner(lifecycleOwner)
-            .build()
+        .setQuery(
+            UsersFirebase.databaseReference.child(id).child("inventory"),
+            Inventory::class.java
+        )
+        .setLifecycleOwner(lifecycleOwner)
+        .build()
 
     val optionsCurses = FirebaseRecyclerOptions.Builder<CursesBlessingsHealth>()
-            .setQuery(UsersFirebase.databaseReference.child(id).child("curses"), CursesBlessingsHealth::class.java)
-            .setLifecycleOwner(lifecycleOwner)
-            .build()
+        .setQuery(
+            UsersFirebase.databaseReference.child(id).child("curses"),
+            CursesBlessingsHealth::class.java
+        )
+        .setLifecycleOwner(lifecycleOwner)
+        .build()
 
     val optionsBlessings = FirebaseRecyclerOptions.Builder<CursesBlessingsHealth>()
-            .setQuery(UsersFirebase.databaseReference.child(id).child("blessings"), CursesBlessingsHealth::class.java)
-            .setLifecycleOwner(lifecycleOwner)
-            .build()
+        .setQuery(
+            UsersFirebase.databaseReference.child(id).child("blessings"),
+            CursesBlessingsHealth::class.java
+        )
+        .setLifecycleOwner(lifecycleOwner)
+        .build()
 
     val optionsStatus = FirebaseRecyclerOptions.Builder<CursesBlessingsHealth>()
-            .setQuery(UsersFirebase.databaseReference.child(id).child("status"), CursesBlessingsHealth::class.java)
-            .setLifecycleOwner(lifecycleOwner)
-            .build()
+        .setQuery(
+            UsersFirebase.databaseReference.child(id).child("status"),
+            CursesBlessingsHealth::class.java
+        )
+        .setLifecycleOwner(lifecycleOwner)
+        .build()
 
     val optionsExperience = FirebaseRecyclerOptions.Builder<Stats>()
-            .setQuery(UsersFirebase.databaseReference.child(id).child("experience"), Stats::class.java)
-            .setLifecycleOwner(lifecycleOwner)
-            .build()
+        .setQuery(UsersFirebase.databaseReference.child(id).child("experience"), Stats::class.java)
+        .setLifecycleOwner(lifecycleOwner)
+        .build()
 
 
     fun navigateToAdd() {

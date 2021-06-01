@@ -21,25 +21,30 @@ class CursesFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCursesBinding.inflate(inflater, container, false)
         val view = binding.root
 
         val viewModelFactory = CursesViewModelFactory()
-        val cursesViewModel = ViewModelProvider(this, viewModelFactory).get(CursesViewModel::class.java)
+        val cursesViewModel =
+            ViewModelProvider(this, viewModelFactory).get(CursesViewModel::class.java)
         binding.viewModel = cursesViewModel
 
         val options = FirebaseRecyclerOptions.Builder<CursesBlessingsHealth>()
-                .setQuery(CursesFirebase.databaseReference, CursesBlessingsHealth::class.java)
-                .setLifecycleOwner(this)
-                .build()
+            .setQuery(CursesFirebase.databaseReference, CursesBlessingsHealth::class.java)
+            .setLifecycleOwner(this)
+            .build()
 
-        val adapter = CursesAdapter(options, USER_ID.value!!, requireContext(), CursesAdapter.OnClickListener {
-            cursesViewModel.navigateToCurseDetails(it)
-        })
+        val adapter = CursesAdapter(
+            options,
+            USER_ID.value!!,
+            requireContext(),
+            CursesAdapter.OnClickListener {
+                cursesViewModel.navigateToCurseDetails(it)
+            })
 
         binding.listCurses.adapter = adapter
 
@@ -52,7 +57,8 @@ class CursesFragment : Fragment() {
 
         cursesViewModel.navigateToAddCurses.observe(viewLifecycleOwner, {
             it?.let {
-                val action = StatusFragmentDirections.actionStatusFragmentToAddCurseFragment(USER_ID.value!!)
+                val action =
+                    StatusFragmentDirections.actionStatusFragmentToAddCurseFragment(USER_ID.value!!)
                 findNavController().navigate(action)
             }
         })

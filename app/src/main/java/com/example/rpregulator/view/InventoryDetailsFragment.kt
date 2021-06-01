@@ -17,16 +17,17 @@ class InventoryDetailsFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentInventoryDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
         val inventory = InventoryDetailsFragmentArgs.fromBundle(requireArguments()).inventory
         val viewModelFactory = InventoryDetailsViewModelFactory(inventory)
-        val inventoryDetailViewModel = ViewModelProvider(this, viewModelFactory).get(InventoryDetailsViewModel::class.java)
+        val inventoryDetailViewModel =
+            ViewModelProvider(this, viewModelFactory).get(InventoryDetailsViewModel::class.java)
 
         binding.viewModel = inventoryDetailViewModel
 
@@ -34,14 +35,18 @@ class InventoryDetailsFragment : Fragment() {
 
         inventoryDetailViewModel.navigateToInventoryEdit.observe(viewLifecycleOwner, {
             it?.let {
-                val action = InventoryDetailsFragmentDirections.actionInventoryDetailsFragmentToInventoryEditDetailsFragment(it)
+                val action =
+                    InventoryDetailsFragmentDirections.actionInventoryDetailsFragmentToInventoryEditDetailsFragment(
+                        it
+                    )
                 findNavController().navigate(action)
             }
         })
 
         inventoryDetailViewModel.navigateToInventory.observe(viewLifecycleOwner, {
             it?.let {
-                val action = InventoryDetailsFragmentDirections.actionInventoryDetailsFragmentToMainFragment()
+                val action =
+                    InventoryDetailsFragmentDirections.actionInventoryDetailsFragmentToMainFragment()
                 findNavController().navigate(action)
             }
         })

@@ -63,10 +63,10 @@ class BlessingDetailsViewModel(var blessing: CursesBlessingsHealth) : ViewModel(
         BlessingsFirebase.databaseReference
         val entryID = id
         val entry = CursesBlessingsHealth(
-                entryID,
-                blessingName.value,
-                blessingIntensity.value,
-                blessingDesc.value
+            entryID,
+            blessingName.value,
+            blessingIntensity.value,
+            blessingDesc.value
         )
         viewModelScope.launch {
             BlessingsFirebase.uploadData(entryID, entry, USER_ID.value!!)

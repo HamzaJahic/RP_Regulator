@@ -21,32 +21,41 @@ class InventoryFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentInventoryBinding.inflate(inflater, container, false)
         val view = binding.root
 
         val viewModelFactory = InventoryViewModelFactory()
-        val inventoryViewModel = ViewModelProvider(this, viewModelFactory).get(InventoryViewModel::class.java)
+        val inventoryViewModel =
+            ViewModelProvider(this, viewModelFactory).get(InventoryViewModel::class.java)
 
         binding.viewModel = inventoryViewModel
 
         val options = FirebaseRecyclerOptions.Builder<Inventory>()
-                .setQuery(InventoryFirebase.databaseReference.orderByChild("sorting"), Inventory::class.java)
-                .setLifecycleOwner(this)
-                .build()
+            .setQuery(
+                InventoryFirebase.databaseReference.orderByChild("sorting"),
+                Inventory::class.java
+            )
+            .setLifecycleOwner(this)
+            .build()
 
-        val adapter = InventoryAdapter(options, requireContext(), USER_ID.value!!, InventoryAdapter.OnClickListener {
-            inventoryViewModel.navigateToInventoryDetails(it)
-        })
+        val adapter = InventoryAdapter(
+            options,
+            requireContext(),
+            USER_ID.value!!,
+            InventoryAdapter.OnClickListener {
+                inventoryViewModel.navigateToInventoryDetails(it)
+            })
 
         binding.listInventory.adapter = adapter
 
         inventoryViewModel.navigateToAddInventory.observe(viewLifecycleOwner, {
             it?.let {
-                val action = MainFragmentDirections.actionMainFragmentToAddInventoryFragment(USER_ID.value!!)
+                val action =
+                    MainFragmentDirections.actionMainFragmentToAddInventoryFragment(USER_ID.value!!)
                 findNavController().navigate(action)
             }
         })

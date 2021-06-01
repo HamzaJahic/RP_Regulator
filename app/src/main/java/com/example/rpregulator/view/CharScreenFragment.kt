@@ -30,15 +30,16 @@ class CharScreenFragment : Fragment() {
 
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCharScreenBinding.inflate(inflater, container, false)
         val view = binding.root
 
         val viewModelFactory = CharScreenViewModelFactory()
-        charScreenViewModel = ViewModelProvider(this, viewModelFactory).get(CharScreenViewModel::class.java)
+        charScreenViewModel =
+            ViewModelProvider(this, viewModelFactory).get(CharScreenViewModel::class.java)
 
         binding.viewModel = charScreenViewModel
 
@@ -65,7 +66,10 @@ class CharScreenFragment : Fragment() {
                 val intent = Intent()
                 intent.type = "image/*"
                 intent.action = Intent.ACTION_GET_CONTENT
-                startActivityForResult(Intent.createChooser(intent, "Choose photo"), GALLERY_REQUEST_CODE)
+                startActivityForResult(
+                    Intent.createChooser(intent, "Choose photo"),
+                    GALLERY_REQUEST_CODE
+                )
             }
         })
 
@@ -87,11 +91,13 @@ class CharScreenFragment : Fragment() {
     }
 
     fun uploadToFirebase(uri: Uri) {
-        val fileRef = storageRefrence.child("${System.currentTimeMillis()} ${charScreenViewModel.charName.value}")
+        val fileRef =
+            storageRefrence.child("${System.currentTimeMillis()} ${charScreenViewModel.charName.value}")
         fileRef.putFile(uri).addOnSuccessListener {
             fileRef.downloadUrl.addOnSuccessListener {
                 Log.d("ImageUp", "Upload")
-                UsersFirebase.databaseReference.child(USER_ID.value!!).child("img").setValue(it.toString())
+                UsersFirebase.databaseReference.child(USER_ID.value!!).child("img")
+                    .setValue(it.toString())
                 Toast.makeText(requireContext(), "Upload successful!", Toast.LENGTH_LONG).show()
 
             }

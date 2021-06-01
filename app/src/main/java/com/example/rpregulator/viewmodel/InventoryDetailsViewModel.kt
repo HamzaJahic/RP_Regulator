@@ -63,10 +63,10 @@ class InventoryDetailsViewModel(var inventory: Inventory) : ViewModel() {
         InventoryFirebase.databaseReference
         val entryID = id
         val entry = Inventory(
-                entryID,
-                inventoryName.value,
-                inventoryQuantity.value,
-                inventoryDesc.value
+            entryID,
+            inventoryName.value,
+            inventoryQuantity.value,
+            inventoryDesc.value
         )
         viewModelScope.launch {
             InventoryFirebase.uploadData(entryID, entry, USER_ID.value!!)

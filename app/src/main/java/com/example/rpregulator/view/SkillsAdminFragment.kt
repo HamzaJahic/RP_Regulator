@@ -17,9 +17,9 @@ class SkillsAdminFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentRvLayoutBinding.inflate(inflater, container, false)
@@ -27,16 +27,22 @@ class SkillsAdminFragment : Fragment() {
         val id = SkillsAdminFragmentArgs.fromBundle(requireArguments()).id
 
         val viewModelFactory = DataViewModelFactory(this, id)
-        val dataDetailViewModel = ViewModelProvider(this, viewModelFactory).get(DataViewModel::class.java)
+        val dataDetailViewModel =
+            ViewModelProvider(this, viewModelFactory).get(DataViewModel::class.java)
 
-        val adapter = SkillsAdapter(dataDetailViewModel.optionsSkills, requireContext(), id, SkillsAdapter.OnClickListener {
+        val adapter = SkillsAdapter(
+            dataDetailViewModel.optionsSkills,
+            requireContext(),
+            id,
+            SkillsAdapter.OnClickListener {
 
-        })
+            })
         binding.viewModel = dataDetailViewModel
 
         dataDetailViewModel.navigateToAdd.observe(viewLifecycleOwner, {
             it?.let {
-                val action = SkillsAdminFragmentDirections.actionSkillsAdminFragmentToAddSkillFragment(id)
+                val action =
+                    SkillsAdminFragmentDirections.actionSkillsAdminFragmentToAddSkillFragment(id)
                 findNavController().navigate(action)
             }
         })

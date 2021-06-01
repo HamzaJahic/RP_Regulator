@@ -15,23 +15,35 @@ import com.example.rpregulator.utils.AlertDialogBuilders
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class SkillsAdapter(options: FirebaseRecyclerOptions<Skills>, private val context: Context, val user_id: String, val onClickListener: OnClickListener)
-    : FirebaseRecyclerAdapter<Skills, SkillsAdapter.SkillsHolder>(options) {
+class SkillsAdapter(
+    options: FirebaseRecyclerOptions<Skills>,
+    private val context: Context,
+    val user_id: String,
+    val onClickListener: OnClickListener
+) : FirebaseRecyclerAdapter<Skills, SkillsAdapter.SkillsHolder>(options) {
 
     private val _progressBarShow = MutableLiveData<Boolean?>()
     val progressBar: LiveData<Boolean?>
         get() = _progressBarShow
 
-    class SkillsHolder(private var binding: RvItemSkillsBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(skills: Skills, onClickListener: OnClickListener, user_id: String, context: Context) {
+    class SkillsHolder(private var binding: RvItemSkillsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(
+            skills: Skills,
+            onClickListener: OnClickListener,
+            user_id: String,
+            context: Context
+        ) {
             binding.txtName.text = skills.name
             binding.txtCost.text = skills.cost
             binding.txtValue.text = "${skills.value}"
-            binding.imgType.setImageResource(when (skills.type) {
-                "ACTIVE" -> R.drawable.ic_active
-                "PASSIVE" -> R.drawable.ic_passive
-                else -> R.drawable.ic_active
-            })
+            binding.imgType.setImageResource(
+                when (skills.type) {
+                    "ACTIVE" -> R.drawable.ic_active
+                    "PASSIVE" -> R.drawable.ic_passive
+                    else -> R.drawable.ic_active
+                }
+            )
 
             if (skills.type == "ACTIVE") {
                 binding.txtValue.visibility = View.GONE
@@ -52,10 +64,10 @@ class SkillsAdapter(options: FirebaseRecyclerOptions<Skills>, private val contex
             binding.cardView.setOnLongClickListener {
                 AlertDialogBuilders.createDeleteAlert(context) {
                     UsersFirebase.databaseReference
-                            .child(user_id)
-                            .child("skills")
-                            .child(skills.id.toString())
-                            .removeValue()
+                        .child(user_id)
+                        .child("skills")
+                        .child(skills.id.toString())
+                        .removeValue()
                 }
                 true
             }
@@ -69,11 +81,11 @@ class SkillsAdapter(options: FirebaseRecyclerOptions<Skills>, private val contex
             val valueNew = ++valueOld
 
             UsersFirebase.databaseReference
-                    .child(user_id)
-                    .child("skills")
-                    .child(skills.id.toString())
-                    .child("value")
-                    .setValue(valueNew.toString())
+                .child(user_id)
+                .child("skills")
+                .child(skills.id.toString())
+                .child("value")
+                .setValue(valueNew.toString())
         }
 
         private fun decreaseValue(skills: Skills, user_id: String) {
@@ -82,11 +94,11 @@ class SkillsAdapter(options: FirebaseRecyclerOptions<Skills>, private val contex
             val valueNew = --valueOld
 
             UsersFirebase.databaseReference
-                    .child(user_id)
-                    .child("skills")
-                    .child(skills.id.toString())
-                    .child("value")
-                    .setValue(valueNew.toString())
+                .child(user_id)
+                .child("skills")
+                .child(skills.id.toString())
+                .child("value")
+                .setValue(valueNew.toString())
         }
     }
 

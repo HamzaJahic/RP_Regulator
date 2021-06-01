@@ -43,11 +43,11 @@ class AddCreatureViewModel : ViewModel() {
         val databaseReference = CreaturesFirebase.databaseReference
         val entryID = databaseReference.push().key.toString()
         val entry = Creatures(
-                entryID,
-                img,
-                creatureName.value,
-                creatureArk.value,
-                creatureDesc.value
+            entryID,
+            img,
+            creatureName.value,
+            creatureArk.value,
+            creatureDesc.value
         )
         viewModelScope.launch {
             CreaturesFirebase.uploadData(entryID, entry)

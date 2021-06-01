@@ -16,16 +16,17 @@ class AddCurseFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentAddCurseBinding.inflate(inflater, container, false)
         val view = binding.root
         val id = AddCurseFragmentArgs.fromBundle(requireArguments()).id
         val viewModelFactory = AddCurseViewModelFactory(id)
-        val curseViewModel = ViewModelProvider(this, viewModelFactory).get(AddCurseViewModel::class.java)
+        val curseViewModel =
+            ViewModelProvider(this, viewModelFactory).get(AddCurseViewModel::class.java)
 
         binding.viewModel = curseViewModel
 

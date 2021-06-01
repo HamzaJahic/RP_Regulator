@@ -50,8 +50,7 @@
             android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
             android:onClick="@{onClick -> viewModel.navigateToAddPaperWork()}"
-            android:src="@drawable/ic_add"
-            />
+            android:src="@drawable/ic_add" />
 
     </FrameLayout>
 
