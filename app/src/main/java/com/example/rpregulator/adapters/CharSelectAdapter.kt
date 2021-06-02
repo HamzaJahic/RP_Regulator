@@ -1,7 +1,6 @@
 package com.example.rpregulator.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
@@ -25,14 +24,12 @@ class CharSelectAdapter(
     class UserHolder(private var binding: CharSelectRvItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User, context: Context) {
-            Log.d("Username", user.username.toString())
             Glide.with(context).load(user.img).into(binding.imgUser)
         }
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHolder {
-        Log.d("Adapter", "Created")
         return UserHolder(
             CharSelectRvItemBinding.inflate(
                 LayoutInflater.from(parent.context),
