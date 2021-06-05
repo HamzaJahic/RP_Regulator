@@ -10,7 +10,6 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 
 class InventoryViewModel(val lifecycleOwner: LifecycleOwner) : ViewModel() {
 
-
     private val _navigateToAddInventory = MutableLiveData<Boolean?>()
     val navigateToAddInventory: LiveData<Boolean?>
         get() = _navigateToAddInventory
@@ -27,7 +26,6 @@ class InventoryViewModel(val lifecycleOwner: LifecycleOwner) : ViewModel() {
         .setLifecycleOwner(lifecycleOwner)
         .build()
 
-
     fun navigateToInventoryDetails(inventory: Inventory) {
         _navigateToInventoryDetails.value = inventory
         doneNavigateToInventoryDetails()
@@ -38,11 +36,9 @@ class InventoryViewModel(val lifecycleOwner: LifecycleOwner) : ViewModel() {
         _navigateToInventoryDetails.value = null
     }
 
-
     fun navigateToAddInventory() {
         _navigateToAddInventory.value = true
         doneNavigateToAddInventory()
-
     }
 
     private fun doneNavigateToAddInventory() {

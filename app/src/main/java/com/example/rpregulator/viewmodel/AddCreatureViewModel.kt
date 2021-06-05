@@ -15,7 +15,6 @@ class AddCreatureViewModel : ViewModel() {
     val creatureDesc = MutableLiveData<String?>()
     var img = String()
 
-
     private val _navigateToCreatures = MutableLiveData<Boolean?>()
     val navigateToCreatures: LiveData<Boolean?>
         get() = _navigateToCreatures
@@ -27,7 +26,6 @@ class AddCreatureViewModel : ViewModel() {
     init {
         img = ""
     }
-
 
     fun navigateToCreatures() {
         _navigateToCreatures.value = true

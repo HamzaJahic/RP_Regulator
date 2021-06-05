@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 
 class SettingsViewModel(context: Context) : ViewModel() {
 
-
     private val _logout = MutableLiveData<Boolean?>()
     val logout: LiveData<Boolean?>
         get() = _logout

@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rpregulator.adapters.CursesAdapter
 import com.example.rpregulator.databinding.FragmentCursesBinding
-import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
+import com.example.rpregulator.utils.GlobalConstants.USER_ID
 import com.example.rpregulator.viewmodel.CursesViewModel
 import com.example.rpregulator.viewmodel.CursesViewModelFactory
 

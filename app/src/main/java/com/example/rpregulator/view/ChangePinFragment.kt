@@ -22,27 +22,21 @@ class ChangePinFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-
         _binding = FragmentChangePinBinding.inflate(inflater, container, false)
         val view = binding.root
-
 
         val viewModelFactory = ChangePinViewModelFactory()
         val changePinViewModel =
             ViewModelProvider(this, viewModelFactory).get(ChangePinViewModel::class.java)
 
-
         binding.viewModel = changePinViewModel
-
 
         return view
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 
 }

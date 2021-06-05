@@ -16,11 +16,9 @@ class AddSkillViewModel(private val id: String) : ViewModel() {
     val skillDesc = MutableLiveData<String?>()
     var type = String()
 
-
     init {
         type = "ACTIVE"
     }
-
 
     private val _navigateToSkills = MutableLiveData<Boolean?>()
     val navigateToSkills: LiveData<Boolean?>
@@ -33,7 +31,6 @@ class AddSkillViewModel(private val id: String) : ViewModel() {
         skillDesc.value = ""
 
     }
-
 
     fun setTypeToActive() {
         type = "ACTIVE"
@@ -61,5 +58,4 @@ class AddSkillViewModel(private val id: String) : ViewModel() {
             SkillsFirebase.uploadData(entryID, entry, id)
         }
     }
-
 }

@@ -6,16 +6,13 @@ import androidx.lifecycle.ViewModel
 
 class HealthViewModel : ViewModel() {
 
-
     private val _navigateToAddHealth = MutableLiveData<Boolean?>()
     val navigateToAddHealth: LiveData<Boolean?>
         get() = _navigateToAddHealth
 
-
     fun navigateToAddHealth() {
         _navigateToAddHealth.value = true
         doneNavigateToAddHealth()
-
     }
 
     private fun doneNavigateToAddHealth() {

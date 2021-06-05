@@ -23,7 +23,6 @@ class PaperworkFragment : Fragment() {
     ): View {
         _binding = FragmentPaperworkBinding.inflate(inflater, container, false)
         val view = binding.root
-
         val viewModelFactory = PaperworkViewModelFactory(this)
         val paperworkViewModel =
             ViewModelProvider(this, viewModelFactory).get(PaperworkViewModel::class.java)

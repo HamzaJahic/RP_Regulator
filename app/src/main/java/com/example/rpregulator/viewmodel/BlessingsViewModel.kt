@@ -10,7 +10,6 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 
 class BlessingsViewModel(val lifecycleOwner: LifecycleOwner) : ViewModel() {
 
-
     private val _navigateToAddBlessings = MutableLiveData<Boolean?>()
     val navigateToAddBlessings: LiveData<Boolean?>
         get() = _navigateToAddBlessings
@@ -38,7 +37,6 @@ class BlessingsViewModel(val lifecycleOwner: LifecycleOwner) : ViewModel() {
     fun navigateToAddBlessings() {
         _navigateToAddBlessings.value = true
         doneNavigateToAddBlessings()
-
     }
 
     private fun doneNavigateToAddBlessings() {

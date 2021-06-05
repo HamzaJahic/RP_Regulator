@@ -19,7 +19,6 @@ class PinViewModel(val user: User, context: Context) : ViewModel() {
         context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
     private val editor: SharedPreferences.Editor = sharedPref.edit()
     private val userName = user.username.toString()
-
     private val _navigateToMain = MutableLiveData<Boolean?>()
     val navigateToMain: LiveData<Boolean?>
         get() = _navigateToMain
@@ -44,7 +43,6 @@ class PinViewModel(val user: User, context: Context) : ViewModel() {
             })
         }
     }
-
 
     fun navigateToMain() {
         _navigateToMain.value = true

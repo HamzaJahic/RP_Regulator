@@ -42,7 +42,6 @@ class StatusFragment : Fragment() {
         adapter.addFragment(HealthFragment())
         binding.viewPager.adapter = adapter
         binding.tabLayout.setupWithViewPager(binding.viewPager)
-
         binding.tabLayout.getTabAt(0)!!.setIcon(R.drawable.blessings)
         binding.tabLayout.getTabAt(1)!!.setIcon(R.drawable.curses)
         binding.tabLayout.getTabAt(2)!!.setIcon(R.drawable.status)

@@ -28,7 +28,6 @@ class CharSelectAdapter(
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHolder {
         return UserHolder(
             CharSelectRvItemBinding.inflate(
@@ -38,7 +37,6 @@ class CharSelectAdapter(
             )
         )
     }
-
 
     override fun onBindViewHolder(holder: UserHolder, position: Int, model: User) {
         val item = getItem(position)
@@ -57,6 +55,5 @@ class CharSelectAdapter(
     class OnClickListener(val clickListener: (user: User) -> Unit) {
         fun onClick(user: User) = clickListener(user)
     }
-
 
 }

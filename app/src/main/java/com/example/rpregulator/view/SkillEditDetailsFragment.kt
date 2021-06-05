@@ -29,7 +29,6 @@ class SkillEditDetailsFragment : Fragment() {
 
         binding.viewModel = skillDetailViewModel
 
-
         return view
     }
 

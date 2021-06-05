@@ -37,6 +37,7 @@ class InventoryAdminFragment : Fragment() {
             InventoryAdapter.OnClickListener {
 
             })
+
         binding.viewModel = dataDetailViewModel
 
         dataDetailViewModel.navigateToAdd.observe(viewLifecycleOwner, {

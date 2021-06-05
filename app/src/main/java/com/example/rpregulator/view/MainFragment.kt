@@ -42,7 +42,6 @@ class MainFragment : Fragment() {
         _binding = null
     }
 
-
     private fun setUpTabs() {
         val adapter = TabFragmentAdapter(childFragmentManager)
         adapter.addFragment(StatsFragment())

@@ -10,11 +10,9 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 
 class PaperworkViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
 
-
     private val _navigateToAddPaperWork = MutableLiveData<Boolean?>()
     val navigateToAddPaperWork: LiveData<Boolean?>
         get() = _navigateToAddPaperWork
-
 
     private val _navigateToPaperWorkDetails = MutableLiveData<PaperWork?>()
     val navigateToPaperWorkDetails: LiveData<PaperWork?>
@@ -25,11 +23,9 @@ class PaperworkViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
         .setLifecycleOwner(lifecycleOwner)
         .build()
 
-
     fun navigateToAddPaperWork() {
         _navigateToAddPaperWork.value = true
         doneNavigateToAddPaperWork()
-
     }
 
     private fun doneNavigateToAddPaperWork() {

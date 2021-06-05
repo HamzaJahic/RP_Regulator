@@ -14,7 +14,6 @@ class AddExperienceViewModel(val id: String) : ViewModel() {
     val entryValue = MutableLiveData<String?>()
     val entryDesc = MutableLiveData<String?>()
 
-
     private val _navigateToMain = MutableLiveData<Boolean?>()
     val navigateToMain: LiveData<Boolean?>
         get() = _navigateToMain
@@ -28,7 +27,6 @@ class AddExperienceViewModel(val id: String) : ViewModel() {
     private fun doneNavigateToMain() {
         _navigateToMain.value = null
     }
-
 
     fun uploadExperienceData() {
         val databaseReference = UsersFirebase.databaseReference.child(id).child("experience")

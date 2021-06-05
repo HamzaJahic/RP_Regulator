@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rpregulator.adapters.SkillsAdapter
 import com.example.rpregulator.databinding.FragmentSkillsBinding
-import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
+import com.example.rpregulator.utils.GlobalConstants.USER_ID
 import com.example.rpregulator.viewmodel.SkillsViewModel
 import com.example.rpregulator.viewmodel.SkillsViewModelFactory
 
@@ -30,7 +30,6 @@ class SkillsFragment : Fragment() {
             ViewModelProvider(this, viewModelFactory).get(SkillsViewModel::class.java)
 
         binding.viewModel = skillsViewModel
-
 
         val adapter = SkillsAdapter(
             skillsViewModel.options,

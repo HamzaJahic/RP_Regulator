@@ -40,7 +40,6 @@ class CursesAdminFragment : Fragment() {
 
         binding.viewModel = dataDetailViewModel
 
-
         dataDetailViewModel.navigateToAdd.observe(viewLifecycleOwner, {
             it?.let {
                 val action =

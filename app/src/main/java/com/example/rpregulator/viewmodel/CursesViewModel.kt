@@ -10,7 +10,6 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 
 class CursesViewModel(val lifecycleOwner: LifecycleOwner) : ViewModel() {
 
-
     private val _navigateToAddCurses = MutableLiveData<Boolean?>()
     val navigateToAddCurses: LiveData<Boolean?>
         get() = _navigateToAddCurses
@@ -33,7 +32,6 @@ class CursesViewModel(val lifecycleOwner: LifecycleOwner) : ViewModel() {
     private fun doneNavigateToCurseDetails() {
         _navigateToCurseDetails.value = null
     }
-
 
     fun navigateToAddCurses() {
         _navigateToAddCurses.value = true

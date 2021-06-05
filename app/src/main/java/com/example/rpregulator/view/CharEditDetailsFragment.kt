@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.rpregulator.databinding.FragmentCharEditDetailsBinding
-import com.example.rpregulator.utils.GlobalConstants.Companion.GALLERY_REQUEST_CODE
+import com.example.rpregulator.utils.GlobalConstants.GALLERY_REQUEST_CODE
 import com.example.rpregulator.viewmodel.CharDetailsViewModel
 import com.example.rpregulator.viewmodel.CharDetailsViewModelFactory
 import com.google.firebase.storage.FirebaseStorage
@@ -55,10 +55,8 @@ class CharEditDetailsFragment : Fragment() {
 
         binding.viewModel = charDetailViewModel
 
-
         return view
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

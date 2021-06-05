@@ -12,7 +12,7 @@ import com.example.rpregulator.adapters.StatusAdapter
 import com.example.rpregulator.databinding.FragmentHealthBinding
 import com.example.rpregulator.firebase.HealthFirebase
 import com.example.rpregulator.models.CursesBlessingsHealth
-import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
+import com.example.rpregulator.utils.GlobalConstants.USER_ID
 import com.example.rpregulator.viewmodel.HealthViewModel
 import com.example.rpregulator.viewmodel.HealthViewModelFactory
 import com.firebase.ui.database.FirebaseRecyclerOptions
@@ -33,7 +33,6 @@ class HealthFragment : Fragment() {
         val healthViewModel =
             ViewModelProvider(this, viewModelFactory).get(HealthViewModel::class.java)
         binding.viewModel = healthViewModel
-
 
         val options = FirebaseRecyclerOptions.Builder<CursesBlessingsHealth>()
             .setQuery(HealthFirebase.databaseReference, CursesBlessingsHealth::class.java)

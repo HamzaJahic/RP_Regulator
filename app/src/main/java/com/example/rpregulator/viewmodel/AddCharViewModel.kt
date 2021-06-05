@@ -15,7 +15,6 @@ class AddCharViewModel : ViewModel() {
     val charDesc = MutableLiveData<String?>()
     var img = String()
 
-
     private val _navigateToChars = MutableLiveData<Boolean?>()
     val navigateToChars: LiveData<Boolean?>
         get() = _navigateToChars
@@ -27,7 +26,6 @@ class AddCharViewModel : ViewModel() {
     init {
         img = ""
     }
-
 
     fun navigateToChars() {
         _navigateToChars.value = true

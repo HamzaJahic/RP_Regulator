@@ -29,7 +29,6 @@ class CurseEditDetailsFragment : Fragment() {
 
         binding.viewModel = curseDetailViewModel
 
-
         return view
     }
 

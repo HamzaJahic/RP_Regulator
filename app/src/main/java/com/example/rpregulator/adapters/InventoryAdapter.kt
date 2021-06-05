@@ -101,7 +101,6 @@ class InventoryAdapter(
         fun onClick(inventory: Inventory) = clickListener(inventory)
     }
 
-
     override fun onDataChanged() {
         super.onDataChanged()
         _progressBarShow.value = true

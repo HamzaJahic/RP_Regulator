@@ -23,8 +23,6 @@ class CreaturesFragment : Fragment() {
     ): View {
         _binding = FragmentCreaturesBinding.inflate(inflater, container, false)
         val view = binding.root
-
-
         val viewModelFactory = CreaturesViewModelFactory(this)
         val creaturesViewModel =
             ViewModelProvider(this, viewModelFactory).get(CreaturesViewModel::class.java)

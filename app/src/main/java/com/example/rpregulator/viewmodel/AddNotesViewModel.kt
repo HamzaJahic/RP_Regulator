@@ -29,7 +29,6 @@ class AddNotesViewModel : ViewModel() {
     fun navigateToNotes() {
         _navigateToNotes.value = true
         doneNavigateToNotes()
-
     }
 
     private fun doneNavigateToNotes() {
@@ -46,7 +45,6 @@ class AddNotesViewModel : ViewModel() {
         _uploadPhoto.value = null
     }
 
-
     fun uploadData() {
         val databaseReference = NotesFirebase.databaseReference
         val entryID = databaseReference.push().key.toString()
@@ -60,5 +58,4 @@ class AddNotesViewModel : ViewModel() {
             NotesFirebase.uploadData(entryID, entry)
         }
     }
-
 }

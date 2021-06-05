@@ -18,7 +18,6 @@ class CharAdminViewModel(val id: String) : ViewModel() {
     val gold: LiveData<String?>
         get() = _gold
 
-
     private val _img = MutableLiveData<String?>()
     val img: LiveData<String?>
         get() = _img
@@ -65,7 +64,6 @@ class CharAdminViewModel(val id: String) : ViewModel() {
         _changePhoto.value = null
     }
 
-
     fun increaseGold(inc: Int) {
         val oldValue = _gold.value!!.toInt()
         val newValue = oldValue + inc
@@ -87,7 +85,6 @@ class CharAdminViewModel(val id: String) : ViewModel() {
                     TODO("Not yet implemented")
                 }
             })
-
     }
 
 
@@ -154,6 +151,5 @@ class CharAdminViewModel(val id: String) : ViewModel() {
     private fun doneNavigateToXP() {
         _navigateToXP.value = null
     }
-
 
 }

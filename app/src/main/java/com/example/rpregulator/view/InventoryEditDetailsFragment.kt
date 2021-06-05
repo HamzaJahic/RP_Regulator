@@ -29,7 +29,6 @@ class InventoryEditDetailsFragment : Fragment() {
 
         binding.viewModel = inventoryDetailViewModel
 
-
         return view
     }
 

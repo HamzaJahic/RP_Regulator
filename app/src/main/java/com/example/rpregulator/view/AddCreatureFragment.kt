@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rpregulator.databinding.FragmentAddCreatureBinding
-import com.example.rpregulator.utils.GlobalConstants.Companion.GALLERY_REQUEST_CODE
+import com.example.rpregulator.utils.GlobalConstants.GALLERY_REQUEST_CODE
 import com.example.rpregulator.viewmodel.AddCreatureViewModel
 import com.example.rpregulator.viewmodel.AddCreatureViewModelFactory
 import com.google.firebase.storage.FirebaseStorage

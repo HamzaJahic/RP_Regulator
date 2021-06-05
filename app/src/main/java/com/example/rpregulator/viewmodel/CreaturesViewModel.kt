@@ -10,7 +10,6 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 
 class CreaturesViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
 
-
     private val _navigateToAddCreatures = MutableLiveData<Boolean?>()
     val navigateToAddCreatures: LiveData<Boolean?>
         get() = _navigateToAddCreatures
@@ -23,7 +22,6 @@ class CreaturesViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
         .setQuery(CreaturesFirebase.databaseReference.orderByChild("name"), Creatures::class.java)
         .setLifecycleOwner(lifecycleOwner)
         .build()
-
 
     fun navigateToCreaturesDetails(Creatures: Creatures) {
         _navigateToCreaturesDetails.value = Creatures
@@ -38,7 +36,6 @@ class CreaturesViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
     fun navigateToAddCreatures() {
         _navigateToAddCreatures.value = true
         doneNavigateToAddCreatures()
-
     }
 
     fun doneNavigateToAddCreatures() {

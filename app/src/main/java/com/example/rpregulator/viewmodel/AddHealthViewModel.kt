@@ -15,11 +15,9 @@ class AddHealthViewModel(private val id: String) : ViewModel() {
     val healthDesc = MutableLiveData<String?>()
     var type = String()
 
-
     init {
         type = "ACTIVE"
     }
-
 
     private val _navigateToHealths = MutableLiveData<Boolean?>()
     val navigateToHealths: LiveData<Boolean?>
@@ -35,7 +33,6 @@ class AddHealthViewModel(private val id: String) : ViewModel() {
     private fun doneNavigateToHealths() {
         _navigateToHealths.value = null
     }
-
 
     fun uploadData() {
         val databaseReference = HealthFirebase.databaseReference

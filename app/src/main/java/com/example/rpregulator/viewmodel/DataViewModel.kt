@@ -14,7 +14,6 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 
 class DataViewModel(lifecycleOwner: LifecycleOwner, id: String) : ViewModel() {
 
-
     private val _navigateToAdd = MutableLiveData<Boolean?>()
     val navigateToAdd: LiveData<Boolean?>
         get() = _navigateToAdd
@@ -65,7 +64,6 @@ class DataViewModel(lifecycleOwner: LifecycleOwner, id: String) : ViewModel() {
         .setQuery(UsersFirebase.databaseReference.child(id).child("experience"), Stats::class.java)
         .setLifecycleOwner(lifecycleOwner)
         .build()
-
 
     fun navigateToAdd() {
         _navigateToAdd.value = true

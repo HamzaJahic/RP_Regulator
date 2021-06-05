@@ -18,7 +18,6 @@ class CreaturesAdapter(
     val onClickListener: OnClickListener
 ) : FirebaseRecyclerAdapter<Creatures, CreaturesAdapter.CreaturesHolder>(options) {
 
-
     private val _progressBarShow = MutableLiveData<Boolean?>()
     val progressBar: LiveData<Boolean?>
         get() = _progressBarShow
@@ -41,7 +40,6 @@ class CreaturesAdapter(
         return CreaturesHolder(RvItemCharsBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-
     override fun onBindViewHolder(holder: CreaturesHolder, position: Int, model: Creatures) {
         val item = getItem(position)
         holder.bind(item, context, onClickListener)
@@ -56,6 +54,5 @@ class CreaturesAdapter(
         super.onDataChanged()
         _progressBarShow.value = true
     }
-
 
 }

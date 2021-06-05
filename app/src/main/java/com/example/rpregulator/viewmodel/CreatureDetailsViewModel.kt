@@ -17,7 +17,6 @@ class CreatureDetailsViewModel(var creature: Creatures) : ViewModel() {
     var id = String()
     var img = String()
 
-
     init {
         creatureName.value = creature.name
         creatureApperance.value = creature.ark
@@ -25,7 +24,6 @@ class CreatureDetailsViewModel(var creature: Creatures) : ViewModel() {
         id = creature.id!!
         img = creature.img!!
     }
-
 
     private val _navigateToCreatureEdit = MutableLiveData<Creatures?>()
     val navigateToCreatureEdit: LiveData<Creatures?>
@@ -43,11 +41,9 @@ class CreatureDetailsViewModel(var creature: Creatures) : ViewModel() {
     val uploadPhoto: LiveData<Boolean?>
         get() = _uploadPhoto
 
-
     fun navigateToCreatureEdit() {
         _navigateToCreatureEdit.value = creature
         doneNavigateToCreatureEdit()
-
     }
 
     private fun doneNavigateToCreatureEdit() {
@@ -57,7 +53,6 @@ class CreatureDetailsViewModel(var creature: Creatures) : ViewModel() {
     private fun navigateToCreature() {
         _navigateToCreature.value = true
         doneNavigateToCreature()
-
     }
 
     private fun doneNavigateToCreature() {
@@ -103,11 +98,9 @@ class CreatureDetailsViewModel(var creature: Creatures) : ViewModel() {
     fun uploadPhoto() {
         _uploadPhoto.value = true
         doneUploadPhoto()
-
     }
 
     private fun doneUploadPhoto() {
         _uploadPhoto.value = null
     }
-
 }

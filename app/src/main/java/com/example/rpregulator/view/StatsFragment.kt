@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rpregulator.adapters.StatsAdapter
 import com.example.rpregulator.databinding.FragmentStatsBinding
-import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
+import com.example.rpregulator.utils.GlobalConstants.USER_ID
 import com.example.rpregulator.viewmodel.StatsViewModel
 import com.example.rpregulator.viewmodel.StatsViewModelFactory
 
@@ -32,7 +32,7 @@ class StatsFragment : Fragment() {
 
         binding.listStats.invalidate()
 
-        val options =statsViewModel.options
+        val options = statsViewModel.options
 
         val adapter =
             StatsAdapter(options, requireContext(), USER_ID.value!!, StatsAdapter.OnClickListener {

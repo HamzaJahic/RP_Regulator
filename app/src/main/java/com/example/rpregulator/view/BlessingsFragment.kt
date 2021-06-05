@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rpregulator.adapters.BlessingsAdapter
 import com.example.rpregulator.databinding.FragmentBlessingsBinding
-import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
+import com.example.rpregulator.utils.GlobalConstants.USER_ID
 import com.example.rpregulator.viewmodel.BlessingsViewModel
 import com.example.rpregulator.viewmodel.BlessingsViewModelFactory
 

@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rpregulator.firebase.SkillsFirebase
 import com.example.rpregulator.models.Skills
-import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
+import com.example.rpregulator.utils.GlobalConstants.USER_ID
 import kotlinx.coroutines.launch
 
 class SkillDetailsViewModel(private var skill: Skills) : ViewModel() {
@@ -18,7 +18,6 @@ class SkillDetailsViewModel(private var skill: Skills) : ViewModel() {
     var type = String()
     var id = String()
 
-
     init {
         skillName.value = skill.name
         skillCost.value = skill.cost
@@ -26,7 +25,6 @@ class SkillDetailsViewModel(private var skill: Skills) : ViewModel() {
         type = skill.type!!
         id = skill.id!!
     }
-
 
     private val _navigateToSkillEdit = MutableLiveData<Skills?>()
     val navigateToSkillEdit: LiveData<Skills?>
@@ -44,7 +42,6 @@ class SkillDetailsViewModel(private var skill: Skills) : ViewModel() {
     fun navigateToSkillEdit() {
         _navigateToSkillEdit.value = skill
         doneNavigateToSkillEdit()
-
     }
 
     private fun doneNavigateToSkillEdit() {
@@ -54,7 +51,6 @@ class SkillDetailsViewModel(private var skill: Skills) : ViewModel() {
     fun navigateToSkills() {
         _navigateToSkills.value = true
         doneNavigateToSkills()
-
     }
 
     private fun doneNavigateToSkills() {

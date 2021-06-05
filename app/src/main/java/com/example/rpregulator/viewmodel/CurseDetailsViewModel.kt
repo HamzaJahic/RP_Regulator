@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rpregulator.firebase.CursesFirebase
 import com.example.rpregulator.models.CursesBlessingsHealth
-import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
+import com.example.rpregulator.utils.GlobalConstants.USER_ID
 import kotlinx.coroutines.launch
 
 class CurseDetailsViewModel(var curse: CursesBlessingsHealth) : ViewModel() {
@@ -15,7 +15,6 @@ class CurseDetailsViewModel(var curse: CursesBlessingsHealth) : ViewModel() {
     val curseIntensity = MutableLiveData<String?>()
     val curseDesc = MutableLiveData<String?>()
     var id = String()
-
 
     init {
         curseName.value = curse.name
@@ -57,7 +56,6 @@ class CurseDetailsViewModel(var curse: CursesBlessingsHealth) : ViewModel() {
     private fun doneNavigateToCurse() {
         _navigateToCurse.value = null
     }
-
 
     fun editData() {
         CursesFirebase.databaseReference

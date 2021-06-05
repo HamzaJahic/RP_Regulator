@@ -11,12 +11,12 @@ class AlertDialogBuilders : DialogFragment() {
 
             val dialogBuilder = AlertDialog.Builder(context)
             dialogBuilder.setMessage("Delete given entry?")
-                    .setPositiveButton("Delete") { _, _ ->
-                        positiveClick()
-                    }
-                    .setNegativeButton("Cancel") { dialog, _ ->
-                        dialog.dismiss()
-                    }
+                .setPositiveButton("Delete") { _, _ ->
+                    positiveClick()
+                }
+                .setNegativeButton("Cancel") { dialog, _ ->
+                    dialog.dismiss()
+                }
             val alert = dialogBuilder.create()
             alert.setTitle("Warning")
             alert.show()

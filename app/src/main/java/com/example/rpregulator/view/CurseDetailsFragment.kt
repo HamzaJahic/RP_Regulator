@@ -31,8 +31,6 @@ class CurseDetailsFragment : Fragment() {
 
         binding.viewModel = curseDetailViewModel
 
-
-
         curseDetailViewModel.navigateToCurseEdit.observe(viewLifecycleOwner, {
             it?.let {
                 val action =

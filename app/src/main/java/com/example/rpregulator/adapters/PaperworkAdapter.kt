@@ -19,7 +19,6 @@ class PaperworkAdapter(
     val progressBar: LiveData<Boolean?>
         get() = _progressBarShow
 
-
     class PaperWorkHolder(private var binding: RvItemNotesBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(paperWork: PaperWork) {
@@ -34,7 +33,6 @@ class PaperworkAdapter(
         return PaperWorkHolder(RvItemNotesBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-
     override fun onBindViewHolder(holder: PaperWorkHolder, position: Int, model: PaperWork) {
         val item = getItem(position)
         holder.bind(item)
@@ -46,7 +44,6 @@ class PaperworkAdapter(
     class OnClickListener(val clickListener: (paperWork: PaperWork) -> Unit) {
         fun onClick(paperWork: PaperWork) = clickListener(paperWork)
     }
-
 
     override fun onDataChanged() {
         super.onDataChanged()

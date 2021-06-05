@@ -17,7 +17,6 @@ class CharDetailsViewModel(var char: Chars) : ViewModel() {
     var id = String()
     var img = String()
 
-
     init {
         charName.value = char.name
         charApperance.value = char.ark
@@ -25,7 +24,6 @@ class CharDetailsViewModel(var char: Chars) : ViewModel() {
         id = char.id!!
         img = char.img!!
     }
-
 
     private val _navigateToCharEdit = MutableLiveData<Chars?>()
     val navigateToCharEdit: LiveData<Chars?>
@@ -47,7 +45,6 @@ class CharDetailsViewModel(var char: Chars) : ViewModel() {
     fun navigateToCharEdit() {
         _navigateToCharEdit.value = char
         doneNavigateToCharEdit()
-
     }
 
     private fun doneNavigateToCharEdit() {
@@ -57,13 +54,11 @@ class CharDetailsViewModel(var char: Chars) : ViewModel() {
     private fun navigateToChar() {
         _navigateToChar.value = true
         doneNavigateToChar()
-
     }
 
     private fun doneNavigateToChar() {
         _navigateToChar.value = null
     }
-
 
     fun editData() {
         CharsFirebase.databaseReference
@@ -99,11 +94,9 @@ class CharDetailsViewModel(var char: Chars) : ViewModel() {
         _showAlertDialog.value = null
     }
 
-
     fun uploadPhoto() {
         _uploadPhoto.value = true
         doneUploadPhoto()
-
     }
 
     private fun doneUploadPhoto() {

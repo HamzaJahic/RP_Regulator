@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rpregulator.firebase.InventoryFirebase
 import com.example.rpregulator.models.Inventory
-import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
+import com.example.rpregulator.utils.GlobalConstants.USER_ID
 import kotlinx.coroutines.launch
 
 class InventoryDetailsViewModel(var inventory: Inventory) : ViewModel() {
@@ -16,14 +16,12 @@ class InventoryDetailsViewModel(var inventory: Inventory) : ViewModel() {
     val inventoryDesc = MutableLiveData<String?>()
     var id = String()
 
-
     init {
         inventoryName.value = inventory.name
         inventoryQuantity.value = inventory.value
         inventoryDesc.value = inventory.desc
         id = inventory.id!!
     }
-
 
     private val _navigateToInventoryEdit = MutableLiveData<Inventory?>()
     val navigateToInventoryEdit: LiveData<Inventory?>

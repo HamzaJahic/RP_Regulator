@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.rpregulator.firebase.UsersFirebase
-import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
+import com.example.rpregulator.utils.GlobalConstants.USER_ID
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -18,7 +18,6 @@ class CharScreenViewModel : ViewModel() {
     private val _gold = MutableLiveData<String?>()
     val gold: LiveData<String?>
         get() = _gold
-
 
     private val _img = MutableLiveData<String?>()
     val img: LiveData<String?>

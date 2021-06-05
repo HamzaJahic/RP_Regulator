@@ -95,7 +95,6 @@ class StatsAdapter(
         return StatsHolder(RvItemMainBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-
     override fun onBindViewHolder(holder: StatsHolder, position: Int, model: Stats) {
         val item = getItem(position)
         holder.bind(item, user_id, context)
@@ -108,11 +107,9 @@ class StatsAdapter(
         fun onClick(stats: Stats) = clickListener(stats)
     }
 
-
     override fun onDataChanged() {
         super.onDataChanged()
         _progressBarShow.value = true
     }
-
 
 }

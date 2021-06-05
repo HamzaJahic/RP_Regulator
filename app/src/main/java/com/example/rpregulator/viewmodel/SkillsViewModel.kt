@@ -10,7 +10,6 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 
 class SkillsViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
 
-
     val options = FirebaseRecyclerOptions.Builder<Skills>()
         .setQuery(SkillsFirebase.databaseReference.orderByChild("name"), Skills::class.java)
         .setLifecycleOwner(lifecycleOwner)

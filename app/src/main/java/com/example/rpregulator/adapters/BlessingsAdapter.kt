@@ -88,7 +88,6 @@ class BlessingsAdapter(
         return StatusHolder(RvItemMainBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-
     override fun onBindViewHolder(
         holder: StatusHolder,
         position: Int,

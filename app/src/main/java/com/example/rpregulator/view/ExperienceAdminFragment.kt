@@ -35,12 +35,9 @@ class ExperienceAdminFragment : Fragment() {
         val adapter = ExperienceAdapter(
             dataDetailViewModel.optionsExperience,
             ExperienceAdapter.OnClickListener {
-
             },
             id
         )
-
-
 
         binding.viewModel = dataDetailViewModel
         binding.recyclerView.adapter = adapter
@@ -55,10 +52,6 @@ class ExperienceAdminFragment : Fragment() {
                 findNavController().navigate(action)
             }
         })
-
-
-
-
 
         return view
     }

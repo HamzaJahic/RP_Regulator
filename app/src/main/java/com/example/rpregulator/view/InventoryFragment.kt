@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rpregulator.adapters.InventoryAdapter
 import com.example.rpregulator.databinding.FragmentInventoryBinding
-import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
+import com.example.rpregulator.utils.GlobalConstants.USER_ID
 import com.example.rpregulator.viewmodel.InventoryViewModel
 import com.example.rpregulator.viewmodel.InventoryViewModelFactory
 

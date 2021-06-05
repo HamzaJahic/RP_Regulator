@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rpregulator.firebase.BlessingsFirebase
 import com.example.rpregulator.models.CursesBlessingsHealth
-import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
+import com.example.rpregulator.utils.GlobalConstants.USER_ID
 import kotlinx.coroutines.launch
 
 class BlessingDetailsViewModel(var blessing: CursesBlessingsHealth) : ViewModel() {
@@ -16,14 +16,12 @@ class BlessingDetailsViewModel(var blessing: CursesBlessingsHealth) : ViewModel(
     val blessingDesc = MutableLiveData<String?>()
     var id = String()
 
-
     init {
         blessingName.value = blessing.name
         blessingIntensity.value = blessing.value
         blessingDesc.value = blessing.desc
         id = blessing.id!!
     }
-
 
     private val _navigateToBlessingEdit = MutableLiveData<CursesBlessingsHealth?>()
     val navigateToBlessingEdit: LiveData<CursesBlessingsHealth?>

@@ -16,8 +16,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.rpregulator.databinding.FragmentCharScreenBinding
 import com.example.rpregulator.firebase.UsersFirebase
-import com.example.rpregulator.utils.GlobalConstants.Companion.GALLERY_REQUEST_CODE
-import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
+import com.example.rpregulator.utils.GlobalConstants.GALLERY_REQUEST_CODE
+import com.example.rpregulator.utils.GlobalConstants.USER_ID
 import com.example.rpregulator.viewmodel.CharScreenViewModel
 import com.example.rpregulator.viewmodel.CharScreenViewModelFactory
 import com.google.firebase.storage.FirebaseStorage

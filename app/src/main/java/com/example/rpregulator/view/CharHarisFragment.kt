@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.rpregulator.databinding.FragmentCharAdminBinding
 import com.example.rpregulator.firebase.UsersFirebase
-import com.example.rpregulator.utils.GlobalConstants.Companion.GALLERY_REQUEST_CODE
+import com.example.rpregulator.utils.GlobalConstants.GALLERY_REQUEST_CODE
 import com.example.rpregulator.viewmodel.CharAdminViewModel
 import com.example.rpregulator.viewmodel.CharAdminViewModelFactory
 import com.google.firebase.storage.FirebaseStorage
@@ -28,7 +28,6 @@ class CharHarisFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var charAdminViewModel: CharAdminViewModel
     val storageRefrence = FirebaseStorage.getInstance().reference
-
 
     override fun onCreateView(
         inflater: LayoutInflater,

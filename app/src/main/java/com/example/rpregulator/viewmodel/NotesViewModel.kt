@@ -10,11 +10,9 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 
 class NotesViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
 
-
     private val _navigateToAddNotes = MutableLiveData<Boolean?>()
     val navigateToAddNotes: LiveData<Boolean?>
         get() = _navigateToAddNotes
-
 
     private val _navigateToNotesDetails = MutableLiveData<Notes?>()
     val navigateToNotesDetails: LiveData<Notes?>
@@ -24,7 +22,6 @@ class NotesViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
         .setQuery(NotesFirebase.databaseReference, Notes::class.java)
         .setLifecycleOwner(lifecycleOwner)
         .build()
-
 
     fun navigateToAddNotes() {
         _navigateToAddNotes.value = true

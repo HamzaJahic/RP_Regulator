@@ -10,25 +10,22 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 
 class StatsViewModel(val lifecycleOwner: LifecycleOwner) : ViewModel() {
 
-
     private val _navigateToAddStats = MutableLiveData<Boolean?>()
     val navigateToAddStats: LiveData<Boolean?>
         get() = _navigateToAddStats
 
-   val options = FirebaseRecyclerOptions.Builder<Stats>()
-       .setQuery(StatsFirebase.databaseReference.orderByChild("sorting"), Stats::class.java)
-       .setLifecycleOwner(lifecycleOwner)
-       .build()
+    val options = FirebaseRecyclerOptions.Builder<Stats>()
+        .setQuery(StatsFirebase.databaseReference.orderByChild("sorting"), Stats::class.java)
+        .setLifecycleOwner(lifecycleOwner)
+        .build()
 
     fun navigateToAddStats() {
         _navigateToAddStats.value = true
         doneNavigateToAddStats()
-
     }
 
     private fun doneNavigateToAddStats() {
         _navigateToAddStats.value = null
     }
-
 
 }

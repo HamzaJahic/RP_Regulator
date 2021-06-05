@@ -14,11 +14,9 @@ class AddStatViewModel(private val id: String) : ViewModel() {
     val statValue = MutableLiveData<String?>()
     val statDesc = MutableLiveData<String?>()
 
-
     private val _navigateToStats = MutableLiveData<Boolean?>()
     val navigateToStats: LiveData<Boolean?>
         get() = _navigateToStats
-
 
     fun navigateToStats() {
         _navigateToStats.value = true

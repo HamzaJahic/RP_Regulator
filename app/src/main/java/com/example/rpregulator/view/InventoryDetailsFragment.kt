@@ -31,8 +31,6 @@ class InventoryDetailsFragment : Fragment() {
 
         binding.viewModel = inventoryDetailViewModel
 
-
-
         inventoryDetailViewModel.navigateToInventoryEdit.observe(viewLifecycleOwner, {
             it?.let {
                 val action =

@@ -13,7 +13,6 @@ class AddPaperWorkViewModel : ViewModel() {
     val paperWorkTitle = MutableLiveData<String?>()
     val paperWorkDesc = MutableLiveData<String?>()
 
-
     private val _navigateToPaperWorks = MutableLiveData<Boolean?>()
     val navigateToPaperWorks: LiveData<Boolean?>
         get() = _navigateToPaperWorks
@@ -42,7 +41,6 @@ class AddPaperWorkViewModel : ViewModel() {
         _uploadPhoto.value = null
     }
 
-
     fun uploadData() {
         val databaseReference = PaperworkFirebase.databaseReference
         val entryID = databaseReference.push().key.toString()
@@ -55,5 +53,4 @@ class AddPaperWorkViewModel : ViewModel() {
             PaperworkFirebase.uploadData(entryID, entry)
         }
     }
-
 }

@@ -23,7 +23,6 @@ class CharsViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
         .setLifecycleOwner(lifecycleOwner)
         .build()
 
-
     fun navigateToCharsDetails(chars: Chars) {
         _navigateToCharsDetails.value = chars
         doneNavigateToCharsDetails()

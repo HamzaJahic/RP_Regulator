@@ -71,8 +71,6 @@ class SkillsAdapter(
                 }
                 true
             }
-
-
         }
 
         private fun increaseValue(skills: Skills, user_id: String) {
@@ -106,22 +104,18 @@ class SkillsAdapter(
         return SkillsHolder(RvItemSkillsBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-
     override fun onBindViewHolder(holder: SkillsHolder, position: Int, model: Skills) {
         val item = getItem(position)
         holder.bind(item, onClickListener, user_id, context)
-
     }
 
     class OnClickListener(val clickListener: (skills: Skills) -> Unit) {
         fun onClick(skills: Skills) = clickListener(skills)
     }
 
-
     override fun onDataChanged() {
         super.onDataChanged()
         _progressBarShow.value = true
     }
-
 
 }

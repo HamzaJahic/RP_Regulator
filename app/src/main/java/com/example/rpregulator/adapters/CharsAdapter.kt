@@ -18,11 +18,9 @@ class CharsAdapter(
     val onClickListener: OnClickListener
 ) : FirebaseRecyclerAdapter<Chars, CharsAdapter.CharHolder>(options) {
 
-
     private val _progressBarShow = MutableLiveData<Boolean?>()
     val progressBar: LiveData<Boolean?>
         get() = _progressBarShow
-
 
     class CharHolder(private var binding: RvItemCharsBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -41,7 +39,6 @@ class CharsAdapter(
         return CharHolder(RvItemCharsBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-
     override fun onBindViewHolder(holder: CharHolder, position: Int, model: Chars) {
         val item = getItem(position)
         holder.bind(item, context, onClickListener)
@@ -56,6 +53,5 @@ class CharsAdapter(
         super.onDataChanged()
         _progressBarShow.value = true
     }
-
 
 }

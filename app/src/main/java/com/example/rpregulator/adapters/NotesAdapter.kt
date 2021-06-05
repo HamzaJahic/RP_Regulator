@@ -38,5 +38,4 @@ class NotesAdapter(options: FirebaseRecyclerOptions<Notes>, val onClickListener:
         fun onClick(notes: Notes) = clickListener(notes)
     }
 
-
 }

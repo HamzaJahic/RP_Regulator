@@ -21,6 +21,7 @@ class PinFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         _binding = FragmentPinBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -41,7 +42,6 @@ class PinFragment : Fragment() {
                 startActivity(intent)
             }
         })
-
 
         return view
     }

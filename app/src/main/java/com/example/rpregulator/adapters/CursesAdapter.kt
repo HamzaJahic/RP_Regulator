@@ -87,7 +87,6 @@ class CursesAdapter(
         return StatusHolder(RvItemMainBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-
     override fun onBindViewHolder(
         holder: StatusHolder,
         position: Int,
@@ -103,11 +102,9 @@ class CursesAdapter(
             clickListener(cursesBlessingsHealth)
     }
 
-
     override fun onDataChanged() {
         super.onDataChanged()
         _progressBarShow.value = true
     }
-
 
 }

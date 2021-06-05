@@ -20,9 +20,6 @@ class HelperActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-
-
-
         fun tokenCheck() {
             if (token) {
                 val intent = Intent(this, MainActivity::class.java)
@@ -37,7 +34,6 @@ class HelperActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-
 
         Timer("SettingUp", false).schedule(1500) {
             tokenCheck()

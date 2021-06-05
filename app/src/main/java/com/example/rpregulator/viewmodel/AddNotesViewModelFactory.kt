@@ -9,7 +9,6 @@ class AddNotesViewModelFactory : ViewModelProvider.Factory {
         if (modelClass.isAssignableFrom(AddNotesViewModel::class.java)) {
             return AddNotesViewModel() as T
         }
-
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

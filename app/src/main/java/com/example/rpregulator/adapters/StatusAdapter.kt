@@ -97,7 +97,6 @@ class StatusAdapter(
             clickListener(cursesBlessingsHealth)
     }
 
-
     override fun onDataChanged() {
         super.onDataChanged()
         _progressBarShow.value = true

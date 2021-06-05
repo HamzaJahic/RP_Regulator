@@ -30,7 +30,6 @@ class AddCurseViewModel(private val id: String) : ViewModel() {
         _navigateToCurses.value = null
     }
 
-
     fun uploadData() {
         val databaseReference = CursesFirebase.databaseReference
         val entryID = databaseReference.push().key.toString()

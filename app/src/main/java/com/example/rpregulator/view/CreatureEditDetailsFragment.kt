@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.rpregulator.databinding.FragmentCreatureEditDetailsBinding
-import com.example.rpregulator.utils.GlobalConstants.Companion.GALLERY_REQUEST_CODE
+import com.example.rpregulator.utils.GlobalConstants.GALLERY_REQUEST_CODE
 import com.example.rpregulator.viewmodel.CreatureDetailsViewModel
 import com.example.rpregulator.viewmodel.CreatureDetailsViewModelFactory
 import com.google.firebase.storage.FirebaseStorage
@@ -31,7 +31,6 @@ class CreatureEditDetailsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
 
         _binding = FragmentCreatureEditDetailsBinding.inflate(inflater, container, false)
         val view = this.binding.root
@@ -59,7 +58,6 @@ class CreatureEditDetailsFragment : Fragment() {
 
         return view
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

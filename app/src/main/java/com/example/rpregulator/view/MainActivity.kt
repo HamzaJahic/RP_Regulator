@@ -16,7 +16,7 @@ import com.aghajari.zoomhelper.ZoomHelper
 import com.bumptech.glide.Glide
 import com.example.rpregulator.R
 import com.example.rpregulator.databinding.ActivityMainBinding
-import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
+import com.example.rpregulator.utils.GlobalConstants.USER_ID
 import com.example.rpregulator.viewmodel.MainActivityViewModel
 
 private lateinit var binding: ActivityMainBinding
@@ -71,7 +71,6 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
-
 
     }
 

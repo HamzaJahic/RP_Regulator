@@ -29,7 +29,6 @@ class ExperienceAdapter(
             }
         }
 
-
         private fun increaseValue(stats: Stats, id: String) {
             var valueOld = stats.value!!.toInt()
 
@@ -38,7 +37,6 @@ class ExperienceAdapter(
             UsersFirebase.databaseReference.child(id).child("experience").child(stats.id.toString())
                 .child("value").setValue(valueOld.toString())
         }
-
 
         private fun decreaseValue(stats: Stats, id: String) {
             var valueOld = stats.value!!.toInt()
@@ -55,7 +53,6 @@ class ExperienceAdapter(
         return StatsHolder(RvItemMainBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-
     override fun onBindViewHolder(holder: StatsHolder, position: Int, model: Stats) {
         val item = getItem(position)
         val id = id
@@ -68,6 +65,5 @@ class ExperienceAdapter(
     class OnClickListener(val clickListener: (stats: Stats) -> Unit) {
         fun onClick(stats: Stats) = clickListener(stats)
     }
-
 
 }

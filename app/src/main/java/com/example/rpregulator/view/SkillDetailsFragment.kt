@@ -32,7 +32,7 @@ class SkillDetailsFragment : Fragment() {
 
         binding.viewModel = skillDetailViewModel
 
-        if (skill.cost == " ") {
+        if (skill.cost == "") {
             binding.tvSkillCost.text = "-"
         }
 
