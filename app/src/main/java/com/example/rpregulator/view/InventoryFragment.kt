@@ -9,12 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rpregulator.adapters.InventoryAdapter
 import com.example.rpregulator.databinding.FragmentInventoryBinding
-import com.example.rpregulator.firebase.InventoryFirebase
-import com.example.rpregulator.models.Inventory
 import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
 import com.example.rpregulator.viewmodel.InventoryViewModel
 import com.example.rpregulator.viewmodel.InventoryViewModelFactory
-import com.firebase.ui.database.FirebaseRecyclerOptions
 
 class InventoryFragment : Fragment() {
     private var _binding: FragmentInventoryBinding? = null
@@ -28,19 +25,13 @@ class InventoryFragment : Fragment() {
         _binding = FragmentInventoryBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        val viewModelFactory = InventoryViewModelFactory()
+        val viewModelFactory = InventoryViewModelFactory(this)
         val inventoryViewModel =
             ViewModelProvider(this, viewModelFactory).get(InventoryViewModel::class.java)
 
         binding.viewModel = inventoryViewModel
 
-        val options = FirebaseRecyclerOptions.Builder<Inventory>()
-            .setQuery(
-                InventoryFirebase.databaseReference.orderByChild("sorting"),
-                Inventory::class.java
-            )
-            .setLifecycleOwner(this)
-            .build()
+        val options = inventoryViewModel.options
 
         val adapter = InventoryAdapter(
             options,

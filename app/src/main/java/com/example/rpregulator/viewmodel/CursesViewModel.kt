@@ -1,11 +1,14 @@
 package com.example.rpregulator.viewmodel
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.rpregulator.firebase.CursesFirebase
 import com.example.rpregulator.models.CursesBlessingsHealth
+import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class CursesViewModel : ViewModel() {
+class CursesViewModel(val lifecycleOwner: LifecycleOwner) : ViewModel() {
 
 
     private val _navigateToAddCurses = MutableLiveData<Boolean?>()
@@ -16,6 +19,10 @@ class CursesViewModel : ViewModel() {
     val navigateToCurseDetails: LiveData<CursesBlessingsHealth?>
         get() = _navigateToCurseDetails
 
+    val options = FirebaseRecyclerOptions.Builder<CursesBlessingsHealth>()
+        .setQuery(CursesFirebase.databaseReference, CursesBlessingsHealth::class.java)
+        .setLifecycleOwner(lifecycleOwner)
+        .build()
 
     fun navigateToCurseDetails(curse: CursesBlessingsHealth) {
         _navigateToCurseDetails.value = curse

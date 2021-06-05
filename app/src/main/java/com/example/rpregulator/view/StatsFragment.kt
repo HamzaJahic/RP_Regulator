@@ -10,12 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rpregulator.adapters.StatsAdapter
 import com.example.rpregulator.databinding.FragmentStatsBinding
-import com.example.rpregulator.firebase.StatsFirebase
-import com.example.rpregulator.models.Stats
 import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
 import com.example.rpregulator.viewmodel.StatsViewModel
 import com.example.rpregulator.viewmodel.StatsViewModelFactory
-import com.firebase.ui.database.FirebaseRecyclerOptions
 
 class StatsFragment : Fragment() {
     private var _binding: FragmentStatsBinding? = null
@@ -28,17 +25,14 @@ class StatsFragment : Fragment() {
     ): View {
         _binding = FragmentStatsBinding.inflate(inflater, container, false)
         val view = binding.root
-        val viewModelFactory = StatsViewModelFactory()
+        val viewModelFactory = StatsViewModelFactory(this)
         val statsViewModel =
             ViewModelProvider(this, viewModelFactory).get(StatsViewModel::class.java)
         binding.viewModel = statsViewModel
 
         binding.listStats.invalidate()
 
-        val options = FirebaseRecyclerOptions.Builder<Stats>()
-            .setQuery(StatsFirebase.databaseReference.orderByChild("sorting"), Stats::class.java)
-            .setLifecycleOwner(this)
-            .build()
+        val options =statsViewModel.options
 
         val adapter =
             StatsAdapter(options, requireContext(), USER_ID.value!!, StatsAdapter.OnClickListener {

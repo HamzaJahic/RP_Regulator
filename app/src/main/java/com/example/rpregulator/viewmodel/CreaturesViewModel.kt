@@ -31,7 +31,7 @@ class CreaturesViewModel(lifecycleOwner: LifecycleOwner) : ViewModel() {
 
     }
 
-    fun doneNavigateToCreaturesDetails() {
+    private fun doneNavigateToCreaturesDetails() {
         _navigateToCreaturesDetails.value = null
     }
 

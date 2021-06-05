@@ -1,7 +1,6 @@
 package com.example.rpregulator.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +38,6 @@ class SkillsFragment : Fragment() {
             USER_ID.value!!,
             SkillsAdapter.OnClickListener {
                 skillsViewModel.navigateToSkillDetails(it)
-                Log.d("Navigate", "Klik se desio na ${it.id}")
             })
 
         binding.listSkills.adapter = adapter

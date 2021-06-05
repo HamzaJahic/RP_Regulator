@@ -9,12 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rpregulator.adapters.CursesAdapter
 import com.example.rpregulator.databinding.FragmentCursesBinding
-import com.example.rpregulator.firebase.CursesFirebase
-import com.example.rpregulator.models.CursesBlessingsHealth
 import com.example.rpregulator.utils.GlobalConstants.Companion.USER_ID
 import com.example.rpregulator.viewmodel.CursesViewModel
 import com.example.rpregulator.viewmodel.CursesViewModelFactory
-import com.firebase.ui.database.FirebaseRecyclerOptions
 
 class CursesFragment : Fragment() {
     private var _binding: FragmentCursesBinding? = null
@@ -28,15 +25,12 @@ class CursesFragment : Fragment() {
         _binding = FragmentCursesBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        val viewModelFactory = CursesViewModelFactory()
+        val viewModelFactory = CursesViewModelFactory(this)
         val cursesViewModel =
             ViewModelProvider(this, viewModelFactory).get(CursesViewModel::class.java)
         binding.viewModel = cursesViewModel
 
-        val options = FirebaseRecyclerOptions.Builder<CursesBlessingsHealth>()
-            .setQuery(CursesFirebase.databaseReference, CursesBlessingsHealth::class.java)
-            .setLifecycleOwner(this)
-            .build()
+        val options = cursesViewModel.options
 
         val adapter = CursesAdapter(
             options,
