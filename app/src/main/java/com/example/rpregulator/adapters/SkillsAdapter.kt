@@ -49,7 +49,14 @@ class SkillsAdapter(
                 binding.txtValue.visibility = View.GONE
                 binding.btnDecrease.visibility = View.GONE
                 binding.btnIncrease.visibility = View.GONE
-            } else binding.txtCost.visibility = View.GONE
+                binding.txtCost.visibility = View.VISIBLE
+
+            }else  {
+                binding.txtCost.visibility = View.GONE
+                binding.txtValue.visibility = View.VISIBLE
+                binding.btnDecrease.visibility = View.VISIBLE
+                binding.btnIncrease.visibility = View.VISIBLE
+            }
 
             binding.btnIncrease.setOnClickListener {
                 increaseValue(skills, user_id)
